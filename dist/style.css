@@ -28,6 +28,11 @@ body {
     margin-bottom: 30px;
 }
 
+#sideBarHome {
+    margin-bottom: 40px;
+    padding: 0 30px;
+    transform: translateX(-30px);
+}
 
 
 #createTaskButton {
