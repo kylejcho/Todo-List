@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Imperial+Script&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 * {
     margin: 0;
-    color: rgb(235, 235, 235);
+    color: rgb(0, 0, 0);
     font-family: "Roboto";
 
 }
@@ -10,22 +10,27 @@ body {
     display: flex;
     width: 100vw;
     height: 100vh;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
 }
 
 #sideBar {
-    width: 12%;
+    width: 10%;
     height: auto;
-    background-color: rgb(20, 20, 20);
-    padding: 30px;
+    background-color: rgb(250, 250, 250);
+    padding: 50px 30px 30px 30px;
     font-weight: 700;
     font-size: 1.25rem;
 }
 
+#sideBar i {
+    color: rgb(4, 121, 255);
+    padding-right: 10px;
+}
 
 
 #sideBarName {
     margin-bottom: 30px;
+    color:rgb(0, 112, 240);
 }
 
 #sideBarHome {
@@ -33,23 +38,24 @@ body {
     transform: translateX(-30px);
     width: 100%;
     padding: 10px 28px;
-    background-color: rgba(255, 255, 255, 0.075);
+    background-color: rgba(0, 0, 0, 0.04);
 }
 
 
 #createTaskButton {
     background-color:rgb(4, 121, 255);
+    color: white;
     border: none;
     border-radius: 50px;
     width: 100%;
     height: 2.5rem;
     margin-bottom: 40px;
     font-size: 1rem;
-    transition: all 0.2s;
+    transition: all 0.3s;
 }
 
 #createTaskButton:hover {
-    background-color:rgba(4, 121, 255, 0.904);
+    background-color:rgb(0, 112, 240);
 }
 
 #sideBarShortcuts {
@@ -59,7 +65,6 @@ body {
 #sideBarShortcuts div {
     font-size: 1rem;
     font-weight: 400;
-    color: rgb(153, 153, 153);
     width: 100%;
     border: none;
     padding: 10px 28px;
@@ -67,6 +72,36 @@ body {
     transform: translateX(-30px);
 }
 
+#sideBarShortcuts i {
+    font-size: 0.6rem;
+    color:rgba(0, 112, 240, 0.623);
+}
+
+
 #sideBarShortcuts div:hover {
-    background-color: rgba(255, 255, 255, 0.075);
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+#allTasksContainer {
+    height: auto;
+    width: 800px;
+    margin-left: 20%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-radius: 15px;
+}
+
+
+#titleContainer {
+    width: auto;
+    font-size: 1.5rem;
+    height: 3rem;
+    border-bottom: 1px solid rgb(212, 212, 212);
+}
+
+#allTasks {
+    width: auto;
+    margin-top: 1rem;
+    height: 1000px;
+    border-radius: 50px;
 }

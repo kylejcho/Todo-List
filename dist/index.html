@@ -10,16 +10,19 @@
 </head>
 <body>
     <div id="sideBar">
-        <div id="sideBarName">Kyle Cho</div>
-        <button id="createTaskButton">+ Create Task</button>
-        <div id="sideBarHome">Home</div>
+        <div id="sideBarName"><i class="far fa-check-square" id="logoIcon"></i>ToDo List</div>
+        <div id="sideBarHome"><i class="fas fa-home"></i>Home</div>
         <div id="sideBarShortcuts">
             <p>Shortcuts</p>
-            <div id="sideBarShortcutsToday">Today</div>
-            <div id="sideBarShortcutsWeek">This Week</div>
-            <div id="sideBarShortcutsAllTasks">All Tasks</div>
+            <div id="sideBarShortcutsToday"><i class="fas fa-circle"></i>Today</div>
+            <div id="sideBarShortcutsWeek"><i class="fas fa-circle"></i>This Week</div>
+            <div id="sideBarShortcutsAllTasks"><i class="fas fa-circle"></i>All Tasks</div>
         </div>
         <div id="lists">Lists</div>
+    </div>
+    <div id="allTasksContainer">
+        <div id="titleContainer">All Tasks</div>
+        <div id="allTasks"></div>
     </div>
 </body>
 <script src="main.js"></script>
