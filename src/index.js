@@ -1,5 +1,4 @@
-const body = document.querySelector('body');
+import initialPageLoad from "./modules/ui";
 
-const buttonClick = () => {
-    
-}
+initialPageLoad();
+console.log("POO")
