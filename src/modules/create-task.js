@@ -1,8 +1,9 @@
-let taskArr = []
+import Task from "./task";
 
-const createTask = (taskName, description, dueDate) => {
-    
+
+const createTask = (task) => {
+    alert(task.name);
 }
 
 
-export default taskArr;
+export default createTask;
