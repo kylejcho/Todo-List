@@ -1,85 +1,94 @@
 @import url('https://fonts.googleapis.com/css2?family=Imperial+Script&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 * {
     margin: 0;
-    color: rgb(218, 218, 218);
-    font-family: "Roboto";
+    padding: 0;
+    color: #272a2f;
+    font-family: Inter;
+}
 
+nav {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    border-bottom: 1.5px solid #f1f1f1;
+    padding: 0 30px 0 30px;
+}
+
+#pageTitle {
+    display: flex;
+    align-items: center;
+}
+
+#pageTitle p{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#logo {
+    font-size: 2rem;
 }
 
 body {
-    display: flex;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(35, 38, 44);
+    background-color: rgb(255, 255, 255);
+}
+
+#contentContainer {
+    display: flex;
 }
 
 #sideBar {
     width: 10%;
     height: auto;
-    background-color: rgba(0, 0, 0, 0.253);
-    padding: 50px 30px 30px 30px;
+    padding: 30px;
     font-weight: 300;
-    font-size: 1.25rem;
+    font-size: 1;
 }
 
-#sideBar i {
-    padding-right: 15px;
-}
-
-
-#sideBarName {
-    margin-bottom: 30px;
+#sideBar ion-icon {
+    --ionicon-stroke-width: 32px;
 }
 
 #sideBarHome {
-    margin-bottom: 40px;
-    transform: translateX(-30px);
     width: 100%;
+    border: none;
     padding: 10px 28px;
+    transform: translateX(-30px);
+
 }
 
 #sideBarHome:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-}
 
-
-#createTaskButton {
-    background-color:rgb(4, 121, 255);
-    border: none;
-    border-radius: 50px;
-    width: 100%;
-    height: 2.5rem;
-    margin-bottom: 40px;
-    font-size: 1rem;
-    transition: all 0.3s;
-}
-
-#createTaskButton:hover {
-    background-color:rgb(0, 112, 240);
 }
 
 #sideBarShortcuts {
     margin-bottom: 40px;
 }
 
-#sideBarShortcuts div {
+#sideBarShortcuts p {
     font-size: 1rem;
+    padding: 10px 0;
+    font-weight: 500;
+}
+
+#sideBarShortcuts div {
+    display: flex;
+    align-items: center;
     width: 100%;
     border: none;
     padding: 10px 28px;
     transform: translateX(-30px);
 }
 
-#sideBarShortcuts p {
-    font-size: 1rem;
+#sideBarShortcuts ion-icon {
+    padding-right: 15px;
+    font-size: 1.5rem;
 }
 
-#sideBarShortcuts i {
-    transform: translateX(3px);
-    font-size: 1.1rem;
-    color: rgb(218, 218, 218);
+#sideBarShortcutsToday ion-icon {
+    
 }
-
 
 #sideBarShortcuts div:hover {
     background-color: rgba(0, 0, 0, 0.2);
