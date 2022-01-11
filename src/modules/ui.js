@@ -4,7 +4,6 @@ const initialPageLoad = () => {
     createAllTasksContainer();
 }
 
-
 const createAllTasksContainer = () => {
     const allTasksContainer = document.createElement('div');
     allTasksContainer.id = "allTasksContainer";
@@ -17,8 +16,8 @@ const createAllTasksContainer = () => {
 
     allTasksContainer.append(allTasksTitle);
 
-    const body = document.querySelector('body');
-    body.append(allTasksContainer);
+    const contentContainer = document.querySelector('#contentContainer');
+    contentContainer.append(allTasksContainer);
 }
 
 const createShortcutsTasksContainer = (type) => {
@@ -30,8 +29,8 @@ const createShortcutsTasksContainer = (type) => {
     shortcutsTitle.className = "shortcutsTasksTitle";
     shortcutsTasksContainer.append(shortcutsTitle);
 
-    const body = document.querySelector('body');
-    body.append(shortcutsTasksContainer);
+    const contentContainer = document.querySelector('#contentContainer');
+    contentContainer.append(shortcutsTasksContainer);
 }
 
 
