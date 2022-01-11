@@ -2,49 +2,109 @@
 * {
     margin: 0;
     padding: 0;
-    color: #272a2f;
+    color: #171c24;
     font-family: Inter;
+    font-weight: 400;
 }
 
 nav {
     display: flex;
     align-items: center;
     height: 50px;
-    border-bottom: 1.5px solid #f1f1f1;
-    padding: 0 30px 0 30px;
+    background-color: #f8f8fc81;
+    padding: 0 10vw 0 40px;
 }
 
 #pageTitle {
     display: flex;
     align-items: center;
+    padding-left: 3px;
+}
+
+#logo {
+    color: black;
+    font-size: 2rem;
 }
 
 #pageTitle p{
     font-size: 1.5rem;
     font-weight: 600;
+    color: black;
 }
 
-#logo {
-    font-size: 2rem;
+#searchAddContainer {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(40px);
+}
+
+
+
+
+#searchContainer {
+    display: flex;
+    align-items: center;
+    background-color: #bec7d51f;
+    height: 32px;
+    padding-left: 10px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+#searchContainer:hover {
+    background-color: #bec7d56b;
+}
+
+#searchIcon {
+    font-size: 1.5rem;
+    color: #697384;
+}
+
+#searchBar {
+    width: 250px;
+    height: 32px;
+    border-radius: 3px;
+    border: none;
+    padding-left: 8px;
+    margin-right:10px;
+    outline-width: 0;
+    background-color: #ffffff00;
+}
+
+
+#addButton {
+    font-size: 1.5rem;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+#addButton:hover {
+    box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.1);
+    color: #272a2f;
 }
 
 body {
     width: 100vw;
     height: 100vh;
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
 }
 
 #contentContainer {
     display: flex;
+    height: 100vh;
 }
 
 #sideBar {
     width: 10%;
-    height: auto;
+    height: 100%;
     padding: 30px;
-    font-weight: 300;
     font-size: 1;
+    background-color: #f8f8fc81;
 }
+
 
 #sideBar ion-icon {
     --ionicon-stroke-width: 32px;
@@ -53,13 +113,12 @@ body {
 #sideBarHome {
     width: 100%;
     border: none;
-    padding: 10px 28px;
-    transform: translateX(-30px);
-
+    padding: 10px 0 10px 15px;
+    border-radius: 3px;
 }
 
 #sideBarHome:hover {
-
+    background-color: #bec7d542;
 }
 
 #sideBarShortcuts {
@@ -68,8 +127,7 @@ body {
 
 #sideBarShortcuts p {
     font-size: 1rem;
-    padding: 10px 0;
-    font-weight: 500;
+    padding: 10px 0 10px 15px;
 }
 
 #sideBarShortcuts div {
@@ -77,12 +135,13 @@ body {
     align-items: center;
     width: 100%;
     border: none;
-    padding: 10px 28px;
-    transform: translateX(-30px);
+    padding: 10px 0 10px 15px;
+    transform: translateX(-1px);
+    border-radius: 3px;
 }
 
 #sideBarShortcuts ion-icon {
-    padding-right: 15px;
+    padding-right: 13px;
     font-size: 1.5rem;
 }
 
@@ -91,8 +150,13 @@ body {
 }
 
 #sideBarShortcuts div:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #bec7d542;
 }
+
+#sideBarLists {
+
+}
+
 
 .tasksContainer {
     height: auto;
@@ -120,7 +184,6 @@ body {
     margin-bottom: 5%;
     border-radius: 15px;
 }
-
 
 .shortcutsTasksTitle {
     width: auto;
