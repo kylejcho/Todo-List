@@ -16,6 +16,12 @@ const createAllTasksContainer = () => {
 
     allTasksContainer.append(allTasksTitle);
 
+    for (let i  = 0; i < 10; i++) {
+        let a  = document.createElement('p');
+        allTasksContainer.append(a);
+    }
+
+
     const contentContainer = document.querySelector('#contentContainer');
     contentContainer.append(allTasksContainer);
 }
