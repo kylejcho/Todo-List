@@ -5,7 +5,13 @@
     padding: 0;
     color: #171c24;
     font-family: Inter;
-    font-weight: 400;
+    font-weight: 500;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
 }
 
 nav {
@@ -13,23 +19,23 @@ nav {
     align-items: center;
     height: 50px;
     background-color: #f8f8fc81;
-    padding: 0 10vw 0 40px;
+    padding: 0 41px 0 41px;
 }
 
 #pageTitle {
     display: flex;
     align-items: center;
-    padding-left: 3px;
 }
 
 #logo {
-    color: black;
-    font-size: 2rem;
+    color: #3880ff;
+    font-size: 1.75rem;
+    --ionicon-stroke-width: 50px;
 }
 
 #pageTitle p {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 700;
     color: black;
 }
 
@@ -38,7 +44,6 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateX(40px);
 }
 
 
@@ -85,11 +90,7 @@ nav {
     color: #272a2f;
 }
 
-body {
-    width: 100vw;
-    height: 100vh;
-    background-color: #ffffff;
-}
+
 
 #contentContainer {
     display: flex;
@@ -98,7 +99,7 @@ body {
 
 #sideBar {
     width: 10%;
-    height: 100%;
+   
     padding: 30px;
     font-size: 1;
     background-color: #f8f8fc81;
@@ -106,72 +107,111 @@ body {
 
 
 #sideBar ion-icon {
-    --ionicon-stroke-width: 32px;
+    margin-right: 13px;
+    font-size: 1.5rem;
 }
 
 #sideBarHome {
+    display: flex;
+    align-items: center;
     width: 100%;
     border: none;
-    padding: 10px 0 10px 15px;
+    padding: 8px 0 8px 15px;
+    margin: 10px 0;
     border-radius: 3px;
+    background-color: #bec7d542;
+    transform: translateX(-1px);
 }
 
 #sideBarHome:hover {
     background-color: #bec7d542;
 }
 
+
+
 #sideBarShortcuts {
-    margin-bottom: 40px;
+    margin: 30px 0;
 }
 
 #sideBarShortcuts p {
+    display: flex;
+    align-items: center;
     font-size: 1rem;
     padding: 10px 0 10px 15px;
+    font-weight: 700;
+    transform: translateX(-1px);
+}
+
+.sideBarArrow {
+    transition: all ease-in-out 0.1s;
+    color: #697384;
+}
+
+.sideBarArrow:hover {
+    transform: translateY(-1px);
+    color: #171c24;
 }
 
 #sideBarShortcuts div {
     display: flex;
     align-items: center;
     width: 100%;
+    color: #697384;
     border: none;
-    padding: 10px 0 10px 15px;
+    padding: 8px 0 8px 15px;
     transform: translateX(-1px);
     border-radius: 3px;
+    transition: all ease-in-out 0.075s;
 }
 
-#sideBarShortcuts ion-icon {
-    padding-right: 13px;
-    font-size: 1.5rem;
-}
-
-#sideBarShortcutsToday ion-icon {
-    
+#sideBarShortcuts div:hover *{
+    color: #171c24;
 }
 
 #sideBarShortcuts div:hover {
-    background-color: #bec7d542;
+    color: #171c24;
 }
 
-#sideBarLists {
+#sideBarShortcuts div ion-icon {
+    color: #697384;
+}
+
+
+#sideBarShortcutsToday ion-icon {
 
 }
+
+#sideBarShortcuts div:hover {
+    box-shadow: 0px 2px 9px 0px rgba(0,0,0,0.2);
+}
+
+#sideBarLists p {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    padding: 10px 0 10px 15px;
+    font-weight: 700;
+    transform: translateX(-1px);
+}
+
+
 
 
 .tasksContainer {
     height: auto;
-    width: 800px;
-    margin-left: 20%;
-    margin-top: 2.5%;
-    margin-bottom: 5%;
+    width: 1000px;
+    margin: 40px auto;
     border-radius: 15px;
+    transform: translateX(-90px);
 }
 
 
 .tasksTitle {
     width: auto;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    font-weight: 700;
     height: 2.5rem;
-    border-bottom: 1px solid rgb(212, 212, 212);
+
 }
 
 
@@ -188,6 +228,6 @@ body {
     width: auto;
     font-size: 1.5rem;
     height: 2.5rem;
-    border-bottom: 1px solid rgb(212, 212, 212);
+
 }
 

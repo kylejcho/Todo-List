@@ -13,7 +13,7 @@
 <body>
     <nav>
         <div id="pageTitle">
-            <ion-icon name="checkbox-outline" id="logo"></ion-icon>
+            <ion-icon name="document-text-outline" id="logo"></ion-icon>
             <p>todo.</p>
         </div>
         <div id="searchAddContainer">
@@ -26,14 +26,16 @@
     </nav>
     <div id="contentContainer">
         <div id="sideBar">
-            <div id="sideBarHome"><i class="fas fa-home"></i>Home</div>
+            <div id="sideBarHome"><ion-icon name="home-outline"></ion-icon>Home</div>
             <div id="sideBarShortcuts">
-                <p>Shortcuts</p>
+                <p><ion-icon name="chevron-down-outline" id = "shortCutsArrow" class="sideBarArrow"></ion-icon>Shortcuts</p>
                 <div id="sideBarShortcutsToday"><ion-icon name="calendar-number-outline"></ion-icon>Today</div>
                 <div id="sideBarShortcutsWeek"><ion-icon name="calendar-outline"></ion-icon>This Week</div>
                 <div id="sideBarShortcutsAllTasks"><ion-icon name="calendar-clear-outline"></ion-icon>All Tasks</div>
             </div>
-            <div id="sideBarLists">Lists</div>
+            <div id="sideBarLists">
+                <p><ion-icon name="chevron-down-outline" id = "listsArrow" class="sideBarArrow"></ion-icon>Lists</p>
+            </div>
         </div>
     </div>
     
