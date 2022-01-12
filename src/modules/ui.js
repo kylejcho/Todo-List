@@ -9,6 +9,7 @@ const createAllTasksContainer = () => {
     allTasksContainer.id = "allTasksContainer";
     allTasksContainer.className = "tasksContainer";
 
+    
     const allTasksTitle = document.createElement('div');
     allTasksTitle.id = 'titleContainer';
     allTasksTitle.className = "tasksTitle";
@@ -16,11 +17,16 @@ const createAllTasksContainer = () => {
 
     allTasksContainer.append(allTasksTitle);
 
-    for (let i  = 0; i < 10; i++) {
-        let a  = document.createElement('p');
-        allTasksContainer.append(a);
-    }
+    
+        
+    allTasksContainer.append(document.createElement('div'));
+    
 
+    var i = document.createElement("div");
+    i.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>'
+    allTasksContainer.append(i);
+
+    allTasksContainer.append(document.createElement('div'));
 
     const contentContainer = document.querySelector('#contentContainer');
     contentContainer.append(allTasksContainer);
