@@ -1,7 +1,7 @@
 import Task from "./task";
 
 
-const createTask = (task) => {
+const createTask = (task, description, dueDate) => {
     
 }
 
