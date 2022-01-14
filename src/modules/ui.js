@@ -1,6 +1,4 @@
 const initialPageLoad = () => {
-    //let today = "melon";
-    //createShortcutsTasksContainer(today);
     createAllTasksContainer();
 }
 
