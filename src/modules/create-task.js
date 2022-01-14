@@ -1,5 +1,7 @@
 import Task from "./task";
 
+let allTasks = [];
+
 
 const createTask = (task, description, dueDate, list) => {
     //add task to general task lists array 
