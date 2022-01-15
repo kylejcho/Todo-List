@@ -19,7 +19,7 @@ const createAllTasksContainer = () => {
 
 
     createSubGroups("today", allTasksContainer);
-    createSubGroups("week", allTasksContainer);
+    createSubGroups("tomorrow", allTasksContainer);
     createSubGroups("upcoming", allTasksContainer);
 
     const contentContainer = document.querySelector('#contentContainer');
@@ -42,11 +42,9 @@ const createSubGroups = (group, allTasksContainer) => {
     const subGroupTitle = document.createElement('p');
     subGroupTitle.className = "subGroupTitle";
 
-    if (group == 'today' || group == 'upcoming') {
-        subGroupTitle.innerText = capitalize(group);
-    } else {
-        subGroupTitle.innerText = "This " + capitalize(group);
-    } 
+
+    subGroupTitle.innerText = capitalize(group);
+
 
     subGroup.append(subGroupTitle)
 
@@ -84,7 +82,7 @@ export const createTaskContainer = (task, description, dueDate) => {
     if (dueDate == 'today') {
         subGroup = document.querySelector('#today');
     } else {
-        subGroup = document.querySelector('#week');
+        subGroup = document.querySelector('#tomorrow');
     }
 
     subGroup.append(taskContainer);

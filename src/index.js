@@ -6,4 +6,4 @@ import buttonClicked from "./modules/event-handlers"
 initialPageLoad();
 buttonClicked();
 createTask("Exercise", "Workout out for 45 minutes", "today", '');
-createTask("Read", "Read two chapter", "week", '');
+createTask("Read", "Read two chapter", "tomorrow", '');
