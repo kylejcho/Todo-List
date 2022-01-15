@@ -24,6 +24,7 @@ const createAllTasksContainer = () => {
 
     const contentContainer = document.querySelector('#contentContainer');
     contentContainer.append(allTasksContainer);
+
 }
 
 const createSubGroups = (group, allTasksContainer) => {
@@ -52,24 +53,14 @@ const createSubGroups = (group, allTasksContainer) => {
     allTasksContainer.append(subGroup);
 
 
-    if (group == 'today') {
-        createTasksContainer('Exercise', 'Workout out for 45 minutes', subGroup);
-        createTasksContainer('Work on project', 'Find more resources for topic', subGroup);
-    }
-
-    if (group == 'week') {
-        createTasksContainer('Read', 'Read two more chapters of book', subGroup);
-        createTasksContainer('Bike up mountain', 'Bike for 45 minutes', subGroup);
-        createTasksContainer('Learn Chinese', 'Practice vocabulary', subGroup);
-    }
 
     
 }   
 
 
-const createTasksContainer = (task, description, dueDate) => {
+export const createTaskContainer = (task, description, dueDate) => {
     const taskContainer = document.createElement('div');
-    taskContainer.className = 'taskContainer'
+    taskContainer.className = 'taskContainer';
 
 
     const checkContainer = document.createElement('div');
@@ -89,31 +80,18 @@ const createTasksContainer = (task, description, dueDate) => {
     taskContainer.append(descriptionContainer);
 
 
-    dueDate.append(taskContainer)
+    let subGroup;
+    if (dueDate == 'today') {
+        subGroup = document.querySelector('#today');
+    } else {
+        subGroup = document.querySelector('#week');
+    }
+
+    subGroup.append(taskContainer);
+
+    
 }
 
 
 
-
-
-
-
-
-
-
-const createShortcutsTasksContainer = (type) => {
-    const shortcutsTasksContainer = document.createElement('div');
-    shortcutsTasksContainer.className = "shortcutsTasksContainer";
-
-    const shortcutsTitle = document.createElement('div');
-    shortcutsTitle.innerText = type;
-    shortcutsTitle.className = "shortcutsTasksTitle";
-    shortcutsTasksContainer.append(shortcutsTitle);
-
-    const contentContainer = document.querySelector('#contentContainer');
-    contentContainer.append(shortcutsTasksContainer);
-}
-
-
-
-export default initialPageLoad
+export default initialPageLoad;

@@ -6,15 +6,15 @@ class Task {
         this.list = list;
     }
 
-    getName(name) {
-        return this.name
+    getName() {
+        return this.name;
     }
 
     setName(name) {
         this.name = name;
     }
 
-    setNotes(description) {
+    setDescription(description) {
         this.description = description;
     }
 
