@@ -100,7 +100,7 @@ nav {
 
 #contentContainer {
     display: flex;
-    height: 100vh;
+    height: auto;
 }
 
 #sideBar {
@@ -196,13 +196,9 @@ nav {
 }
 
 
-
-
-
-
 .tasksContainer {
     height: auto;
-    width: 800px;
+    width: 500px;
     margin: 38px auto;
     transform: translateX(-90px);
 }
@@ -216,63 +212,16 @@ nav {
 }
 
 
-.tasksContainer :nth-child(2) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 30px;
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: #697384bd;
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    background-color: #bec7d542;
-}
-
-.tasksContainer :nth-child(2)::after {
-    content: "Today";
-}
 
 
-
-.tasksContainer :nth-child(3) {
-    display: flex;
-    align-items: center;
-    width: auto;
-    height: 30px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: #171c24;
-}
-
-
-
-.tasksContainer :nth-child(3)::after {
-    content: "Exercise biking";
-    padding-bottom: 3px;
-    margin-left: 10px;
-}
-
-.tasksContainer :nth-child(4) {
-    width: auto;
-    height: 30px;
-    font-weight: 400;
-    font-size: 0.9rem;
-    color: #868b95;
-    padding-left: 30px;
-    padding-bottom: 10px;
-}
-
-
-
-.tasksContainer :nth-child(4)::after {
-    content: "Bike up the nearest mountain.";
-}
 
 
 .subGroup {
+    margin-top: 20px;
+    margin-bottom: 35px;
+}
+
+.subGroupTitle {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -283,7 +232,54 @@ nav {
     font-size: 1.25rem;
     color: #697384bd;
     border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 15px;
     background-color: #bec7d542;
+    margin-bottom: 15px;
+}
+
+.taskContainer {
+    display: grid;
+    grid-template: 30px 30px/25px auto;
+    border-radius: 5px;
+    padding-left: 12px;
+    margin-bottom: 10px;
+    transition: all ease-in-out 0.2s;
+}
+
+.taskContainer:hover {
+    box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
+    transform: scale(1.007)
+}
+
+.checkContainer {
+    display: flex;
+    align-items: center;
+}
+
+.checkContainer svg {
+    transition: all ease-in-out 0.1s;
+}
+
+.checkContainer svg:hover {
+    filter: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
+
+}
+
+.nameContainer {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #171c24;
+}
+
+.descriptionContainer {
+    display: flex;
+    align-items: center;
+    grid-column-start: 2;
+    width: auto;
+    height: 30px;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #868b95;
 }

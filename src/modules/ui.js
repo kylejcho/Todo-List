@@ -17,15 +17,8 @@ const createAllTasksContainer = () => {
 
     allTasksContainer.append(allTasksTitle);
 
-    allTasksContainer.append(document.createElement('div'));
 
-
-    var i = document.createElement("div");
-    i.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>'
-    allTasksContainer.append(i);
-
-    allTasksContainer.append(document.createElement('div'));
-
+    createSubGroups("today", allTasksContainer);
     createSubGroups("week", allTasksContainer);
     createSubGroups("upcoming", allTasksContainer);
 
@@ -44,15 +37,68 @@ const createSubGroups = (group, allTasksContainer) => {
     subGroup.id = group;
 
 
+
+    const subGroupTitle = document.createElement('p');
+    subGroupTitle.className = "subGroupTitle";
+
     if (group == 'today' || group == 'upcoming') {
-        subGroup.innerText = capitalize(group);
+        subGroupTitle.innerText = capitalize(group);
     } else {
-        subGroup.innerText = "This " + capitalize(group);
+        subGroupTitle.innerText = "This " + capitalize(group);
     } 
+
+    subGroup.append(subGroupTitle)
 
     allTasksContainer.append(subGroup);
 
+
+    if (group == 'today') {
+        createTasksContainer('Exercise', 'Workout out for 45 minutes', subGroup);
+        createTasksContainer('Work on project', 'Find more resources for topic', subGroup);
+    }
+
+    if (group == 'week') {
+        createTasksContainer('Read', 'Read two more chapters of book', subGroup);
+        createTasksContainer('Bike up mountain', 'Bike for 45 minutes', subGroup);
+        createTasksContainer('Learn Chinese', 'Practice vocabulary', subGroup);
+    }
+
+    
 }   
+
+
+const createTasksContainer = (task, description, dueDate) => {
+    const taskContainer = document.createElement('div');
+    taskContainer.className = 'taskContainer'
+
+
+    const checkContainer = document.createElement('div');
+    checkContainer.className = 'checkContainer';
+    checkContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>'
+
+    const nameContainer = document.createElement('div')
+    nameContainer.className ='nameContainer';
+    nameContainer.innerText = task;
+
+    const descriptionContainer = document.createElement('div');
+    descriptionContainer.className = 'descriptionContainer';
+    descriptionContainer.innerText = description;
+
+    taskContainer.append(checkContainer);
+    taskContainer.append(nameContainer);
+    taskContainer.append(descriptionContainer);
+
+
+    dueDate.append(taskContainer)
+}
+
+
+
+
+
+
+
+
 
 
 const createShortcutsTasksContainer = (type) => {
