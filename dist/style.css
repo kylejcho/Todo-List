@@ -319,6 +319,7 @@ nav {
     font-weight: 700;
 }
 
+
 #inputTaskName:hover {
     background-color: #bec7d51f;
 }
@@ -329,6 +330,13 @@ nav {
 
 #inputTaskDescription {
     font-size: 1rem;
+    color: #697384bd;
+    height: max-content;
+    border-radius: 5px;
+    resize: none;
+    padding: 5px;
+    border: none;
+    outline-width: 0;
 }
 
 #inputTaskDescription:hover {
@@ -370,14 +378,23 @@ nav {
 
 
 #addButtoN {
-    border: 0;
-    background-color: rgb(185, 185, 185);
+    display: flex;
+    align-items: center;
+    border: 1px solid #697384;
     border-radius: 5px;
     font-size: 1.25rem;
-    color: white;
+    background-color: white;
+    color: #697384;
     padding: 5px;
     margin-top: 20px;
     transition: ease-in-out 0.1s all;
+}
+
+#addButtoN ion-icon {
+    color: #697384;
+    font-size: 1.5rem;
+    margin-right: 5px;
+
 }
 
 #addButtoN:hover {
