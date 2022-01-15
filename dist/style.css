@@ -200,7 +200,7 @@ nav {
     height: auto;
     width: 500px;
     margin: 38px auto;
-    transform: translateX(-90px);
+    transform: translateX(-100px);
 }
 
 .tasksTitle {
@@ -240,8 +240,8 @@ nav {
     display: grid;
     grid-template: 30px 30px/25px auto;
     border-radius: 5px;
+    padding-top: 3px;
     padding-left: 12px;
-    margin-bottom: 10px;
     transition: all ease-in-out 0.2s;
 }
 
@@ -274,8 +274,6 @@ nav {
 }
 
 .descriptionContainer {
-    display: flex;
-    align-items: center;
     grid-column-start: 2;
     width: auto;
     height: 30px;

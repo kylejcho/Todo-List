@@ -1,7 +1,7 @@
 class Task {
-    constructor(name, notes, dueDate, list) {
+    constructor(name, description, dueDate, list) {
         this.name = name;
-        this.notes = notes;
+        this.description = description;
         this.dueDate = dueDate;
         this.list = list;
     }
@@ -14,8 +14,8 @@ class Task {
         this.name = name;
     }
 
-    setNotes(notes) {
-        this.notes = notes;
+    setNotes(description) {
+        this.description = description;
     }
 
     setDueDate(dueDate) {
