@@ -4,7 +4,8 @@ const addButton = document.querySelector('#addButton');
 
 const buttonClicked = () => {
     addButton.addEventListener('click', function() {
-        alert('clicked')
+        const form = document.querySelector("#taskFormContainer");
+        form.style.visibility = "visible"
     })
 }
 

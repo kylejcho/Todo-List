@@ -284,7 +284,7 @@ nav {
 
 
 #taskFormContainer {
-    visibility: visible;
+    visibility: hidden;
     display: flex;
     margin-top: 35vh;
     justify-content: center;
