@@ -330,7 +330,7 @@ nav {
 
 #inputTaskDescription {
     font-size: 1rem;
-    color: #697384bd;
+    color: #697384;
     height: max-content;
     border-radius: 5px;
     resize: none;
@@ -382,7 +382,7 @@ nav {
     align-items: center;
     border: 1px solid #697384;
     border-radius: 5px;
-    font-size: 1.25rem;
+    font-size: 0.9rem;
     background-color: white;
     color: #697384;
     padding: 5px;
