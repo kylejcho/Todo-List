@@ -377,7 +377,7 @@ nav {
 
 
 
-#addButtoN {
+#taskFormAddButton {
     display: flex;
     align-items: center;
     border: 1px solid #697384;
@@ -390,13 +390,13 @@ nav {
     transition: ease-in-out 0.1s all;
 }
 
-#addButtoN ion-icon {
+#taskFormAddButton ion-icon {
     color: #697384;
     font-size: 1.5rem;
     margin-right: 5px;
 
 }
 
-#addButtoN:hover {
+#taskFormAddButton:hover {
 
 }
