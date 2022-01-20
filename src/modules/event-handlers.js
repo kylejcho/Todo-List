@@ -25,7 +25,7 @@ export const formAddButtonClicked = () => {
 
 export const formCancel = () => {
     formContainer.addEventListener('click', function(e){
-        if (e.target.id !== "taskForm" && e.target.id !== "inputTaskName" && e.target.id !== "inputTaskDescription") {
+        if (e.target.id !== "taskForm" && e.target.id !== "inputTaskName" && e.target.id !== "inputTaskDescription" && e.target.id !== "inputDueDateContainer") {
             form.style.opacity = "0";
             formContainer.style.visibility = "hidden";
             

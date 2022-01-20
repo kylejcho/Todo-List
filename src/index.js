@@ -5,6 +5,7 @@ import { formAddButtonClicked, formCancel } from "./modules/event-handlers";
 import buttonClicked from "./modules/event-handlers";
 
 
+
 initialPageLoad();
 buttonClicked();
 formAddButtonClicked();

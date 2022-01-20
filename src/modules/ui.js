@@ -2,6 +2,11 @@ const initialPageLoad = () => {
     createAllTasksContainer();
 }
 
+const loadingScreen = () => {
+    
+}
+
+
 
 //ALL TASKS CONTENT
 const createAllTasksContainer = () => {
