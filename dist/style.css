@@ -296,6 +296,7 @@ nav {
 }
 
 #taskForm {
+    visibility: hidden;
     background-color: white;
     width: 25%;
     height: 20%;

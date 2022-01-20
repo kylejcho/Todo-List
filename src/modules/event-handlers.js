@@ -5,10 +5,12 @@ const addButton = document.querySelector('#addButton');
 const formAddButton = document.querySelector('#taskFormAddButton');
 const inputTaskName = document.querySelector('#inputTaskName');
 const inputTaskDescription = document.querySelector('#inputTaskDescription');
-const form = document.querySelector("#taskFormContainer");
+const formContainer = document.querySelector("#taskFormContainer");
+const form = document.querySelector("#taskForm");
 
 const buttonClicked = () => {
     addButton.addEventListener('click', function() {
+        formContainer.style.visibility = "visible";
         form.style.visibility = "visible";
     })
 }
@@ -22,9 +24,9 @@ export const formAddButtonClicked = () => {
 }
 
 export const formCancel = () => {
-    form.addEventListener('click', function(e){
-        console.log(e.target.id)
+    formContainer.addEventListener('click', function(e){
         if (e.target.id !== "taskForm" && e.target.id !== "inputTaskName" && e.target.id !== "inputTaskDescription") {
+            formContainer.style.visibility = "hidden";
             form.style.visibility = "hidden";
         }
     })
