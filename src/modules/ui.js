@@ -1,11 +1,21 @@
 const initialPageLoad = () => {
+    loadingPage()
     createAllTasksContainer();
 }
 
-const loadingScreen = () => {
+const loadingPage = () => {
+    const loadingScreen = document.querySelector("#loadingScreen");
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            loadingScreen.style.opacity = "0";
+            setTimeout(()=> {
+                loadingScreen.remove();
+            }, 300)
+        },500)
+    });
+
     
 }
-
 
 
 //ALL TASKS CONTENT
