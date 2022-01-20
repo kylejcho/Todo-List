@@ -40,7 +40,6 @@ body {
     width: 4rem;
     --ionicon-stroke-width: 50px;
 }
-
 #loadingScreen p {
     font-size: 4rem;
     font-weight: 700;
@@ -244,11 +243,13 @@ nav {
 }
 
 
+
+
 .tasksContainer {
     height: auto;
     width: 500px;
     margin: 38px auto;
-    transform: translateX(-100px);
+    animation: bottomTopBounce ease 1s;
 }
 
 .tasksTitle {
@@ -257,6 +258,18 @@ nav {
     font-weight: 800;
     height: 2.5rem;
     margin-bottom: 10px;
+}
+
+@keyframes bottomTopBounce {
+    0.0% {
+        transform: translateY(50vh);
+    }
+    80% {
+        transform: translateY(unset);
+    } 
+    90% {
+        transform: translateY(10vh);
+    }
 }
 
 
