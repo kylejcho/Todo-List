@@ -6,15 +6,11 @@ const initialPageLoad = () => {
 const loadingPage = () => {
     const loadingScreen = document.querySelector("#loadingScreen");
     window.addEventListener('load', () => {
-        setTimeout(() => {
-            loadingScreen.style.opacity = "0";
-            setTimeout(()=> {
-                loadingScreen.remove();
-            }, 300)
-        },500)
+        loadingScreen.style.opacity = "0";
+        setTimeout(()=> {
+            loadingScreen.remove();
+        }, 300)
     });
-
-    
 }
 
 

@@ -4,6 +4,12 @@
     color: #171c24;
     font-family: "Inter";
     font-weight: 500;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
 }
 
 
@@ -248,8 +254,8 @@ nav {
 .tasksContainer {
     height: auto;
     width: 500px;
-    margin: 38px auto;
-    animation: bottomTopBounce ease 1s;
+    margin: 38px auto auto 25%;
+    animation: bottomTopBounce 1s ease;
 }
 
 .tasksTitle {
@@ -261,15 +267,11 @@ nav {
 }
 
 @keyframes bottomTopBounce {
-    0.0% {
-        transform: translateY(50vh);
-    }
-    80% {
-        transform: translateY(unset);
-    } 
-    90% {
-        transform: translateY(10vh);
-    }
+    50% {
+        height: 0;
+        transform:translateY(50vh); 
+        }
+    80% { transform:translateY(0);}
 }
 
 
