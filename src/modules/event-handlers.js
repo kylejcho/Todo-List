@@ -11,6 +11,7 @@ const form = document.querySelector("#taskForm");
 const buttonClicked = () => {
     addButton.addEventListener('click', function() {
         formContainer.style.visibility = "visible";
+        formContainer.style.opacity = "100";
         form.style.opacity = "100";
     })
 }
@@ -26,7 +27,7 @@ export const formAddButtonClicked = () => {
 export const formCancel = () => {
     formContainer.addEventListener('click', function(e){
         if (e.target.id !== "taskForm" && e.target.id !== "inputTaskName" && e.target.id !== "inputTaskDescription" && e.target.id !== "inputDueDateContainer") {
-            form.style.opacity = "0";
+            formContainer.style.opacity = "0";
             formContainer.style.visibility = "hidden";
             
         }

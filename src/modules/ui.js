@@ -6,10 +6,13 @@ const initialPageLoad = () => {
 const loadingPage = () => {
     const loadingScreen = document.querySelector("#loadingScreen");
     window.addEventListener('load', () => {
-        loadingScreen.style.opacity = "0";
         setTimeout(()=> {
+            loadingScreen.style.opacity = "0";
+            setTimeout(()=> {
             loadingScreen.remove();
         }, 300)
+        }, 500)
+        
     });
 }
 
@@ -61,9 +64,6 @@ const createSubGroups = (group, allTasksContainer) => {
 
     allTasksContainer.append(subGroup);
 
-
-
-    
 }   
 
 
@@ -92,7 +92,7 @@ export const createTaskContainer = (task, description, dueDate) => {
     let subGroup;
     if (dueDate == 'today') {
         subGroup = document.querySelector('#today');
-    } else {
+    } else if (dueDate == 'tomorrow') {
         subGroup = document.querySelector('#tomorrow');
     }
 
