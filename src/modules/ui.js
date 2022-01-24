@@ -63,7 +63,6 @@ const createSubGroups = (group, allTasksContainer) => {
     subGroup.append(subGroupTitle)
 
     allTasksContainer.append(subGroup);
-
 }   
 
 
@@ -100,12 +99,15 @@ export const createTaskContainer = (task, description, dueDate) => {
 }
 
 export const taskSelection = () => {
-    const taskView = document.createElement('div');
-    taskView.className = 'taskView';
+    const taskViewContainer = document.createElement('div');
+    taskViewContainer.className = 'taskViewContainer';
 
+    const tasksContainer = document.querySelector('.tasksContainer');
+    tasksContainer.style.margin = "38px 0 auto 30%";
+    
 
     const contentContainer = document.querySelector('#contentContainer');
-    contentContainer.append(allTasksContainer);
+    contentContainer.append(taskViewContainer);
 }
 
 

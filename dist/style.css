@@ -109,6 +109,7 @@ nav {
 }
 
 #sideBar {
+    position: absolute;
     width: 10%;
     padding: 30px;
     font-size: 1;
@@ -204,9 +205,16 @@ nav {
 
 .tasksContainer {
     height: auto;
-    width: 500px;
-    margin: 38px auto auto 25%;
+    width: 25vw;
+    margin: 38px auto auto auto;
     animation: bottomTopBounce 1s ease;
+}
+
+
+@keyframes tasksContainerShiftLeft {
+    100% {
+        margin: 38px 0 auto 30%;
+    }
 }
 
 .tasksTitle {
@@ -296,7 +304,21 @@ nav {
     color: #868b95;
 }
 
+/*TASKVIEW*/
 
+.taskViewContainer {
+    width: 400px;
+    height: 600px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
+    margin: 38px 0 auto 20px;
+}
+
+
+
+
+
+/*TASK FORM*/
 
 #taskFormContainer {
     opacity: 0;
