@@ -1,5 +1,5 @@
 import createTask from "./create-task";
-
+import { taskSelection } from "./ui";
 
 const addButton = document.querySelector('#addButton');
 const formAddButton = document.querySelector('#taskFormAddButton');
@@ -7,6 +7,7 @@ const inputTaskName = document.querySelector('#inputTaskName');
 const inputTaskDescription = document.querySelector('#inputTaskDescription');
 const formContainer = document.querySelector("#taskFormContainer");
 const form = document.querySelector("#taskForm");
+const taskContainer = document.querySelector(".taskContainer");
 
 const buttonClicked = () => {
     addButton.addEventListener('click', function() {
@@ -25,7 +26,7 @@ export const formAddButtonClicked = () => {
 }
 
 export const formCancel = () => {
-    formContainer.addEventListener('click', function(e){
+    formContainer.addEventListener('click', (e)=>{
         if (e.target.id !== "taskForm" && e.target.id !== "inputTaskName" && e.target.id !== "inputTaskDescription" && e.target.id !== "inputDueDateContainer") {
             formContainer.style.opacity = "0";
             formContainer.style.visibility = "hidden";
@@ -33,5 +34,18 @@ export const formCancel = () => {
         }
     })
 }
+
+
+export const selectTask = () => {
+    document.addEventListener('click', (e)=> {
+        const click = e.target;
+        if (click.className == "taskContainer" || click.className == "nameContainer" || click.className == "descriptionContainer") {
+            taskSelection();
+        }
+    })
+}
+
+
+
 
 export default buttonClicked;

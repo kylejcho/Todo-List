@@ -97,9 +97,17 @@ export const createTaskContainer = (task, description, dueDate) => {
     }
 
     subGroup.append(taskContainer);
-
-    
 }
+
+export const taskSelection = () => {
+    const taskView = document.createElement('div');
+    taskView.className = 'taskView';
+
+
+    const contentContainer = document.querySelector('#contentContainer');
+    contentContainer.append(allTasksContainer);
+}
+
 
 
 
