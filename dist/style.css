@@ -271,9 +271,7 @@ nav {
     transition: all ease-in-out 0.2s;
 }
 
-.completed  div{
-    color: #697384bd;
-}
+
 
 
 
@@ -287,31 +285,40 @@ nav {
     align-items: center;
 }
 
+.completed div{
+    color: #697384bd;
+}
+
+.checkContainer {
+    transition: all ease-in-out 0.1s;
+}
+
 .checkContainer svg {
     transition: all ease-in-out 0.1s;
 }
 
 .checkContainer svg:hover {
     filter: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
-
 }
 
 .nameContainer {
     display: flex;
     align-items: center;
-    height: 30px;
+    margin: 8px 35px 8px 0;
+    height: 14px;
+
     font-weight: 600;
     font-size: 1.1rem;
     color: #171c24;
     background-image: linear-gradient(to bottom,
-        rgba(255,0,0,0) 50%,
-        rgb(0, 0, 0) 50%, 
-        rgb(0, 0, 0) 60%,
-        rgba(255,0,0,0) 60%
+        #69738400 50%,
+        #697384bd 50%, 
+        #697384bd 60%,
+        #69738400 60%
     );
     background-size: 0 100%;
     background-repeat: no-repeat;
-    transition: 250ms linear;
+    transition: 0.4s ease;
 }
 
 
