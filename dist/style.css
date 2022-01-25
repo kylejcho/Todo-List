@@ -448,6 +448,7 @@ nav {
     font-size: 1rem;
     color: #697384;
     height: max-content;
+    max-width: 100%;
     border-radius: 5px;
     resize: none;
     padding: 5px;
