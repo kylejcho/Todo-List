@@ -20,14 +20,18 @@ const buttonClicked = () => {
 export const formAddButtonClicked = () => {
     formAddButton.addEventListener('click', function() {
         if (inputTaskName.value) {
-            createTask(inputTaskName.value, inputTaskDescription.value, "today")
+            createTask(inputTaskName.value, inputTaskDescription.value, "today");
+            form.style.opacity = "0";
+            formContainer.style.visibility = "hidden";
+            inputTaskName.value = '';
+            inputTaskDescription.value
         }
     })
 }
 
 export const formCancel = () => {
     formContainer.addEventListener('click', (e)=>{
-        if (e.target.id !== "taskForm" && e.target.id !== "inputTaskName" && e.target.id !== "inputTaskDescription" && e.target.id !== "inputDueDateContainer") {
+        if (e.target.id == 'taskFormContainer') {
             form.style.opacity = "0";
             formContainer.style.visibility = "hidden";
             form.style.transform = "scale(0)";
