@@ -212,9 +212,9 @@ nav {
 
 .tasksContainer {
     height: auto;
-    width: 25vw;
+    width: 25%;
     margin: 38px auto auto auto;
-    animation: bottomTopBounce 1s ease forwards;
+    animation: bottomTopBounce 1s ease;
 }
 
 @keyframes bottomTopBounce {
