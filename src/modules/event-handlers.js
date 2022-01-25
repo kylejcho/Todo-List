@@ -49,8 +49,9 @@ export const selectTask = () => {
 export const checkClick = () => {
     document.addEventListener('click', (e)=> {
         if (e.target.parentNode.className == 'checkContainer') {
-            const checkedTask = e.target.parentNode.parentNode;
-            checkedTask.classList.add('completed');
+
+            const checkedTask = e.target.parentNode.nextElementSibling;
+            alert(checkedTask.className)
         }
     })
 }
