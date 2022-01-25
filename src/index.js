@@ -1,7 +1,7 @@
 import initialPageLoad from "./modules/ui";
 import Task from "./modules/task";
 import { exampleTasks } from "./modules/create-task";
-import { formAddButtonClicked, formCancel, selectTask} from "./modules/event-handlers";
+import { checkClick, formAddButtonClicked, formCancel, selectTask} from "./modules/event-handlers";
 import buttonClicked from "./modules/event-handlers";
 
 
@@ -12,6 +12,6 @@ buttonClicked();
 formAddButtonClicked();
 formCancel();
 selectTask()
-
+checkClick()
 
 

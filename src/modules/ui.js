@@ -101,13 +101,61 @@ export const createTaskContainer = (task, description, dueDate) => {
 export const taskSelection = () => {
     const taskViewContainer = document.createElement('div');
     taskViewContainer.className = 'taskViewContainer';
+    
+    const taskViewNameContainer = document.createElement('div');
+    taskViewNameContainer.className = "taskViewNameContainer";
+    taskViewContainer.append(taskViewNameContainer);
 
-    const tasksContainer = document.querySelector('.tasksContainer');
-    tasksContainer.style.margin = "38px 0 auto 30%";
+    const checkContainer = document.createElement('div');
+    checkContainer.className = 'taskViewCheckContainer';
+    checkContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>';
+    taskViewNameContainer.append(checkContainer)
+
+    const taskViewName = document.createElement('p');
+    taskViewName.className = "taskViewName";
+    taskViewName.innerText = "Exercise";
+    taskViewNameContainer.append(taskViewName);
+
+
+
+    const taskViewDescriptionContainer = document.createElement('div');
+    taskViewDescriptionContainer.className = "taskViewDescriptionContainer";
+    taskViewDescriptionContainer.innerText = "Description";
+    taskViewContainer.append(taskViewDescriptionContainer);
     
 
-    const contentContainer = document.querySelector('#contentContainer');
-    contentContainer.append(taskViewContainer);
+    const taskViewDescription = document.createElement('p');
+    taskViewDescription.className = "taskViewDescription";
+    taskViewDescription.innerText = "Workout for 45 minutes"
+    taskViewDescriptionContainer.append(taskViewDescription)
+
+    const tasksContainer = document.querySelector('.tasksContainer');
+    
+
+    tasksContainer.style.transform = "translateX(-30%)";
+    tasksContainer.style.transition = "all 0.15s ease";
+
+
+
+
+    setTimeout(()=> {
+        tasksContainer.style.transition = "all 0s linear";
+        tasksContainer.style.margin = "38px 0 auto 30%";
+        tasksContainer.style.transform = "translateX(0)";
+
+        const contentContainer = document.querySelector('#contentContainer');
+        contentContainer.append(taskViewContainer);
+        taskViewContainer.style.transform = "translateX(25vw)";
+        setTimeout(()=> {
+            taskViewContainer.style.opacity = "100";
+            taskViewContainer.style.width = "400px"
+            taskViewContainer.style.opacity = "100"
+            taskViewContainer.style.transform = "translateX(0)";
+        },10)
+        
+    },150)
+
+    
 }
 
 
