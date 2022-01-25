@@ -396,7 +396,6 @@ nav {
 /*TASK FORM*/
 
 #taskFormContainer {
-    opacity: 0;
     visibility: hidden;
     padding-top: 35vh;
     position: fixed;
@@ -408,15 +407,17 @@ nav {
 }
 
 #taskForm {
-    opacity: 100;
+    opacity: 0;
     background-color: white;
-    width: 0;
-    height: 0;
+    width: 25%;
+    height: 20%;
+    transform: scale(0);
     margin: 0 auto;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     padding: 15px;
-    transition: all ease-in-out 0.2s;
+    transition: all ease 0.2s;
+
 }
 
 #taskForm input {

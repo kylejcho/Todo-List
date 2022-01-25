@@ -12,10 +12,8 @@ const taskContainer = document.querySelector(".taskContainer");
 const buttonClicked = () => {
     addButton.addEventListener('click', function() {
         formContainer.style.visibility = "visible";
-        form.style.width = '25%';
-        form.style.height = '20%';
-        formContainer.style.opacity = "100";
         form.style.opacity = "100";
+        form.style.transform = "scale(1)";
     })
 }
 
@@ -30,10 +28,9 @@ export const formAddButtonClicked = () => {
 export const formCancel = () => {
     formContainer.addEventListener('click', (e)=>{
         if (e.target.id !== "taskForm" && e.target.id !== "inputTaskName" && e.target.id !== "inputTaskDescription" && e.target.id !== "inputDueDateContainer") {
-            formContainer.style.opacity = "0";
+            form.style.opacity = "0";
             formContainer.style.visibility = "hidden";
-            form.style.width = '0';
-            form.style.height = '0';
+            form.style.transform = "scale(0)";
         }
     })
 }
