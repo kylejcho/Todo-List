@@ -24,7 +24,8 @@ export const formAddButtonClicked = () => {
             form.style.opacity = "0";
             formContainer.style.visibility = "hidden";
             inputTaskName.value = '';
-            inputTaskDescription.value
+            inputTaskDescription.value ='';
+
         }
     })
 }
@@ -44,7 +45,12 @@ export const selectTask = () => {
     document.addEventListener('click', (e)=> {
         const click = e.target;
         if (click.className == "taskContainer" || click.className == "nameContainer" || click.className == "descriptionContainer") {
-            taskSelection();
+            const taskViewContainer = document.querySelector('.taskViewContainer')
+            if (!taskViewContainer) {
+                taskSelection();
+            } else {
+                return;
+            }
         }
     })
 }
