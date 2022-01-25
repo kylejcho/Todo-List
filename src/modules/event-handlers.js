@@ -51,7 +51,6 @@ export const checkClick = () => {
         if (e.target.parentNode.className == 'checkContainer') {
 
             const checkedTask = e.target.parentNode.nextElementSibling;
-            alert(checkedTask.className);
             checkedTask.style.backgroundSize = "100% 100%";
         }
     })
