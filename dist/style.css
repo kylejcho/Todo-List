@@ -107,13 +107,17 @@ nav {
 #contentContainer {
     display: flex;
     height: auto;
-    min-height: 100vh;
+    min-height: calc(100vh - 50px);
 }
 
 #sideBar {
     position: absolute;
     width: 10%;
-    height: 100%;
+
+
+
+    height: auto;
+    min-height: calc(100vh - 110px);
     padding: 30px;
     font-size: 1;
     background-color: #f8f8fca6;
@@ -210,12 +214,22 @@ nav {
     height: auto;
     width: 25vw;
     margin: 38px auto auto auto;
-    animation: bottomTopBounce 1s ease;
+    animation: bottomTopBounce 1s ease forwards;
 }
+
+@keyframes bottomTopBounce {
+    50% {
+        transform:translateY(50vh); 
+        }
+    80% {
+        transform:translateY(0);}
+}
+
 
 
 @keyframes tasksContainerShiftLeft {
     0% {
+        
         transform:translateX(30%)
     }
     50% {
@@ -231,13 +245,6 @@ nav {
     margin-bottom: 10px;
 }
 
-@keyframes bottomTopBounce {
-    50% {
-        height: 0;
-        transform:translateY(50vh); 
-        }
-    80% { transform:translateY(0);}
-}
 
 
 

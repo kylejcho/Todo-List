@@ -16,13 +16,12 @@ const createTask = (task, description, dueDate, list) => {
 }
 
 
-
-
 export const exampleTasks = () => {
     createTask("Exercise", "Workout out for 45 minutes", "today", '');
     createTask("Coffee with friend", "Starbucks", "today", '');
     createTask("Read", "Read two chapter", "tomorrow", '');
     createTask("Learn sign language", "Practice english alphabet", "tomorrow", '');
+    
 }
 
 
