@@ -95,7 +95,7 @@ const deleteClick = () => {
             const taskContainer = e.target.parentNode.parentNode;
 
             const taskContainerHeight = taskContainer.clientHeight
-            taskContainer.style.opacity = "0"
+            taskContainer.style.opacity = "0";
             taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
 
             
@@ -103,7 +103,7 @@ const deleteClick = () => {
             
             setTimeout(()=> {
                 taskContainer.remove();
-            },390)
+            },170)
             
 
             
