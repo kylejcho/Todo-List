@@ -273,10 +273,11 @@ nav {
 
 .taskContainer {
     display: grid;
-    grid-template: 30px 30px/25px auto;
+    grid-template: 30px 30px/25px auto 25px;
     border-radius: 5px;
     padding-top: 3px;
     padding-left: 12px;
+    padding-right: 5px;
     transition: all ease-in-out 0.2s;
 }
 
@@ -315,7 +316,7 @@ nav {
 .nameContainer {
     display: flex;
     align-items: center;
-    margin: 8px 35px 8px 0;
+    margin: 8px 5px 8px 0;
     height: 14px;
 
     font-weight: 600;
@@ -330,6 +331,12 @@ nav {
     background-size: 0 100%;
     background-repeat: no-repeat;
     transition: 0.4s ease;
+}
+
+.deleteContainer {
+    visibility: hidden;
+    display: flex;
+    align-items: center;
 }
 
 

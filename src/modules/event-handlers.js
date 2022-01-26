@@ -81,8 +81,9 @@ export const checkClick = () => {
 }
 
 
-
-
+export const deleteHover = () => {
+    
+}
 
 
 export default buttonClicked;
