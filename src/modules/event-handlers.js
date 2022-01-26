@@ -17,7 +17,7 @@ const buttonClicked = () => {
     })
 }
 
-export const formAddButtonClicked = () => {
+const formAddButtonClicked = () => {
     formAddButton.addEventListener('click', function() {
         if (inputTaskName.value) {
             createTask(inputTaskName.value, inputTaskDescription.value, "today");
@@ -30,7 +30,7 @@ export const formAddButtonClicked = () => {
     })
 }
 
-export const formCancel = () => {
+const formCancel = () => {
     formContainer.addEventListener('click', (e)=>{
         if (e.target.id == 'taskFormContainer') {
             form.style.opacity = "0";
@@ -41,7 +41,7 @@ export const formCancel = () => {
 }
 
 
-export const selectTask = () => {
+const selectTask = () => {
     document.addEventListener('click', (e)=> {
         const click = e.target;
         if (click.className == "taskContainer" || click.className == "nameContainer" || click.className == "descriptionContainer") {
@@ -56,7 +56,7 @@ export const selectTask = () => {
 }
 
 
-export const checkClick = () => {
+const checkClick = () => {
     document.addEventListener('click', (e)=> {
         if (e.target.parentNode.className == 'checkContainer' ) {
             const checkedTask = e.target.parentNode.parentNode;
@@ -89,13 +89,23 @@ export const checkClick = () => {
     })
 }
 
-export const deleteClick = () => {
+const deleteClick = () => {
+    document.querySelector('#contentContainer').addEventListener('click', (e)=> {
+        if (e.target.parentNode.className == 'deleteContainer') {
+            const taskContainer = e.target.parentNode.parentNode;
+            taskContainer.style.opacity = "0";
 
+            setTimeout(()=> {
+                taskContainer.remove();
+            },200)
+            
+        }
+    })
 }
 
 
 
-export const taskContainerHover = () => {
+const taskContainerHover = () => {
     document.querySelector('#contentContainer').addEventListener('mouseover', (e)=> {
         if (e.target.className == 'taskContainer' ) {
             const taskContainer = e.target;
