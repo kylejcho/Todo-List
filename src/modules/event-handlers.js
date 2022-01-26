@@ -83,7 +83,24 @@ const checkClick = () => {
                 setTimeout(()=> {
                     checkContainer.style.animation = "none";
                 },10)
+
+                
+
             }
+            const taskContainer = taskName.parentNode;
+            const taskContainerHeight = taskContainer.clientHeight;
+
+
+            setTimeout(()=> {
+                taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
+                taskContainer.style.opacity = "0";
+                taskContainer.style.marginBottom = "0";
+                taskContainer.parentNode.appendChild(taskContainer);
+            },300)
+
+            setTimeout(()=> {
+                taskContainer.style.opacity = "100";
+            },350)
             
         }
     })
@@ -94,18 +111,15 @@ const deleteClick = () => {
         if (e.target.parentNode.className == 'deleteContainer') {
             const taskContainer = e.target.parentNode.parentNode;
 
-            const taskContainerHeight = taskContainer.clientHeight
+            const taskContainerHeight = taskContainer.clientHeight;
             taskContainer.style.opacity = "0";
+            taskContainer.transform = "translateY(-100%)";
             taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
-
-            
-
             
             setTimeout(()=> {
                 taskContainer.remove();
-            },170)
+            },200)
             
-
             
         }
     })
