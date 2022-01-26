@@ -94,10 +94,25 @@ const deleteClick = () => {
         if (e.target.parentNode.className == 'deleteContainer') {
             const taskContainer = e.target.parentNode.parentNode;
             taskContainer.style.opacity = "0";
+            taskContainer.style.animation = "taskContainerDelete 0.3s ease";
 
+            const subgroup = taskContainer.parentNode;
+
+            const a = subgroup.querySelectorAll('.taskContainer');
+            console.log(a.className)
+
+            for (let i = 0; i < a.length; i++) {
+                a[i].style.animation = "taskContainerDelete 0.3s ease";
+                setTimeout(()=> {
+                    a[i].style.animation = "none";
+                },300)
+            }
+
+            
+            
             setTimeout(()=> {
                 taskContainer.remove();
-            },200)
+            },300)
             
         }
     })
