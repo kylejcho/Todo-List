@@ -297,6 +297,16 @@ nav {
     align-items: center;
 }
 
+@keyframes checkClick {
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
 .completed div{
     color: #697384bd;
 }
@@ -334,10 +344,13 @@ nav {
 }
 
 .deleteContainer {
-    visibility: hidden;
+    opacity: 0;
     display: flex;
     align-items: center;
+    filter: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
+    transition: all ease-in-out 0.2s;
 }
+
 
 
 
