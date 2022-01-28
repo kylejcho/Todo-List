@@ -7,21 +7,15 @@ let allTasks = [];
 const createTask = (task, description, dueDate, list) => {
     let key = 0
     if (allTasks.length > 0) {
-        key = 0;
         for (let i = 0; i < allTasks.length; i++) {
             if (allTasks[i].key == key) {
-                key++
-            } else {
-                console.log(key);
+                key++;
             }
         }
     }
     let newTask = new Task(task, description, dueDate, list, key);
-    newTask.key = key
-    allTasks.push(newTask)
-    //console.log(allTasks)
+    allTasks.push(newTask);
     createTaskContainer(task, description, dueDate, key);
-    
 }
 
 
