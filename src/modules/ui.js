@@ -69,7 +69,7 @@ const createSubGroups = (group, allTasksContainer) => {
 }   
 
 
-export const createTaskContainer = (task, description, dueDate) => {
+export const createTaskContainer = (task, description, dueDate, key) => {
     const taskContainer = document.createElement('div');
     taskContainer.className = 'taskContainer';
 
@@ -105,9 +105,11 @@ export const createTaskContainer = (task, description, dueDate) => {
     }
 
     subGroup.append(taskContainer);
+
+    
 }
 
-export const taskSelection = () => {
+export const createTaskView = () => {
     const taskViewContainer = document.createElement('div');
     taskViewContainer.className = 'taskViewContainer';
     

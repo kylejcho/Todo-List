@@ -1,9 +1,10 @@
 class Task {
-    constructor(name, description, dueDate, list) {
+    constructor(name, description, dueDate, list, key) {
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
         this.list = list;
+        this.key = key;
     }
 
     getName() {
@@ -25,6 +26,8 @@ class Task {
     setList(list) {
         this.list = list;
     }
+
+
 }
 
 

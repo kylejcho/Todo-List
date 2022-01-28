@@ -1,5 +1,5 @@
 import createTask from "./create-task";
-import { taskSelection } from "./ui";
+import { createTaskView } from "./ui";
 
 const addButton = document.querySelector('#addButton');
 const formAddButton = document.querySelector('#taskFormAddButton');
@@ -20,15 +20,17 @@ const buttonClicked = () => {
 const formAddButtonClicked = () => {
     formAddButton.addEventListener('click', function() {
         if (inputTaskName.value) {
+            
             createTask(inputTaskName.value, inputTaskDescription.value, "today");
             form.style.opacity = "0";
             formContainer.style.visibility = "hidden";
             inputTaskName.value = '';
-            inputTaskDescription.value ='';
-
+            inputTaskDescription.value = '';
+            
         }
     })
 }
+
 
 const formCancel = () => {
     formContainer.addEventListener('click', (e)=>{
@@ -47,12 +49,19 @@ const selectTask = () => {
         if (click.className == "taskContainer" || click.className == "nameContainer" || click.className == "descriptionContainer") {
             const taskViewContainer = document.querySelector('.taskViewContainer')
             if (!taskViewContainer) {
-                taskSelection();
+                taskSelection(click)
+
+
             } else {
                 return;
             }
         }
     })
+}
+
+const taskSelection = (taskContainer) => {
+    
+    createTaskView();
 }
 
 
@@ -91,6 +100,7 @@ const checkClick = () => {
             const taskContainerHeight = taskContainer.clientHeight;
 
 
+            
             setTimeout(()=> {
                 taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
                 taskContainer.style.opacity = "0";
@@ -101,7 +111,6 @@ const checkClick = () => {
             setTimeout(()=> {
                 taskContainer.style.opacity = "100";
             },350)
-            
         }
     })
 }
