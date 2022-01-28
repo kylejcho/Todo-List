@@ -109,10 +109,11 @@ export const createTaskContainer = (task, description, dueDate, key) => {
     
 }
 
-export const createTaskView = () => {
+export const createTaskView = (task) => {
     const taskViewContainer = document.createElement('div');
     taskViewContainer.className = 'taskViewContainer';
-    
+    taskViewContainer.id = "s" + task.key;
+
     const taskViewNameContainer = document.createElement('div');
     taskViewNameContainer.className = "taskViewNameContainer";
     taskViewContainer.append(taskViewNameContainer);
@@ -124,7 +125,7 @@ export const createTaskView = () => {
 
     const taskViewName = document.createElement('p');
     taskViewName.className = "taskViewName";
-    taskViewName.innerText = "Exercise";
+    taskViewName.innerText = task.name
     taskViewNameContainer.append(taskViewName);
 
 
@@ -137,13 +138,14 @@ export const createTaskView = () => {
 
     const taskViewDescription = document.createElement('p');
     taskViewDescription.className = "taskViewDescription";
-    taskViewDescription.innerText = "Workout for 45 minutes"
+    taskViewDescription.innerText = task.description;
     taskViewDescriptionContainer.append(taskViewDescription)
 
     const tasksContainer = document.querySelector('.tasksContainer');
     
 
-    tasksContainer.style.transform = "translateX(-30%)";
+   
+    
     tasksContainer.style.transition = "all 0.15s ease";
 
 
@@ -151,6 +153,7 @@ export const createTaskView = () => {
 
     setTimeout(()=> {
         tasksContainer.style.transition = "all 0s linear";
+
         tasksContainer.style.margin = "38px 0 auto 30%";
         tasksContainer.style.transform = "translateX(0)";
 

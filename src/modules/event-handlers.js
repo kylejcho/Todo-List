@@ -1,5 +1,6 @@
 import createTask from "./create-task";
 import { createTaskView } from "./ui";
+import { allTasks } from "./create-task";
 
 const addButton = document.querySelector('#addButton');
 const formAddButton = document.querySelector('#taskFormAddButton');
@@ -45,23 +46,37 @@ const formCancel = () => {
 
 const selectTask = () => {
     document.addEventListener('click', (e)=> {
-        const click = e.target;
-        if (click.className == "taskContainer" || click.className == "nameContainer" || click.className == "descriptionContainer") {
-            const taskViewContainer = document.querySelector('.taskViewContainer')
-            if (!taskViewContainer) {
-                taskSelection(click)
-
-
-            } else {
-                return;
-            }
+        const target = e.target;
+        if (target.className == "taskContainer" || target.className == "nameContainer" || target.className == "descriptionContainer") {
+            taskSelection(target);
         }
     })
 }
 
 const taskSelection = (taskContainer) => {
-    
-    createTaskView();
+    if (taskContainer.className != "taskContainer") {
+        taskContainer = taskContainer.parentNode;
+    } 
+
+    const selectedTask = allTasks.find((task)=> {
+        if (task.key == taskContainer.id) {
+            return true
+        }
+    })
+
+    const taskView = document.querySelector('.taskViewContainer')
+
+    if (taskView) {
+        if (taskView.id == "s" + selectedTask.key) {
+            return
+        } else {
+            taskView.remove();
+        }
+    } else {
+        document.querySelector('.tasksContainer').style.transform = "translateX(-30%)";
+    }
+    createTaskView(selectedTask);
+    console.log(selectedTask)
 }
 
 

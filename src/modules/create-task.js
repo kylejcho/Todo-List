@@ -1,7 +1,7 @@
 import Task from "./task";
 import {createTaskContainer} from "./ui";
 
-let allTasks = [];
+export let allTasks = [];
 
 
 const createTask = (task, description, dueDate, list) => {
