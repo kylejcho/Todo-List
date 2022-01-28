@@ -72,7 +72,7 @@ const createSubGroups = (group, allTasksContainer) => {
 export const createTaskContainer = (task, description, dueDate, key) => {
     const taskContainer = document.createElement('div');
     taskContainer.className = 'taskContainer';
-
+    taskContainer.id = key;
 
     const checkContainer = document.createElement('div');
     checkContainer.className = 'checkContainer';
