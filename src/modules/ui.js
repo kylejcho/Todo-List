@@ -142,10 +142,6 @@ export const createTaskView = (task) => {
     taskViewDescriptionContainer.append(taskViewDescription)
 
     const tasksContainer = document.querySelector('.tasksContainer');
-    
-
-   
-    
     tasksContainer.style.transition = "all 0.15s ease";
 
 

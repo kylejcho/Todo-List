@@ -53,6 +53,26 @@ const selectTask = () => {
     })
 }
 
+const deselectTask = () => {
+    const contentContainer = document.querySelector('#contentContainer')
+    document.addEventListener('click', (e)=> {
+        const target = e.target
+        if (target == document.querySelector('#contentContainer')) {
+            const taskViewContainer = document.querySelector('.taskViewContainer');
+            taskViewContainer.remove();
+            const tasksContainer = document.querySelector('.tasksContainer');
+            tasksContainer.style.transition = "all 0s linear";
+            tasksContainer.style.margin = "38px auto auto auto";
+            tasksContainer.style.transform = "translateX(-30%)";
+
+            setTimeout(()=> {
+                tasksContainer.style.transition = "all 0.15s ease";
+                tasksContainer.style.transform = "translateX(0)";
+            },10)
+        }
+    })
+}
+
 const taskSelection = (taskContainer) => {
     if (taskContainer.className != "taskContainer") {
         taskContainer = taskContainer.parentNode;
@@ -179,6 +199,7 @@ const runEventHandlers = () => {
     formAddButtonClicked();
     formCancel();
     selectTask();
+    deselectTask();
     taskContainerHover();
     deleteClick()
     buttonClicked()
