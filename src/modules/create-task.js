@@ -5,10 +5,8 @@ let allTasks = [];
 
 
 const createTask = (task, description, dueDate, list) => {
-    let key;
-    if (allTasks.length == 0) {
-        key = 0;
-    } else {
+    let key = 0
+    if (allTasks.length > 0) {
         key = 0;
         for (let i = 0; i < allTasks.length; i++) {
             if (allTasks[i].key == key) {
