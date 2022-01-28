@@ -134,18 +134,29 @@ const checkClick = () => {
             const taskContainer = taskName.parentNode;
             const taskContainerHeight = taskContainer.clientHeight;
 
+            const spacer = document.createElement('div')
+            spacer.style.height = taskContainerHeight + "px";
+            spacer.style.marginBottom = "-" + taskContainerHeight + "px";
+            spacer.style.transition = "all ease-in-out 0.2s"
+            taskContainer.parentNode.appendChild(spacer);
 
-            
+            const subGroup = taskContainer.parentNode;
             setTimeout(()=> {
-                taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
                 taskContainer.style.opacity = "0";
-                taskContainer.style.marginBottom = "0";
-                taskContainer.parentNode.appendChild(taskContainer);
+                taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
+                spacer.style.marginBottom = 0;
             },300)
 
             setTimeout(()=> {
+                //taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
+                taskContainer.style.marginBottom = 0;
+                spacer.remove();
+                taskContainer.parentNode.appendChild(taskContainer);
+                
+            },500)
+            setTimeout(()=>{
                 taskContainer.style.opacity = "100";
-            },350)
+            },600)
         }
     })
 }
