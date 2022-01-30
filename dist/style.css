@@ -114,6 +114,7 @@ nav {
 }
 
 #sideBar {
+    resize: horizontal;
     position: absolute;
     width: 10%;
     height: auto;
@@ -379,7 +380,7 @@ nav {
     border-radius: 10px;
     box-shadow: -2px 2px 6px 0px rgba(0,0,0,0.15);
     margin: 90px 0 auto 30px;
-    transition: all 0.1s ease;
+    transition: all 0.15s ease;
     opacity: 0;
     padding: 30px 20px;
 }
@@ -439,8 +440,8 @@ nav {
 #taskForm {
     opacity: 0;
     background-color: white;
-    width: 30%;
-    height: 25%;
+    width: 30vw;
+    height: 25vh;
     transform: scale(0);
     margin: 0 auto;
     border-radius: 10px;
@@ -451,6 +452,7 @@ nav {
 }
 
 #taskForm input {
+    box-sizing: border-box;
     width: 100%;
     margin-bottom: 5px;
     border: none;
@@ -475,10 +477,11 @@ nav {
 }
 
 #inputTaskDescription {
+    box-sizing: border-box;
     font-size: 1rem;
     font-weight: 400;
+    width: 100%;
     height: max-content;
-    max-width: 100%;
     border-radius: 5px;
     resize: none;
     padding: 5px;
