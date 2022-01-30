@@ -337,7 +337,8 @@ nav {
     align-items: center;
     margin: 8px 5px 8px 0;
     height: 14px;
-
+    white-space: nowrap;
+    overflow: hidden;
     font-weight: 600;
     font-size: 1.1rem;
     color: #171c24;
@@ -370,6 +371,8 @@ nav {
     font-weight: 400;
     font-size: 0.9rem;
     color: #868b95;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 /*TASKVIEW*/
