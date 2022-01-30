@@ -104,7 +104,8 @@ export const createTaskContainer = (task, description, dueDate, key) => {
         subGroup = document.querySelector('#tomorrow');
     }
 
-    subGroup.append(taskContainer);
+    subGroup.insertBefore(taskContainer, subGroup.children[1]);
+    
 
     
 }
