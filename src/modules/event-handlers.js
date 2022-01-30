@@ -134,6 +134,7 @@ const checkClick = () => {
             spacer.style.height = taskContainerHeight + "px";
             spacer.style.marginBottom = "-" + taskContainerHeight + "px";
             spacer.style.transition = "all ease-in-out 0.2s";
+            const subGroup = taskContainer.parentNode;
 
             if (checkedTask.className.includes('completed') && taskContainer.nextElementSibling) {
                 taskContainer.parentNode.appendChild(spacer);
@@ -147,8 +148,6 @@ const checkClick = () => {
                 setTimeout(()=> {
                     taskContainer.style.marginBottom = 0;
                     spacer.remove();
-                    const subGroup = taskContainer.parentNode;
-
                     subGroup.appendChild(taskContainer);
                     
                 },500)
@@ -157,7 +156,7 @@ const checkClick = () => {
                     taskContainer.style.opacity = "100";
                 },600)
 
-            } else if (!checkedTask.className.includes('completed')) {
+            } else if (!checkedTask.className.includes('completed') && taskContainer != subGroup.children[1]) {
 
                 const subGroup = taskContainer.parentNode;
                 subGroup.insertBefore(spacer, subGroup.children[1]);
@@ -171,8 +170,6 @@ const checkClick = () => {
                 setTimeout(()=> {
                     taskContainer.style.marginBottom = 0;
                     spacer.remove();
-                    const subGroup = taskContainer.parentNode;
-
                     subGroup.insertBefore(taskContainer, subGroup.children[1]);
                     
                 },500)
