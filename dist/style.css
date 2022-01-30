@@ -335,7 +335,7 @@ nav {
 .nameContainer {
     display: flex;
     align-items: center;
-    margin: 8px 5px 8px 0;
+    padding: 8px 5px 8px 0;
     height: 14px;
     white-space: nowrap;
     overflow: hidden;
@@ -372,7 +372,7 @@ nav {
     font-size: 0.9rem;
     color: #868b95;
     white-space: nowrap;
-    overflow: hidden;
+    overflow-X: hidden;
 }
 
 /*TASKVIEW*/
