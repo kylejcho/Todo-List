@@ -122,40 +122,67 @@ const checkClick = () => {
                 checkContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>'
                 checkContainer.style.filter = " brightness(0) saturate(100%) invert(9%) sepia(43%) saturate(338%) hue-rotate(177deg) brightness(100%) contrast(96%)";
                 
-
                 setTimeout(()=> {
                     checkContainer.style.animation = "none";
                 },10)
-
-                
-
             }
+
             const taskContainer = taskName.parentNode;
             const taskContainerHeight = taskContainer.clientHeight;
 
             const spacer = document.createElement('div')
             spacer.style.height = taskContainerHeight + "px";
             spacer.style.marginBottom = "-" + taskContainerHeight + "px";
-            spacer.style.transition = "all ease-in-out 0.2s"
-            taskContainer.parentNode.appendChild(spacer);
+            spacer.style.transition = "all ease-in-out 0.2s";
 
-            const subGroup = taskContainer.parentNode;
-            setTimeout(()=> {
-                taskContainer.style.opacity = "0";
-                taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
-                spacer.style.marginBottom = 0;
-            },300)
+            if (checkedTask.className.includes('completed') && taskContainer.nextElementSibling) {
+                taskContainer.parentNode.appendChild(spacer);
 
-            setTimeout(()=> {
-                //taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
-                taskContainer.style.marginBottom = 0;
-                spacer.remove();
-                taskContainer.parentNode.appendChild(taskContainer);
-                
-            },500)
-            setTimeout(()=>{
-                taskContainer.style.opacity = "100";
-            },600)
+                setTimeout(()=> {
+                    taskContainer.style.opacity = "0";
+                    taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
+                    spacer.style.marginBottom = 0;
+                },300)
+
+                setTimeout(()=> {
+                    taskContainer.style.marginBottom = 0;
+                    spacer.remove();
+                    const subGroup = taskContainer.parentNode;
+
+                    subGroup.appendChild(taskContainer);
+                    
+                },500)
+
+                setTimeout(()=>{
+                    taskContainer.style.opacity = "100";
+                },600)
+
+            } else if (!checkedTask.className.includes('completed')) {
+
+                const subGroup = taskContainer.parentNode;
+                subGroup.insertBefore(spacer, subGroup.children[1]);
+
+                setTimeout(()=> {
+                    taskContainer.style.opacity = "0";
+                    taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
+                    spacer.style.marginBottom = 0;
+                },300)
+
+                setTimeout(()=> {
+                    taskContainer.style.marginBottom = 0;
+                    spacer.remove();
+                    const subGroup = taskContainer.parentNode;
+
+                    subGroup.insertBefore(taskContainer, subGroup.children[1]);
+                    
+                },500)
+
+                setTimeout(()=>{
+                    taskContainer.style.opacity = "100";
+                },600)
+            }
+
+
         }
     })
 }
