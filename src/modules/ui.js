@@ -106,8 +106,11 @@ export const createTaskContainer = (task, description, dueDate, key) => {
 
     subGroup.insertBefore(taskContainer, subGroup.children[1]);
     
-
-    
+    taskContainer.style.opacity = "0";
+    setTimeout(()=> {
+        taskContainer.style.animation = "taskContainerAdd 0.6s ease-in-out";
+        taskContainer.style.opacity = "100";
+    },50)
 }
 
 export const createTaskView = (task) => {

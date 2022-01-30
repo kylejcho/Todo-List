@@ -21,7 +21,6 @@ const buttonClicked = () => {
 const formAddButtonClicked = () => {
     formAddButton.addEventListener('click', function() {
         if (inputTaskName.value) {
-            
             createTask(inputTaskName.value, inputTaskDescription.value, "today");
             form.style.opacity = "0";
             formContainer.style.visibility = "hidden";

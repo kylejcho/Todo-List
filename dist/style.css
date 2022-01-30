@@ -294,12 +294,22 @@ nav {
     }
 }
 
-@keyframes taskContainershiftDown {
+@keyframes taskContainerAdd {
     0% {
-        
+    }
+
+    20% {
+        box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
+    }
+    50% {
+        transform: scale(1.007);
+        box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
+    }
+
+    100% {
+        transform: scale(1);
     }
 }
-
 
 .checkContainer {
     display: flex;
