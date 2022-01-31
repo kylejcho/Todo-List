@@ -28,14 +28,8 @@ const formAddButtonClicked = () => {
                     dueDate = e.id.replace('input', '').toLowerCase();
                 }         
             })
-            console.log(dueDate)
-
             createTask(inputTaskName.value, inputTaskDescription.value, dueDate);
-            form.style.opacity = "0";
-            formContainer.style.visibility = "hidden";
-            inputTaskName.value = '';
-            inputTaskDescription.value = '';
-            
+            formCancel();
         }
     })
 }
@@ -52,56 +46,66 @@ const dueDateClick = () => {
     })
 }
 
-const formCancel = () => {
+const formCancelClick = () => {
     formContainer.addEventListener('click', (e)=>{
         if (e.target.id == 'taskFormContainer') {
-            form.style.opacity = "0";
-            formContainer.style.visibility = "hidden";
-            form.style.transform = "scale(0)";
-            inputTaskName.value = '';
-            inputTaskDescription.value = '';
-            inputDueDate.forEach(element => {
-                element.classList.remove('selected')
-            })
-            inputDueDate[0].classList.toggle('selected');
+            formCancel();
         }
     })
+}
+
+const formCancel = () => {
+    form.style.opacity = "0";
+    formContainer.style.visibility = "hidden";
+    form.style.transform = "scale(0)";
+    inputTaskName.value = '';
+    inputTaskDescription.value = '';
+    inputDueDate.forEach(element => {
+        element.classList.remove('selected')
+    })
+    inputDueDate[0].classList.toggle('selected');
 }
 
 const selectTask = () => {
     document.addEventListener('click', (e)=> {
         const target = e.target;
-        if (target.className == "taskContainer" || target.className == "nameContainer" || target.className == "descriptionContainer") {
+
+        if (target.className == "taskContainer") {
+
             taskSelection(target);
         }
     })
 }
 
 const deselectTask = () => {
-    const contentContainer = document.querySelector('#contentContainer')
     document.addEventListener('click', (e)=> {
         const target = e.target
         if (target == document.querySelector('#contentContainer')) {
-            const taskViewContainer = document.querySelector('.taskViewContainer');
-            taskViewContainer.remove();
-            const tasksContainer = document.querySelector('.tasksContainer');
-            tasksContainer.style.transition = "all 0s linear";
-            tasksContainer.style.margin = "38px auto auto auto";
-            tasksContainer.style.transform = "translateX(-30%)";
-
-            setTimeout(()=> {
-                tasksContainer.style.transition = "all 0.15s ease";
-                tasksContainer.style.transform = "translateX(0)";
-            },10)
+            removeTaskView();
+        } else if (document.querySelector('.taskViewContainer')) {
+            if (document.querySelector('.taskViewContainer').id == 's' + target.id) {
+                removeTaskView()
+            }
         }
     })
 }
 
-const taskSelection = (taskContainer) => {
-    if (taskContainer.className != "taskContainer") {
-        taskContainer = taskContainer.parentNode;
-    } 
+const removeTaskView = () => {
+    const taskViewContainer = document.querySelector('.taskViewContainer');
+            
+    taskViewContainer.remove();
+    const tasksContainer = document.querySelector('.tasksContainer');
+    tasksContainer.style.transition = "all 0s linear";
+    tasksContainer.style.margin = "38px auto auto auto";
+    tasksContainer.style.transform = "translateX(-30%)";
 
+    setTimeout(()=> {
+        tasksContainer.style.transition = "all 0.15s ease";
+        tasksContainer.style.transform = "translateX(0)"; 
+    },10)
+}
+
+const taskSelection = (taskContainer) => {
     const selectedTask = allTasks.find((task)=> {
         if (task.key == taskContainer.id) {
             return true
@@ -120,7 +124,6 @@ const taskSelection = (taskContainer) => {
         document.querySelector('.tasksContainer').style.transform = "translateX(-30%)";
     }
     createTaskView(selectedTask);
-    console.log(selectedTask)
 }
 
 
@@ -256,7 +259,7 @@ const runEventHandlers = () => {
     checkClick();
     formAddButtonClicked();
     dueDateClick();
-    formCancel();
+    formCancelClick();
     selectTask();
     deselectTask();
     taskContainerHover();
