@@ -136,6 +136,7 @@ const checkClick = () => {
             
             checkContainer.style.animation = "checkClick 0.3s ease-out";
 
+            const taskViewContainer = document.querySelector('.taskViewContainer');
             if (!checkedTask.className.includes('completed')) {
                 checkedTask.classList.add('completed');
                 taskName.style.backgroundSize = "100% 100%";
@@ -143,7 +144,7 @@ const checkClick = () => {
                 checkContainer.style.filter = "brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%)";
                 deleteContainer.style.opacity = "100";
 
-                const taskViewContainer = document.querySelector('.taskViewContainer');
+                
                 if (taskViewContainer) {
                     if (taskViewContainer.id == 's'+ checkedTask.id) {
                         const taskViewCheckContainer = document.querySelector('.taskViewCheckContainer');
@@ -162,7 +163,17 @@ const checkClick = () => {
                 taskName.style.backgroundSize = "0% 100%";
                 checkContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>'
                 checkContainer.style.filter = " brightness(0) saturate(100%) invert(9%) sepia(43%) saturate(338%) hue-rotate(177deg) brightness(100%) contrast(96%)";
-                
+                if (taskViewContainer) {
+                    if (taskViewContainer.id == 's'+ checkedTask.id) {
+                        const taskViewCheckContainer = document.querySelector('.taskViewCheckContainer');
+                        const taskViewName = document.querySelector('.taskViewName');
+                        taskViewCheckContainer.style.animation = "checkClick 0.3s ease-out";
+                        taskViewCheckContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>';
+                        taskViewCheckContainer.style.filter = "brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%)";
+                        taskViewName.style.backgroundSize = "0% 100%";
+                        taskViewName.style.color = "#171c24";
+                    }
+                }
                 setTimeout(()=> {
                     checkContainer.style.animation = "none";
                 },10)
