@@ -22,7 +22,15 @@ const buttonClicked = () => {
 const formAddButtonClicked = () => {
     formAddButton.addEventListener('click', function() {
         if (inputTaskName.value) {
-            createTask(inputTaskName.value, inputTaskDescription.value, "today");
+            let dueDate;
+            inputDueDate.forEach((e) =>{
+                if (e.className.includes('selected')) {
+                    dueDate = e.id.replace('input', '').toLowerCase();
+                }         
+            })
+            console.log(dueDate)
+
+            createTask(inputTaskName.value, inputTaskDescription.value, dueDate);
             form.style.opacity = "0";
             formContainer.style.visibility = "hidden";
             inputTaskName.value = '';
@@ -37,7 +45,7 @@ const dueDateClick = () => {
     inputDueDate.forEach(dueDate =>{
         dueDate.addEventListener('click', (e)=> {
             inputDueDate.forEach(element => {
-                element.classList.remove('selected')
+                element.classList.remove('selected');
             })
             dueDate.classList.toggle('selected');
         })
@@ -50,6 +58,12 @@ const formCancel = () => {
             form.style.opacity = "0";
             formContainer.style.visibility = "hidden";
             form.style.transform = "scale(0)";
+            inputTaskName.value = '';
+            inputTaskDescription.value = '';
+            inputDueDate.forEach(element => {
+                element.classList.remove('selected')
+            })
+            inputDueDate[0].classList.toggle('selected');
         }
     })
 }
