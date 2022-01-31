@@ -34,7 +34,6 @@ const formAddButtonClicked = () => {
     })
 }
 
-
 const dueDateClick = () => {
     inputDueDate.forEach(dueDate =>{
         dueDate.addEventListener('click', (e)=> {
@@ -69,9 +68,7 @@ const formCancel = () => {
 const selectTask = () => {
     document.addEventListener('click', (e)=> {
         const target = e.target;
-
-        if (target.className == "taskContainer") {
-
+        if (target.className == "taskContainer" || target.className == "taskContainer completed") {
             taskSelection(target);
         }
     })
@@ -91,18 +88,20 @@ const deselectTask = () => {
 }
 
 const removeTaskView = () => {
-    const taskViewContainer = document.querySelector('.taskViewContainer');
-            
-    taskViewContainer.remove();
-    const tasksContainer = document.querySelector('.tasksContainer');
-    tasksContainer.style.transition = "all 0s linear";
-    tasksContainer.style.margin = "38px auto auto auto";
-    tasksContainer.style.transform = "translateX(-30%)";
-
-    setTimeout(()=> {
-        tasksContainer.style.transition = "all 0.15s ease";
-        tasksContainer.style.transform = "translateX(0)"; 
-    },10)
+    const taskViewContainer = document.querySelector('.taskViewContainer'); 
+    if (taskViewContainer) {   
+        const tasksContainer = document.querySelector('.tasksContainer');
+        taskViewContainer.remove();
+        tasksContainer.style.transition = "all 0s linear";
+        tasksContainer.style.margin = "38px auto auto auto";
+        tasksContainer.style.transform = "translateX(-30%)";
+        setTimeout(()=> {
+            tasksContainer.style.transition = "all 0.15s ease";
+            tasksContainer.style.transform = "translateX(0)"; 
+        },10)
+    } else {
+        return
+    }
 }
 
 const taskSelection = (taskContainer) => {
@@ -123,7 +122,7 @@ const taskSelection = (taskContainer) => {
     } else {
         document.querySelector('.tasksContainer').style.transform = "translateX(-30%)";
     }
-    createTaskView(selectedTask);
+    createTaskView(selectedTask, taskContainer);  
 }
 
 
@@ -143,8 +142,22 @@ const checkClick = () => {
                 checkContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-e</title><path d="M256,48C141.31,48,48,141.31,48,256s93.31,208,208,208,208-93.31,208-208S370.69,48,256,48ZM364.25,186.29l-134.4,160a16,16,0,0,1-12,5.71h-.27a16,16,0,0,1-11.89-5.3l-57.6-64a16,16,0,1,1,23.78-21.4l45.29,50.32L339.75,165.71a16,16,0,0,1,24.5,20.58Z"/></svg>'
                 checkContainer.style.filter = "brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%)";
                 deleteContainer.style.opacity = "100";
-                
-            } else if (checkedTask.className.includes('completed')){
+
+                const taskViewContainer = document.querySelector('.taskViewContainer');
+                if (taskViewContainer) {
+                    if (taskViewContainer.id == 's'+ checkedTask.id) {
+                        const taskViewCheckContainer = document.querySelector('.taskViewCheckContainer');
+                        const taskViewName = document.querySelector('.taskViewName');
+                        taskViewCheckContainer.style.animation = "checkClick 0.3s ease-out";
+                        taskViewCheckContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><title>ionicons-v5-e</title><path d="M256,48C141.31,48,48,141.31,48,256s93.31,208,208,208,208-93.31,208-208S370.69,48,256,48ZM364.25,186.29l-134.4,160a16,16,0,0,1-12,5.71h-.27a16,16,0,0,1-11.89-5.3l-57.6-64a16,16,0,1,1,23.78-21.4l45.29,50.32L339.75,165.71a16,16,0,0,1,24.5,20.58Z"/></svg>';
+                        taskViewCheckContainer.style.filter = "brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%)";
+                        
+                        taskViewName.style.backgroundSize = "100% 100%";
+                        taskViewName.style.color = "#697384bd";
+                    }
+                }
+
+            } else if (checkedTask.className.includes('completed')) {
                 checkedTask.classList.remove('completed');
                 taskName.style.backgroundSize = "0% 100%";
                 checkContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>'
@@ -172,20 +185,16 @@ const checkClick = () => {
                     taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
                     spacer.style.marginBottom = 0;
                 },300)
-
                 setTimeout(()=> {
                     taskContainer.style.marginBottom = 0;
                     spacer.remove();
                     subGroup.appendChild(taskContainer);
-                    
                 },500)
-
                 setTimeout(()=>{
                     taskContainer.style.opacity = "100";
                 },600)
 
             } else if (!checkedTask.className.includes('completed') && taskContainer != subGroup.children[1]) {
-
                 const subGroup = taskContainer.parentNode;
                 subGroup.insertBefore(spacer, subGroup.children[1]);
 
@@ -194,14 +203,11 @@ const checkClick = () => {
                     taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
                     spacer.style.marginBottom = 0;
                 },300)
-
                 setTimeout(()=> {
                     taskContainer.style.marginBottom = 0;
                     spacer.remove();
                     subGroup.insertBefore(taskContainer, subGroup.children[1]);
-                    
                 },500)
-
                 setTimeout(()=>{
                     taskContainer.style.opacity = "100";
                 },600)
@@ -229,8 +235,6 @@ const deleteClick = () => {
         }
     })
 }
-
-
 
 const taskContainerHover = () => {
     document.querySelector('#contentContainer').addEventListener('mouseover', (e)=> {
