@@ -6,6 +6,7 @@ const addButton = document.querySelector('#addButton');
 const formAddButton = document.querySelector('#taskFormAddButton');
 const inputTaskName = document.querySelector('#inputTaskName');
 const inputTaskDescription = document.querySelector('#inputTaskDescription');
+const inputDueDate = document.querySelectorAll('.inputDueDate');
 const formContainer = document.querySelector("#taskFormContainer");
 const form = document.querySelector("#taskForm");
 const taskContainer = document.querySelector(".taskContainer");
@@ -32,6 +33,17 @@ const formAddButtonClicked = () => {
 }
 
 
+const dueDateClick = () => {
+    inputDueDate.forEach(dueDate =>{
+        dueDate.addEventListener('click', (e)=> {
+            inputDueDate.forEach(element => {
+                element.classList.remove('selected')
+            })
+            dueDate.classList.toggle('selected');
+        })
+    })
+}
+
 const formCancel = () => {
     formContainer.addEventListener('click', (e)=>{
         if (e.target.id == 'taskFormContainer') {
@@ -41,7 +53,6 @@ const formCancel = () => {
         }
     })
 }
-
 
 const selectTask = () => {
     document.addEventListener('click', (e)=> {
@@ -198,7 +209,6 @@ const deleteClick = () => {
                 taskContainer.remove();
             },200)
             
-            
         }
     })
 }
@@ -231,6 +241,7 @@ const taskContainerHover = () => {
 const runEventHandlers = () => {
     checkClick();
     formAddButtonClicked();
+    dueDateClick();
     formCancel();
     selectTask();
     deselectTask();

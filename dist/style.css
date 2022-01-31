@@ -527,12 +527,16 @@ nav {
     padding: 10px;
     color: #171c24;
     border: none;
-    
     border-radius: 5px;
     transition: all ease-in-out 0.2s;
 }
 
+.selected {
+    background-color: #ecf0f6;
+}
+
 .inputDueDate ion-icon {
+    
     color: #171c24;
     font-size: 1.25rem;
     margin-right: 5px;
@@ -543,9 +547,7 @@ nav {
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
 }
 
-#inputDueDateContainer div:nth-child(1) {
-    background-color: #ecf0f6;
-}
+
 
 
 
