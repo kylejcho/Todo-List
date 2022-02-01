@@ -71,7 +71,6 @@ const checkAnimation = (element) => {
     }   
 }
 
-
 const taskCompletionToggle = (type, state) => {
     if (type == 'task') {
         checkedTask.classList.toggle('completed');
