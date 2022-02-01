@@ -136,6 +136,24 @@ const checkClick = () => {
     })
 }
 
+const deleteClick = () => {
+    document.querySelector('#contentContainer').addEventListener('click', (e)=> {
+        if (e.target.parentNode.className == 'deleteContainer' || e.target.parentNode.className == 'deleteContainer completed') {
+            const taskContainer = e.target.parentNode.parentNode;
+
+            const taskContainerHeight = taskContainer.clientHeight;
+            taskContainer.style.opacity = "0";
+            taskContainer.transform = "translateY(-100%)";
+            taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
+            
+            setTimeout(()=> {
+                taskContainer.remove();
+            },200)
+            
+        }
+    })
+}
+
 const taskContainerHover = () => {
     document.querySelector('.tasksContainer').addEventListener('mouseover', (e)=> {
         if (e.target.className == 'taskContainer') {
@@ -161,6 +179,7 @@ const runEventHandlers = () => {
     selectTask();
     deselectTask();
     taskContainerHover();
+    deleteClick()
     buttonClicked()
 }
 
