@@ -212,6 +212,7 @@ nav {
 
 
 .tasksContainer {
+    padding: 5px;
     height: auto;
     width: 25%;
     margin: 38px auto auto auto;
@@ -273,6 +274,7 @@ nav {
 }
 
 .taskContainer {
+    cursor: pointer;
     display: grid;
     grid-template: 30px 30px/25px auto 25px;
     border-radius: 5px;
@@ -281,6 +283,7 @@ nav {
     padding-right: 5px;
     transition: all ease-in-out 0.2s;
 }
+
 
 
 .taskContainer:hover {
@@ -295,9 +298,6 @@ nav {
 }
 
 @keyframes taskContainerAdd {
-    0% {
-    }
-
     20% {
         box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
     }
@@ -311,10 +311,29 @@ nav {
     }
 }
 
+.completed div{
+    color: #697384bd;
+}
+
 .checkContainer {
     display: flex;
     align-items: center;
+    transition: all ease-in-out 0.1s;
 }
+
+.checkContainer.completed {
+    filter: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
+    animation: checkClick 0.3s ease-out;
+}
+
+.checkContainer svg {
+    transition: all ease-in-out 0.1s;
+}
+
+.checkContainer svg:hover {
+    filter: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
+}
+
 
 @keyframes checkClick {
     50% {
@@ -326,21 +345,7 @@ nav {
 }
 
 
-.completed div{
-    color: #697384bd;
-}
 
-.checkContainer {
-    transition: all ease-in-out 0.1s;
-}
-
-.checkContainer svg {
-    transition: all ease-in-out 0.1s;
-}
-
-.checkContainer svg:hover {
-    filter: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
-}
 
 .nameContainer {
     pointer-events: none;
@@ -361,6 +366,11 @@ nav {
     background-size: 0 100%;
     background-repeat: no-repeat;
     transition: 0.4s ease;
+    will-change: background-size;
+}
+
+.nameContainer.completed {
+    background-size: 100% 100%;
 }
 
 .deleteContainer {
@@ -371,7 +381,9 @@ nav {
     transition: all ease-in-out 0.2s;
 }
 
-
+.deleteContainer.completed {
+    opacity: 1;
+}
 
 
 .descriptionContainer {
@@ -404,8 +416,18 @@ nav {
     align-items: center;
 }
 
+.taskViewCheckContainer {
+    background-size: 0% 100%;
+}
+
+.taskViewCheckContainer.completed {
+    animation: checkClick 0.3s ease-out;
+    filter: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
+}
+
 .taskViewCheckContainer svg {
     transition: all ease-in-out 0.1s;
+    fill: #171c24;
 }
 
 .taskViewCheckContainer svg:hover {
@@ -431,6 +453,11 @@ nav {
     background-size: 0 100%;
     background-repeat: no-repeat;
     transition: 0.4s ease;
+}
+
+.taskViewName.completed {
+    background-size: 100% 100%;
+    color: #697384bd;
 }
 
 .taskViewDescriptionContainer {

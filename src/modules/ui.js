@@ -109,7 +109,7 @@ export const createTaskContainer = (task, description, dueDate, key) => {
     taskContainer.style.opacity = "0";
     setTimeout(()=> {
         taskContainer.style.animation = "taskContainerAdd 0.6s ease-in-out";
-        taskContainer.style.opacity = "100";
+        taskContainer.style.opacity = "1";
     },50)
 }
 
@@ -170,9 +170,9 @@ export const createTaskView = (task, taskContainer) => {
         contentContainer.append(taskViewContainer);
         taskViewContainer.style.transform = "translateX(25vw)";
         setTimeout(()=> {
-            taskViewContainer.style.opacity = "100";
+            taskViewContainer.style.opacity = "1";
             taskViewContainer.style.width = "400px"
-            taskViewContainer.style.opacity = "100"
+            taskViewContainer.style.opacity = "1"
             taskViewContainer.style.transform = "translateX(0)";
         },10)
         

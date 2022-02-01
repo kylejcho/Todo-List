@@ -1,6 +1,7 @@
 import createTask from "./create-task";
 import { createTaskView } from "./ui";
 import { allTasks } from "./create-task";
+import check from "./animations";
 
 const addButton = document.querySelector('#addButton');
 const formAddButton = document.querySelector('#taskFormAddButton');
@@ -10,11 +11,12 @@ const inputDueDate = document.querySelectorAll('.inputDueDate');
 const formContainer = document.querySelector("#taskFormContainer");
 const form = document.querySelector("#taskForm");
 const taskContainer = document.querySelector(".taskContainer");
+const contentContainer = document.querySelector("#contentContainer")
 
 const buttonClicked = () => {
     addButton.addEventListener('click', function() {
         formContainer.style.visibility = "visible";
-        form.style.opacity = "100";
+        form.style.opacity = "1";
         form.style.transform = "scale(1)";
     })
 }
@@ -66,7 +68,7 @@ const formCancel = () => {
 }
 
 const selectTask = () => {
-    document.addEventListener('click', (e)=> {
+    contentContainer.addEventListener('click', (e)=> {
         const target = e.target;
         if (target.className == "taskContainer" || target.className == "taskContainer completed") {
             taskSelection(target);
@@ -75,7 +77,7 @@ const selectTask = () => {
 }
 
 const deselectTask = () => {
-    document.addEventListener('click', (e)=> {
+    contentContainer.addEventListener('click', (e)=> {
         const target = e.target
         if (target == document.querySelector('#contentContainer')) {
             removeTaskView();
@@ -92,11 +94,11 @@ const removeTaskView = () => {
     if (taskViewContainer) {   
         const tasksContainer = document.querySelector('.tasksContainer');
         taskViewContainer.remove();
-        tasksContainer.style.transition = "all 0s linear";
+        tasksContainer.style.transition = "none";
         tasksContainer.style.margin = "38px auto auto auto";
         tasksContainer.style.transform = "translateX(-30%)";
         setTimeout(()=> {
-            tasksContainer.style.transition = "all 0.15s ease";
+            tasksContainer.style.transition = "transform 0.15s ease";
             tasksContainer.style.transform = "translateX(0)"; 
         },10)
     } else {
@@ -128,143 +130,24 @@ const taskSelection = (taskContainer) => {
 
 const checkClick = () => {
     document.addEventListener('click', (e)=> {
-        if (e.target.parentNode.className == 'checkContainer' ) {
-            const checkedTask = e.target.parentNode.parentNode;
-            const taskName = e.target.parentNode.nextElementSibling;
-            const deleteContainer = taskName.nextElementSibling;
-            const checkContainer = e.target.parentNode;
-            
-            checkContainer.style.animation = "checkClick 0.3s ease-out";
-
-            const taskViewContainer = document.querySelector('.taskViewContainer');
-            if (!checkedTask.className.includes('completed')) {
-                checkedTask.classList.add('completed');
-                taskName.style.backgroundSize = "100% 100%";
-                checkContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-e</title><path d="M256,48C141.31,48,48,141.31,48,256s93.31,208,208,208,208-93.31,208-208S370.69,48,256,48ZM364.25,186.29l-134.4,160a16,16,0,0,1-12,5.71h-.27a16,16,0,0,1-11.89-5.3l-57.6-64a16,16,0,1,1,23.78-21.4l45.29,50.32L339.75,165.71a16,16,0,0,1,24.5,20.58Z"/></svg>'
-                checkContainer.style.filter = "brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%)";
-                deleteContainer.style.opacity = "100";
-
-                
-                if (taskViewContainer) {
-                    if (taskViewContainer.id == 's'+ checkedTask.id) {
-                        const taskViewCheckContainer = document.querySelector('.taskViewCheckContainer');
-                        const taskViewName = document.querySelector('.taskViewName');
-                        taskViewCheckContainer.style.animation = "checkClick 0.3s ease-out";
-                        taskViewCheckContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><title>ionicons-v5-e</title><path d="M256,48C141.31,48,48,141.31,48,256s93.31,208,208,208,208-93.31,208-208S370.69,48,256,48ZM364.25,186.29l-134.4,160a16,16,0,0,1-12,5.71h-.27a16,16,0,0,1-11.89-5.3l-57.6-64a16,16,0,1,1,23.78-21.4l45.29,50.32L339.75,165.71a16,16,0,0,1,24.5,20.58Z"/></svg>';
-                        taskViewCheckContainer.style.filter = "brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%)";
-                        
-                        taskViewName.style.backgroundSize = "100% 100%";
-                        taskViewName.style.color = "#697384bd";
-                    }
-                }
-
-            } else if (checkedTask.className.includes('completed')) {
-                checkedTask.classList.remove('completed');
-                taskName.style.backgroundSize = "0% 100%";
-                checkContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>'
-                checkContainer.style.filter = " brightness(0) saturate(100%) invert(9%) sepia(43%) saturate(338%) hue-rotate(177deg) brightness(100%) contrast(96%)";
-                if (taskViewContainer) {
-                    if (taskViewContainer.id == 's'+ checkedTask.id) {
-                        const taskViewCheckContainer = document.querySelector('.taskViewCheckContainer');
-                        const taskViewName = document.querySelector('.taskViewName');
-                        taskViewCheckContainer.style.animation = "checkClick 0.3s ease-out";
-                        taskViewCheckContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>';
-                        taskViewCheckContainer.style.filter = "brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%)";
-                        taskViewName.style.backgroundSize = "0% 100%";
-                        taskViewName.style.color = "#171c24";
-                    }
-                }
-                setTimeout(()=> {
-                    checkContainer.style.animation = "none";
-                },10)
-            }
-
-            const taskContainer = taskName.parentNode;
-            const taskContainerHeight = taskContainer.clientHeight;
-
-            const spacer = document.createElement('div')
-            spacer.style.height = taskContainerHeight + "px";
-            spacer.style.marginBottom = "-" + taskContainerHeight + "px";
-            spacer.style.transition = "all ease-in-out 0.2s";
-            const subGroup = taskContainer.parentNode;
-
-            if (checkedTask.className.includes('completed') && taskContainer.nextElementSibling) {
-                taskContainer.parentNode.appendChild(spacer);
-
-                setTimeout(()=> {
-                    taskContainer.style.opacity = "0";
-                    taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
-                    spacer.style.marginBottom = 0;
-                },300)
-                setTimeout(()=> {
-                    taskContainer.style.marginBottom = 0;
-                    spacer.remove();
-                    subGroup.appendChild(taskContainer);
-                },500)
-                setTimeout(()=>{
-                    taskContainer.style.opacity = "100";
-                },600)
-
-            } else if (!checkedTask.className.includes('completed') && taskContainer != subGroup.children[1]) {
-                const subGroup = taskContainer.parentNode;
-                subGroup.insertBefore(spacer, subGroup.children[1]);
-
-                setTimeout(()=> {
-                    taskContainer.style.opacity = "0";
-                    taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
-                    spacer.style.marginBottom = 0;
-                },300)
-                setTimeout(()=> {
-                    taskContainer.style.marginBottom = 0;
-                    spacer.remove();
-                    subGroup.insertBefore(taskContainer, subGroup.children[1]);
-                },500)
-                setTimeout(()=>{
-                    taskContainer.style.opacity = "100";
-                },600)
-            }
-
-
-        }
-    })
-}
-
-const deleteClick = () => {
-    document.querySelector('#contentContainer').addEventListener('click', (e)=> {
-        if (e.target.parentNode.className == 'deleteContainer') {
-            const taskContainer = e.target.parentNode.parentNode;
-
-            const taskContainerHeight = taskContainer.clientHeight;
-            taskContainer.style.opacity = "0";
-            taskContainer.transform = "translateY(-100%)";
-            taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
-            
-            setTimeout(()=> {
-                taskContainer.remove();
-            },200)
-            
+        if (e.target.parentNode.className == 'checkContainer'|| e.target.parentNode.className == 'checkContainer completed') {
+            check(e);
         }
     })
 }
 
 const taskContainerHover = () => {
-    document.querySelector('#contentContainer').addEventListener('mouseover', (e)=> {
-        if (e.target.className == 'taskContainer' ) {
+    document.querySelector('.tasksContainer').addEventListener('mouseover', (e)=> {
+        if (e.target.className == 'taskContainer') {
             const taskContainer = e.target;
             const deleteContainer = taskContainer.children[2];
-            deleteContainer.style.opacity = "100";
+            deleteContainer.style.opacity = "1";
 
             taskContainer.addEventListener('mouseleave', ()=> {
                 if (!taskContainer.className.includes('completed')) {
                     deleteContainer.style.opacity = '0';
                 }
-                
             })
-        } 
-        if (e.target.className == 'descriptionContainer' ) {
-            const descriptionContainer = e.target;
-            const deleteContainer = descriptionContainer.previousElementSibling;
-            deleteContainer.style.opacity = "100";
         } 
     })
 }
@@ -278,7 +161,6 @@ const runEventHandlers = () => {
     selectTask();
     deselectTask();
     taskContainerHover();
-    deleteClick()
     buttonClicked()
 }
 
