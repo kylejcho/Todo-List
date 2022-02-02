@@ -1,7 +1,7 @@
 import createTask from "./create-task";
 import { createTaskView } from "./ui";
 import { allTasks } from "./create-task";
-import checkAnimation from "./animations/checkedTaskAnimation";
+import checkTaskAnimation from "./animations/checkTaskAnimation";
 
 const addButton = document.querySelector('#addButton');
 const formAddButton = document.querySelector('#taskFormAddButton');
@@ -131,8 +131,7 @@ const taskSelection = (taskContainer) => {
 const checkClick = () => {
     document.addEventListener('click', (e)=> {
         if (e.target.parentNode.className == 'checkContainer'|| e.target.parentNode.className == 'checkContainer completed') {
-            const element = e.target.parentNode;
-            checkAnimation(element);
+            checkTaskAnimation(e);
         }
     })
 }
