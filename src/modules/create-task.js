@@ -27,18 +27,9 @@ export const exampleTasks = () => {
     createTask("Exercise", "Workout out for 45 minutes", "today", '');
     createTask("Coffee with friend", "Starbucks", "today", '');
     createTask("Cooking class", "Bring homemade pie", "today", '');
-    createTask("Exercise", "Workout out for 45 minutes", "today", '');
-    createTask("Coffee with friend", "Starbucks", "today", '');
-    createTask("Cooking class", "Bring homemade pie", "today", '');
-    createTask("Exercise", "Workout out for 45 minutes", "today", '');
-
-
-
 
     createTask("Read", "Read two chapter", "tomorrow", '');
     createTask("Learn sign language", "Practice english alphabet", "tomorrow", '');
-    
-    console.log(allTasks)
 }
 
 

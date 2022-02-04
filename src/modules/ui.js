@@ -70,6 +70,9 @@ const createSubGroups = (group, allTasksContainer) => {
 
 
 export const createTaskContainer = (task, description, dueDate, key) => {
+    const taskContainerShadow = document.createElement('div') 
+    taskContainerShadow.className = 'taskContainerShadow';
+
     const taskContainer = document.createElement('div');
     taskContainer.className = 'taskContainer';
     taskContainer.id = key;
@@ -146,7 +149,7 @@ export const createTaskView = (task, taskContainer) => {
     taskViewDescriptionContainer.append(taskViewDescription)
 
     const tasksContainer = document.querySelector('.tasksContainer');
-    tasksContainer.style.transition = "all 0.15s ease";
+    tasksContainer.style.transition = "all 0.2s cubic-bezier(0.5, 0, 0.5, 1)";
 
 
     if (taskContainer.className.includes('completed')) {
@@ -161,7 +164,7 @@ export const createTaskView = (task, taskContainer) => {
 
 
     setTimeout(()=> {
-        tasksContainer.style.transition = "all 0s linear";
+        tasksContainer.style.transition = "none";
 
         tasksContainer.style.margin = "38px 0 auto 30%";
         tasksContainer.style.transform = "translateX(0)";
@@ -176,7 +179,7 @@ export const createTaskView = (task, taskContainer) => {
             taskViewContainer.style.transform = "translateX(0)";
         },10)
         
-    },150)
+    },200)
 
     
 }

@@ -93,14 +93,34 @@ const removeTaskView = () => {
     const taskViewContainer = document.querySelector('.taskViewContainer'); 
     if (taskViewContainer) {   
         const tasksContainer = document.querySelector('.tasksContainer');
-        taskViewContainer.remove();
+
+        const positionA = taskViewContainer.getBoundingClientRect();
+
+        taskViewContainer.style.transition = "none"
+        taskViewContainer.style.position = "absolute";
+
+        const positionB = taskViewContainer.getBoundingClientRect();
+
+        const deltaX = positionA.left - positionB.left;
+
+        taskViewContainer.style.transform = "translateX("+ deltaX +"px)"
+
+        
+        
+
+        
         tasksContainer.style.transition = "none";
         tasksContainer.style.margin = "38px auto auto auto";
         tasksContainer.style.transform = "translateX(-30%)";
         setTimeout(()=> {
-            tasksContainer.style.transition = "transform 0.15s ease";
+            taskViewContainer.style.transition = "all 0.2s cubic-bezier(0.5, 0, 0.5, 1)";
+            taskViewContainer.style.transform = "translateX("+ 2 * deltaX +"px)"
+            tasksContainer.style.transition = "all 0.2s cubic-bezier(0.5, 0, 0.5, 1)";
             tasksContainer.style.transform = "translateX(0)"; 
         },10)
+        setTimeout(()=> {
+            taskViewContainer.remove();
+        },200)
     } else {
         return
     }
@@ -117,14 +137,21 @@ const taskSelection = (taskContainer) => {
 
     if (taskView) {
         if (taskView.id == "s" + selectedTask.key) {
-            return
+                return
         } else {
-            taskView.remove();
+            taskView.style.opacity = '0';
+            setTimeout(()=> {
+                taskView.remove();
+            },200)
+            
+        
+            
         }
     } else {
         document.querySelector('.tasksContainer').style.transform = "translateX(-30%)";
     }
     createTaskView(selectedTask, taskContainer);  
+    
 }
 
 
@@ -154,22 +181,6 @@ const deleteClick = () => {
     })
 }
 
-const taskContainerHover = () => {
-    document.querySelector('.tasksContainer').addEventListener('mouseover', (e)=> {
-        if (e.target.className == 'taskContainer') {
-            const taskContainer = e.target;
-            const deleteContainer = taskContainer.children[2];
-            deleteContainer.style.opacity = "1";
-
-            taskContainer.addEventListener('mouseleave', ()=> {
-                if (!taskContainer.className.includes('completed')) {
-                    deleteContainer.style.opacity = '0';
-                }
-            })
-        } 
-    })
-}
-
 
 const runEventHandlers = () => {
     checkClick();
@@ -178,7 +189,6 @@ const runEventHandlers = () => {
     formCancelClick();
     selectTask();
     deselectTask();
-    taskContainerHover();
     deleteClick()
     buttonClicked()
 }
