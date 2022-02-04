@@ -420,6 +420,7 @@ nav {
 
 .taskViewContainer {
     height: 400px;
+    width: 400px;
     border-radius: 10px;
     box-shadow: -2px 2px 6px 0px rgba(0,0,0,0.15);
     margin: 90px 0 auto 30px;
@@ -427,6 +428,12 @@ nav {
     opacity: 0;
     padding: 30px 20px;
 }
+
+
+@keyframes taskSelection {
+    
+}
+
 
 .taskViewNameContainer {
     display: flex;

@@ -149,7 +149,7 @@ export const createTaskView = (task, taskContainer) => {
     taskViewDescriptionContainer.append(taskViewDescription)
 
     const tasksContainer = document.querySelector('.tasksContainer');
-    tasksContainer.style.transition = "all 0.2s cubic-bezier(0.5, 0, 0.5, 1)";
+    tasksContainer.style.transition = "all 0.25s cubic-bezier(0.5, 0, 0.5, 1)";
 
 
     if (taskContainer.className.includes('completed')) {
@@ -165,7 +165,6 @@ export const createTaskView = (task, taskContainer) => {
 
     setTimeout(()=> {
         tasksContainer.style.transition = "none";
-
         tasksContainer.style.margin = "38px 0 auto 30%";
         tasksContainer.style.transform = "translateX(0)";
 
@@ -174,12 +173,9 @@ export const createTaskView = (task, taskContainer) => {
         taskViewContainer.style.transform = "translateX(15vw)";
         setTimeout(()=> {
             taskViewContainer.style.opacity = "1";
-            taskViewContainer.style.width = "400px"
-            taskViewContainer.style.opacity = "1"
             taskViewContainer.style.transform = "translateX(0)";
         },10)
-        
-    },200)
+    },250)
 
     
 }

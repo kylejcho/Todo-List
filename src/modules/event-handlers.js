@@ -78,13 +78,8 @@ const selectTask = () => {
 
 const deselectTask = () => {
     contentContainer.addEventListener('click', (e)=> {
-        const target = e.target
-        if (target == document.querySelector('#contentContainer')) {
+        if (e.target == document.querySelector('#contentContainer')) {
             removeTaskView();
-        } else if (document.querySelector('.taskViewContainer')) {
-            if (document.querySelector('.taskViewContainer').id == 's' + target.id) {
-                removeTaskView()
-            }
         }
     })
 }
@@ -105,10 +100,10 @@ const removeTaskView = () => {
         tasksContainer.style.margin = "38px auto auto auto";
         tasksContainer.style.transform = "translateX(-30%)";
         setTimeout(()=> {
-            taskViewContainer.style.transition = "all 0.3s cubic-bezier(0.5, 0, 0, 1)";
+            taskViewContainer.style.transition = "all 0.4s cubic-bezier(0.5, 0, 0, 1)";
             taskViewContainer.style.transform = "translateX(calc("+deltaX +"px + 15vw))";
             taskViewContainer.style.opacity = '0';
-            tasksContainer.style.transition = "all 0.2s cubic-bezier(0.5, 0, 0.5, 1)";
+            tasksContainer.style.transition = "all 0.25s cubic-bezier(0.5, 0, 0.5, 1)";
             tasksContainer.style.transform = "translateX(0)"; 
         },10)
         setTimeout(()=> {
@@ -130,7 +125,8 @@ const taskSelection = (taskContainer) => {
 
     if (taskView) {
         if (taskView.id == "s" + selectedTask.key) {
-                return
+            removeTaskView();
+            return;
         } else {
             taskView.style.opacity = '0';
             setTimeout(()=> {
