@@ -15,7 +15,6 @@ const loadingPage = () => {
             body.style.overflowY= "visible";
             }, 300)
         }, 500)
-        
     });
 }
 
@@ -140,6 +139,28 @@ export const createTaskView = (task, taskContainer) => {
         taskViewName.style.color = "#697384bd";     
     }                 
 
+    slideInTaskView(tasksContainer, taskViewContainer);
+}
+
+
+
+
+//ANIMATIONS
+
+const addTask = (taskContainer) => {
+    taskContainer.style.animation = "taskContainerAdd 1.5s cubic-bezier(.5, 0, 0, 1)";
+    taskContainer.style.opacity = "1";
+}
+
+export const deleteTask = (taskContainer) => {
+    const taskContainerHeight = taskContainer.clientHeight;
+    taskContainer.style.opacity = "0";
+    taskContainer.transform = "translateY(-100%)";
+    taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
+    setTimeout(()=> {taskContainer.remove()},200)
+}
+
+const slideInTaskView = (tasksContainer, taskViewContainer) => {
     setTimeout(()=> {
         tasksContainer.style.transition = "none";
         tasksContainer.style.margin = "38px 0 auto 30%";
@@ -149,63 +170,35 @@ export const createTaskView = (task, taskContainer) => {
         contentContainer.append(taskViewContainer);
         taskViewContainer.style.transform = "translateX(15vw)";
         setTimeout(()=> {
+            taskViewContainer.style.transition = "all 0.25s cubic-bezier(0, 0.5, 0.5, 1)"
             taskViewContainer.style.opacity = "1";
             taskViewContainer.style.transform = "translateX(0)";
         },10)
     },250)
-
-    
-}
-
-
-
-
-//ANIMATIONS
-
-const addTask = (taskContainer) => {
-    taskContainer.style.opacity = "0";
-    setTimeout(()=> {
-        taskContainer.style.animation = "taskContainerAdd 0.6s ease-in-out";
-        taskContainer.style.opacity = "1";
-    },50)
-}
-
-export const deleteTask = (taskContainer) => {
-    const taskContainerHeight = taskContainer.clientHeight;
-    taskContainer.style.opacity = "0";
-    taskContainer.transform = "translateY(-100%)";
-    taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
-    setTimeout(()=> {taskContainer.remove();},200)
 }
 
 export const removeTaskView = () => {
     const taskViewContainer = document.querySelector('.taskViewContainer'); 
-    if (taskViewContainer) {   
-        const tasksContainer = document.querySelector('.tasksContainer');
-        taskViewContainer.style.transition = "none"
-        const positionA = taskViewContainer.getBoundingClientRect();
-        taskViewContainer.style.position = "absolute";
-        const positionB = taskViewContainer.getBoundingClientRect();
-        const deltaX = positionA.left - positionB.left;
+    const tasksContainer = document.querySelector('.tasksContainer');
+    taskViewContainer.style.transition = "none"
+    const positionA = taskViewContainer.getBoundingClientRect();
+    taskViewContainer.style.position = "absolute";
+    const positionB = taskViewContainer.getBoundingClientRect();
+    const deltaX = positionA.left - positionB.left;
 
-        taskViewContainer.style.transform = "translateX("+ deltaX +"px)"
+    taskViewContainer.style.transform = "translateX("+ deltaX +"px)"
 
-        tasksContainer.style.transition = "none";
-        tasksContainer.style.margin = "38px auto auto auto";
-        tasksContainer.style.transform = "translateX(-30%)";
-        setTimeout(()=> {
-            taskViewContainer.style.transition = "all 0.4s cubic-bezier(0.5, 0, 0, 1)";
-            taskViewContainer.style.transform = "translateX(calc("+deltaX +"px + 15vw))";
-            taskViewContainer.style.opacity = '0';
-            tasksContainer.style.transition = "all 0.25s cubic-bezier(0.5, 0, 0.5, 1)";
-            tasksContainer.style.transform = "translateX(0)"; 
-        },10)
-        setTimeout(()=> {
-            taskViewContainer.remove();
-        },200)
-    } else {
-        return
-    }
+    tasksContainer.style.transition = "none";
+    tasksContainer.style.margin = "38px auto auto auto";
+    tasksContainer.style.transform = "translateX(-30%)";
+    setTimeout(()=> {
+        taskViewContainer.style.transition = "all 0.4s cubic-bezier(0.5, 0, 0, 1)";
+        taskViewContainer.style.transform = "translateX(calc("+deltaX +"px + 15vw))";
+        taskViewContainer.style.opacity = '0';
+        tasksContainer.style.transition = "all 0.25s cubic-bezier(0.5, 0, 0.5, 1)";
+        tasksContainer.style.transform = "translateX(0)"; 
+    },10)
+    setTimeout(()=> {taskViewContainer.remove()},200)   
 }
 
 

@@ -11,7 +11,6 @@ const inputDueDate = document.querySelectorAll('.inputDueDate');
 const formContainer = document.querySelector("#taskFormContainer");
 const form = document.querySelector("#taskForm");
 const contentContainer = document.querySelector("#contentContainer")
-const taskView = document.querySelector('.taskViewContainer')
 
 //FORM
 const formButtonClicked = () => {
@@ -86,6 +85,8 @@ const taskSelection = (taskContainer) => {
         }
     })
 
+    const taskView = document.querySelector('.taskViewContainer')
+
     if (taskView) {
         if (taskView.id == "s" + selectedTask.key) {
             removeTaskView();
@@ -108,6 +109,9 @@ const deselectTask = () => {
     })
 }
 
+
+
+
 const checkClick = () => {
     document.addEventListener('click', (e)=> {
         if (e.target.parentNode.className == 'checkContainer'|| e.target.parentNode.className == 'checkContainer completed') {
@@ -124,8 +128,6 @@ const deleteClick = () => {
     })
 }
 
-
-//TaskView
 
 const runEventHandlers = () => {
     formButtonClicked()

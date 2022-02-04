@@ -283,6 +283,7 @@ nav {
     padding-left: 12px;
     padding-right: 5px;
     transition: all ease-in-out 0.2s;
+    opacity: 0;
 }
 
 .taskContainer::after {
@@ -317,18 +318,15 @@ nav {
 }
 
 @keyframes taskContainerAdd {
-    20% {
+    0% {
         box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
+        transform: scale(1.01);
     }
-    50% {
-        transform: scale(1.007);
-        box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
-    }
-
     100% {
         transform: scale(1);
     }
 }
+
 
 .completed div{
     color: #697384bd;
@@ -424,14 +422,9 @@ nav {
     border-radius: 10px;
     box-shadow: -2px 2px 6px 0px rgba(0,0,0,0.15);
     margin: 90px 0 auto 30px;
-    transition: all 0.25s cubic-bezier(0.5, 0.5, 0.5, 1);
+    transition: all 0.25s ease-in-out;
     opacity: 0;
     padding: 30px 20px;
-}
-
-
-@keyframes taskSelection {
-    
 }
 
 
