@@ -5,6 +5,13 @@ export let allTasks = [];
 
 
 const createTask = (task, description, dueDate, list) => {
+    let key = generateTaskKey();
+    let newTask = new Task(task, description, dueDate, list, key);
+    allTasks.push(newTask);
+    createTaskContainer(task, description, dueDate, key);
+}
+
+const generateTaskKey = () => {
     let key = 0
     if (allTasks.length > 0) {
         for (let i = 0; i < allTasks.length; i++) {
@@ -13,11 +20,8 @@ const createTask = (task, description, dueDate, list) => {
             }
         }
     }
-    let newTask = new Task(task, description, dueDate, list, key);
-    allTasks.push(newTask);
-    createTaskContainer(task, description, dueDate, key);
+    return key
 }
-
 
 
 export const exampleTasks = () => {

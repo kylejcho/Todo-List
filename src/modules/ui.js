@@ -13,7 +13,7 @@ const loadingPage = () => {
             setTimeout(()=> {
             loadingScreen.remove();
             body.style.overflowY= "visible";
-        }, 300)
+            }, 300)
         }, 500)
         
     });
@@ -25,15 +25,12 @@ const createAllTasksContainer = () => {
     const allTasksContainer = document.createElement('div');
     allTasksContainer.id = "allTasksContainer";
     allTasksContainer.className = "tasksContainer";
-
     
     const allTasksTitle = document.createElement('div');
     allTasksTitle.id = 'titleContainer';
     allTasksTitle.className = "tasksTitle";
     allTasksTitle.innerText = "All Tasks";
-
     allTasksContainer.append(allTasksTitle);
-
 
     createSubGroups("today", allTasksContainer);
     createSubGroups("tomorrow", allTasksContainer);
@@ -41,11 +38,9 @@ const createAllTasksContainer = () => {
 
     const contentContainer = document.querySelector('#contentContainer');
     contentContainer.append(allTasksContainer);
-
 }
 
 const createSubGroups = (group, allTasksContainer) => {
-
     const capitalize = (str) => {
         return str[0].toUpperCase() + str.slice(1)
     }
@@ -54,17 +49,11 @@ const createSubGroups = (group, allTasksContainer) => {
     subGroup.className = "subGroup";
     subGroup.id = group;
 
-
-
     const subGroupTitle = document.createElement('p');
     subGroupTitle.className = "subGroupTitle";
-
-
     subGroupTitle.innerText = capitalize(group);
 
-
     subGroup.append(subGroupTitle)
-
     allTasksContainer.append(subGroup);
 }   
 
@@ -89,7 +78,6 @@ export const createTaskContainer = (task, description, dueDate, key) => {
     deleteContainer.className = 'deleteContainer';
     deleteContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-m</title><path d="M256,48C141.31,48,48,141.31,48,256s93.31,208,208,208,208-93.31,208-208S370.69,48,256,48Zm75.31,260.69a16,16,0,1,1-22.62,22.62L256,278.63l-52.69,52.68a16,16,0,0,1-22.62-22.62L233.37,256l-52.68-52.69a16,16,0,0,1,22.62-22.62L256,233.37l52.69-52.68a16,16,0,0,1,22.62,22.62L278.63,256Z"/></svg>';
 
-
     const descriptionContainer = document.createElement('div');
     descriptionContainer.className = 'descriptionContainer';
     descriptionContainer.innerText = description;
@@ -99,7 +87,6 @@ export const createTaskContainer = (task, description, dueDate, key) => {
     taskContainer.append(deleteContainer);
     taskContainer.append(descriptionContainer);
     
-
     let subGroup;
     if (dueDate == 'today') {
         subGroup = document.querySelector('#today');
@@ -109,11 +96,7 @@ export const createTaskContainer = (task, description, dueDate, key) => {
 
     subGroup.insertBefore(taskContainer, subGroup.children[1]);
     
-    taskContainer.style.opacity = "0";
-    setTimeout(()=> {
-        taskContainer.style.animation = "taskContainerAdd 0.6s ease-in-out";
-        taskContainer.style.opacity = "1";
-    },50)
+    addTask(taskContainer)
 }
 
 export const createTaskView = (task, taskContainer) => {
@@ -135,13 +118,10 @@ export const createTaskView = (task, taskContainer) => {
     taskViewName.innerText = task.name
     taskViewNameContainer.append(taskViewName);
 
-
-
     const taskViewDescriptionContainer = document.createElement('div');
     taskViewDescriptionContainer.className = "taskViewDescriptionContainer";
     taskViewDescriptionContainer.innerText = "Description";
     taskViewContainer.append(taskViewDescriptionContainer);
-    
 
     const taskViewDescription = document.createElement('p');
     taskViewDescription.className = "taskViewDescription";
@@ -151,7 +131,6 @@ export const createTaskView = (task, taskContainer) => {
     const tasksContainer = document.querySelector('.tasksContainer');
     tasksContainer.style.transition = "all 0.25s cubic-bezier(0.5, 0, 0.5, 1)";
 
-
     if (taskContainer.className.includes('completed')) {
         checkContainer.style.animation = "checkClick 0.3s ease-out";
         checkContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><title>ionicons-v5-e</title><path d="M256,48C141.31,48,48,141.31,48,256s93.31,208,208,208,208-93.31,208-208S370.69,48,256,48ZM364.25,186.29l-134.4,160a16,16,0,0,1-12,5.71h-.27a16,16,0,0,1-11.89-5.3l-57.6-64a16,16,0,1,1,23.78-21.4l45.29,50.32L339.75,165.71a16,16,0,0,1,24.5,20.58Z"/></svg>';
@@ -160,8 +139,6 @@ export const createTaskView = (task, taskContainer) => {
         taskViewName.style.backgroundSize = "100% 100%";
         taskViewName.style.color = "#697384bd";     
     }                 
-
-
 
     setTimeout(()=> {
         tasksContainer.style.transition = "none";
@@ -180,6 +157,56 @@ export const createTaskView = (task, taskContainer) => {
     
 }
 
+
+
+
+//ANIMATIONS
+
+const addTask = (taskContainer) => {
+    taskContainer.style.opacity = "0";
+    setTimeout(()=> {
+        taskContainer.style.animation = "taskContainerAdd 0.6s ease-in-out";
+        taskContainer.style.opacity = "1";
+    },50)
+}
+
+export const deleteTask = (taskContainer) => {
+    const taskContainerHeight = taskContainer.clientHeight;
+    taskContainer.style.opacity = "0";
+    taskContainer.transform = "translateY(-100%)";
+    taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
+    setTimeout(()=> {taskContainer.remove();},200)
+}
+
+export const removeTaskView = () => {
+    const taskViewContainer = document.querySelector('.taskViewContainer'); 
+    if (taskViewContainer) {   
+        const tasksContainer = document.querySelector('.tasksContainer');
+        taskViewContainer.style.transition = "none"
+        const positionA = taskViewContainer.getBoundingClientRect();
+        taskViewContainer.style.position = "absolute";
+        const positionB = taskViewContainer.getBoundingClientRect();
+        const deltaX = positionA.left - positionB.left;
+
+        taskViewContainer.style.transform = "translateX("+ deltaX +"px)"
+
+        tasksContainer.style.transition = "none";
+        tasksContainer.style.margin = "38px auto auto auto";
+        tasksContainer.style.transform = "translateX(-30%)";
+        setTimeout(()=> {
+            taskViewContainer.style.transition = "all 0.4s cubic-bezier(0.5, 0, 0, 1)";
+            taskViewContainer.style.transform = "translateX(calc("+deltaX +"px + 15vw))";
+            taskViewContainer.style.opacity = '0';
+            tasksContainer.style.transition = "all 0.25s cubic-bezier(0.5, 0, 0.5, 1)";
+            tasksContainer.style.transform = "translateX(0)"; 
+        },10)
+        setTimeout(()=> {
+            taskViewContainer.remove();
+        },200)
+    } else {
+        return
+    }
+}
 
 
 
