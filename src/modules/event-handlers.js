@@ -93,28 +93,21 @@ const removeTaskView = () => {
     const taskViewContainer = document.querySelector('.taskViewContainer'); 
     if (taskViewContainer) {   
         const tasksContainer = document.querySelector('.tasksContainer');
-
-        const positionA = taskViewContainer.getBoundingClientRect();
-
         taskViewContainer.style.transition = "none"
+        const positionA = taskViewContainer.getBoundingClientRect();
         taskViewContainer.style.position = "absolute";
-
         const positionB = taskViewContainer.getBoundingClientRect();
-
         const deltaX = positionA.left - positionB.left;
 
         taskViewContainer.style.transform = "translateX("+ deltaX +"px)"
 
-        
-        
-
-        
         tasksContainer.style.transition = "none";
         tasksContainer.style.margin = "38px auto auto auto";
         tasksContainer.style.transform = "translateX(-30%)";
         setTimeout(()=> {
-            taskViewContainer.style.transition = "all 0.2s cubic-bezier(0.5, 0, 0.5, 1)";
-            taskViewContainer.style.transform = "translateX("+ 2 * deltaX +"px)"
+            taskViewContainer.style.transition = "all 0.3s cubic-bezier(0.5, 0, 0, 1)";
+            taskViewContainer.style.transform = "translateX(calc("+deltaX +"px + 15vw))";
+            taskViewContainer.style.opacity = '0';
             tasksContainer.style.transition = "all 0.2s cubic-bezier(0.5, 0, 0.5, 1)";
             tasksContainer.style.transform = "translateX(0)"; 
         },10)
@@ -142,10 +135,7 @@ const taskSelection = (taskContainer) => {
             taskView.style.opacity = '0';
             setTimeout(()=> {
                 taskView.remove();
-            },200)
-            
-        
-            
+            },200)  
         }
     } else {
         document.querySelector('.tasksContainer').style.transform = "translateX(-30%)";

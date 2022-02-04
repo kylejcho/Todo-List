@@ -171,7 +171,7 @@ export const createTaskView = (task, taskContainer) => {
 
         const contentContainer = document.querySelector('#contentContainer');
         contentContainer.append(taskViewContainer);
-        taskViewContainer.style.transform = "translateX(25vw)";
+        taskViewContainer.style.transform = "translateX(15vw)";
         setTimeout(()=> {
             taskViewContainer.style.opacity = "1";
             taskViewContainer.style.width = "400px"
