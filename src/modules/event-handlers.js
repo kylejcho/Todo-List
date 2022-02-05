@@ -74,13 +74,15 @@ const shortCutsClick = () => {
     const shortcutsContainer = document.querySelector('#sideBarShortcuts');
     shortcutsContainer.addEventListener('click', (e)=> {
         clearContent();
-        if (e.target.id == 'sideBarShortcutsToday') {
-            createTasksContainer('today');
-        } else if (e.target.id == 'sideBarShortcutsWeek') {
-
-        } else {
-
-        }
+        setTimeout(() => {
+            if (e.target.id == 'sideBarShortcutsToday') {
+                createTasksContainer('today');
+            } else if (e.target.id == 'sideBarShortcutsWeek') {
+                createTasksContainer('week')
+            } else {
+                createTasksContainer();
+            }
+        }, 300);
     })
 }
 

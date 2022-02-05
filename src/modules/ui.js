@@ -24,12 +24,20 @@ const loadingPage = () => {
 
 
 export const clearContent = () => {
-    if (document.querySelector('.tasksContainer')) {
-        document.querySelector('.tasksContainer').remove();
-        if (document.querySelector('.taskViewContainer')) {
-            document.querySelector('.taskViewContainer').remove();
-        }
+    document.querySelector('.tasksContainer').style.transition = 'all 0.3s cubic-bezier(0.5, 0, 0.5, 1)';
+    document.querySelector('.tasksContainer').style.opacity = 0;
+    if (document.querySelector('.taskViewContainer')) {
+        document.querySelector('.taskViewContainer').style.opacity = 0;
     }
+    setTimeout(() => {
+        if (document.querySelector('.tasksContainer')) {
+            document.querySelector('.tasksContainer').remove();
+            if (document.querySelector('.taskViewContainer')) {
+                document.querySelector('.taskViewContainer').remove();
+            }
+        }
+    }, 300);
+    
 }
 
 //ALL TASKS CONTENT
@@ -46,27 +54,36 @@ export const createTasksContainer = (type) => {
 
 
     if (type == 'today') {
-        tasksContainerTitle.innerText = "Today's Tasks";
+        tasksContainerTitle.innerText = "Today";
         createSubGroups('today', tasksContainer);
         allTasks.forEach((task)=> {
             if (task.dueDate == 'today') {
                 setTimeout(() => {
                     createTaskContainer(task.name, task.description, task.dueDate, task.key, 'no shadow');
                 }, 10);
-                
-            } else {
-                return
             }
         })
     } else if (type == 'week') {
-        tasksContainerTitle.innerText = "This Week's Tasks";
+        tasksContainerTitle.innerText = "This Week";
         createSubGroups("today", tasksContainer);
         createSubGroups("tomorrow", tasksContainer);
+        allTasks.forEach((task)=> {
+            if (task.dueDate == 'today' || task.dueDate == 'tomorrow') {
+                setTimeout(() => {
+                    createTaskContainer(task.name, task.description, task.dueDate, task.key, 'no shadow');
+                }, 10);
+            }
+        })
     } else {
         tasksContainerTitle.innerText = "All Tasks";
         createSubGroups("today", tasksContainer);
         createSubGroups("tomorrow", tasksContainer);
         createSubGroups("upcoming", tasksContainer);
+        allTasks.forEach((task)=> {
+            setTimeout(() => {
+                createTaskContainer(task.name, task.description, task.dueDate, task.key, 'no shadow');
+            }, 10);
+        })
     }
 
     const contentContainer = document.querySelector('#contentContainer');

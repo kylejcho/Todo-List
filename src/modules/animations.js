@@ -1,10 +1,16 @@
 export const addTask = (taskContainer, shadow) => {
     setTimeout(()=> {
-        taskContainer.style.opacity = "1";
-        if (shadow != 'no shadow') {
+        if (shadow == 'no shadow') {
+            taskContainer.style.transition = 'none';
+        } else {
             taskContainer.style.animation = "taskContainerAdd 0.8s ease-in-out";
-        } 
-    },50)
+            
+        }
+        taskContainer.style.opacity = "1";
+    },10) 
+    setTimeout(() => {
+            taskContainer.style.transition = 'all ease-in-out 0.2s'
+    }, 300);
 }
 
 export const deleteTask = (taskContainer) => {
