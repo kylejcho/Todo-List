@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    color: #171c24;
     font-family: "Inter";
     font-weight: 500;
     -webkit-touch-callout: none;
@@ -12,10 +11,23 @@
     user-select: none; 
 }
 
+:root {
+    --primary-text-color: #171c24;
+    --secondary-text-color: #697384;
+    --tertiary-text-color: #979fac;
+    --primary-bg-color: #ffffff;
+    --secondary-bg-color: #f8f8fb;
+    --tertiary-bg-color: #e9ebf1;
+    --primiary-blue: #3880ff;
+    --secondary-blue: #5a96ff;
+    --tertiary-blue: #aec6ff;
+    --secondary-svg-color: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
+}
+
 body {
     width: 100vw;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: var(--main-bg-color);
     overflow-x: hidden;
 }
 
@@ -27,7 +39,7 @@ nav {
     display: flex;
     align-items: center;
     height: 50px;
-    background-color: #f8f8fc;
+    background-color: var(--secondary-bg-color);
     padding: 0 55px 0 41px;
 }
 
@@ -37,7 +49,7 @@ nav {
 }
 
 .logo {
-    color: #3880ff;
+    color: var(--primiary-blue);
     font-size: 1.75rem;
     --ionicon-stroke-width: 50px;
 }
@@ -45,7 +57,7 @@ nav {
 #pageTitle p {
     font-size: 1.5rem;
     font-weight: 700;
-    color: black;
+    
 }
 
 #searchAddContainer {
@@ -59,7 +71,7 @@ nav {
 #searchContainer {
     display: flex;
     align-items: center;
-    background-color: #bec7d51f;
+    background-color: var(--tertiary-bg-color);
     height: 32px;
     padding-left: 10px;
     border-radius: 5px;
@@ -68,16 +80,16 @@ nav {
 }
 
 #searchContainer:hover {
-    background-color: #bec7d56b;
+    background-color: var(--tertiary-bg-color);
 }
 
 #searchContainer:hover *{
-    color: #171c24;
+    color: var(--primary-text-color);
 }
 
 #searchIcon {
     font-size: 1.5rem;
-    color: #697384;
+    color: var(--secondary-text-color);
 }
 
 #searchBar {
@@ -87,7 +99,7 @@ nav {
     padding-left: 8px;
     margin-right:10px;
     outline-width: 0;
-    background-color: #ffffff00;
+    background-color: var(--tertiary-bg-color);
 }
 
 
@@ -96,12 +108,12 @@ nav {
     border-radius: 5px;
     width: 30px;
     height: 30px;
-    color: #697384;
+    color: var(--secondary-text-color);
     transition: all ease-in-out 0.2s;
 }
 
 #addButton:hover {
-    color: #272a2f;
+    color: var(--tertiary-text-color);
     transform: translateY(-1px);
 }
 
@@ -121,7 +133,7 @@ nav {
     min-height: calc(100vh - 110px);
     padding: 30px;
     font-size: 1;
-    background-color: #f8f8fc;
+    background-color: var(--secondary-bg-color);
 }
 
 
@@ -138,15 +150,9 @@ nav {
     padding: 8px 0 8px 15px;
     margin: 10px 0;
     border-radius: 5px;
-    background-color: #bec7d542;
+    background-color: var(--tertiary-bg-color);
     transform: translateX(-1px);
 }
-
-#sideBarHome:hover {
-    background-color: #bec7d542;
-}
-
-
 
 #sideBarShortcuts {
     margin: 30px 0;
@@ -163,19 +169,19 @@ nav {
 
 .sideBarArrow {
     transition: all ease-in-out 0.1s;
-    color: #697384;
+    color: var(--secondary-text-color);
 }
 
 .sideBarArrow:hover {
     transform: translateY(-1px);
-    color: #171c24;
+    color: var(--primary-text-color);
 }
 
 #sideBarShortcuts div {
     display: flex;
     align-items: center;
     width: 100%;
-    color: #697384;
+    color: var(--secondary-text-color);
     border: none;
     padding: 8px 0 8px 15px;
     transform: translateX(-1px);
@@ -183,21 +189,23 @@ nav {
     transition: all ease-in-out 0.2s;
 }
 
+
 #sideBarShortcuts div:hover *{
-    color: #171c24;
+    color: var(--primary-text-color);
 }
 
 #sideBarShortcuts div:hover {
-    color: #171c24;
+    color: var(--primary-text-color);
 }
 
 #sideBarShortcuts div ion-icon {
-    color: #697384;
+    color: var(--secondary-text-color);
 }
 
 #sideBarShortcuts div:hover {
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
 }
+
 
 #sideBarLists p {
     display: flex;
@@ -283,7 +291,7 @@ nav {
     padding-left: 12px;
     padding-right: 5px;
     transition: all ease-in-out 0.2s;
-    opacity: 0;
+    opacity: 0
 }
 
 .taskContainer::after {
@@ -297,6 +305,7 @@ nav {
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
 }
+
 
 .taskContainer:hover {
     transform: scale(1.007);
@@ -320,16 +329,19 @@ nav {
 @keyframes taskContainerAdd {
     0% {
         box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
-        transform: scale(1.01);
+        transform: scale(1.007);
     }
+    50% {
+        box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
+    }
+
     100% {
         transform: scale(1);
     }
 }
 
-
 .completed div{
-    color: #697384bd;
+    color: var(--tertiary-text-color);
 }
 
 .checkContainer {
@@ -339,7 +351,7 @@ nav {
 }
 
 .checkContainer.completed {
-    filter: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
+    filter: var(--secondary-svg-color);
     animation: checkClick 0.3s ease-out;
 }
 
@@ -348,7 +360,7 @@ nav {
 }
 
 .checkContainer svg:hover {
-    filter: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
+    filter: var(--secondary-svg-color);
 }
 
 
@@ -361,9 +373,6 @@ nav {
     }
 }
 
-
-
-
 .nameContainer {
     pointer-events: none;
     display: flex;
@@ -373,12 +382,12 @@ nav {
     white-space: nowrap;
     font-weight: 600;
     font-size: 1.1rem;
-    color: #171c24;
+    color: var(--primary-text-color);
     background-image: linear-gradient(to bottom,
-        #69738400 50%,
-        #697384bd 50%, 
-        #697384bd 60%,
-        #69738400 60%
+        #00000000 50%,
+        var(--tertiary-text-color) 50%, 
+        var(--tertiary-text-color) 60%,
+        #00000000 60%
     );
     background-size: 0 100%;
     background-repeat: no-repeat;
@@ -393,14 +402,17 @@ nav {
     opacity: 0;
     display: flex;
     align-items: center;
-    filter: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
+    filter: var(--secondary-svg-color);
     transition: opacity ease-in-out 0.2s;
+}
+
+.deleteContainer:hover {
+    filter: var(--secondary-svg-color);
 }
 
 .deleteContainer.completed {
     opacity: 1;
 }
-
 
 .descriptionContainer {
     pointer-events: none;
@@ -409,7 +421,7 @@ nav {
     height: 30px;
     font-weight: 400;
     font-size: 0.9rem;
-    color: #868b95;
+    color: var(--secondary-text-color);
     white-space: nowrap;
     overflow-X: hidden;
 }
@@ -422,9 +434,9 @@ nav {
     border-radius: 10px;
     box-shadow: -2px 2px 6px 0px rgba(0,0,0,0.15);
     margin: 90px 0 auto 30px;
-    transition: all 0.25s ease-in-out;
     opacity: 0;
     padding: 30px 20px;
+    transition: all 0.25s cubic-bezier(0,.5,.5,1);
 }
 
 
@@ -433,22 +445,21 @@ nav {
     align-items: center;
 }
 
-.taskViewCheckContainer {
+.taskViewNameContainer {
     background-size: 0% 100%;
 }
 
 .taskViewCheckContainer.completed {
     animation: checkClick 0.3s ease-out;
-    filter: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
+    filter: var(--secondary-svg-color);
 }
 
 .taskViewCheckContainer svg {
     transition: all ease-in-out 0.1s;
-    fill: #171c24;
 }
 
 .taskViewCheckContainer svg:hover {
-    filter: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
+    filter: var(--secondary-svg-color)
 }
 
 
@@ -462,10 +473,10 @@ nav {
     height: 20px;
     margin: 12px 25px 12px 10px;
     background-image: linear-gradient(to bottom,
-        #69738400 50%,
-        #697384bd 50%, 
-        #697384bd 60%,
-        #69738400 60%
+        #00000000 50%,
+        var(--tertiary-text-color) 50%, 
+        var(--tertiary-text-color) 60%,
+        #00000000 60%
     );
     background-size: 0 100%;
     background-repeat: no-repeat;
@@ -474,21 +485,21 @@ nav {
 
 .taskViewName.completed {
     background-size: 100% 100%;
-    color: #697384bd;
+    color:var(--tertiary-text-color);
 }
 
 .taskViewDescriptionContainer {
     font-weight: 700;
     font-size: 1.1rem;
     margin-top: 20px;
-    color: #868b95;
+    color: var(--secondary-text-color);
     margin-left: 35px;
 }
 
 .taskViewDescription {
     font-weight: 400;
-    font-size: 1.1rem;
-    color: #868b95;
+    font-size: 1rem;
+    color: var(--secondary-text-color);
     margin-top: 10px;
 }
 

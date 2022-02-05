@@ -1,7 +1,8 @@
 import createTask from "./create-task";
-import { createTaskView, deleteTask, removeTaskView } from "./ui";
+import { createTaskView} from "./ui";
 import { allTasks } from "./create-task";
-import checkTaskAnimation from "./animations/checkTaskAnimation";
+import checkTaskAnimation from "./animations";
+import { deleteTask, removeTaskView } from "./animations";
 
 const addButton = document.querySelector('#addButton');
 const formAddButton = document.querySelector('#taskFormAddButton');
