@@ -82,7 +82,7 @@ const shortCutsClick = () => {
             } else {
                 createTasksContainer();
             }
-        }, 300);
+        }, 350);
     })
 }
 
