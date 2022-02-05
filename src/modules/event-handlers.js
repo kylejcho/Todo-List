@@ -1,5 +1,5 @@
 import createTask from "./create-task";
-import { createTaskView} from "./ui";
+import { createTaskView, createTasksContainer, clearContent} from "./ui";
 import { allTasks } from "./create-task";
 import checkTaskAnimation from "./animations";
 import { deleteTask, removeTaskView } from "./animations";
@@ -66,6 +66,22 @@ const formCancel = () => {
         element.classList.remove('selected')
     })
     inputDueDate[0].classList.toggle('selected');
+}
+
+
+//Sidebar
+const shortCutsClick = () => {
+    const shortcutsContainer = document.querySelector('#sideBarShortcuts');
+    shortcutsContainer.addEventListener('click', (e)=> {
+        clearContent();
+        if (e.target.id == 'sideBarShortcutsToday') {
+            createTasksContainer('today');
+        } else if (e.target.id == 'sideBarShortcutsWeek') {
+
+        } else {
+
+        }
+    })
 }
 
 
@@ -136,6 +152,7 @@ const runEventHandlers = () => {
     formAddButtonClicked();
     formDueDateClick();
     formCancelClick();
+    shortCutsClick();
     clickTask();
     deselectTask();
     deleteClick();

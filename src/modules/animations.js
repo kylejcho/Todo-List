@@ -1,7 +1,9 @@
-export const addTask = (taskContainer) => {
+export const addTask = (taskContainer, shadow) => {
     setTimeout(()=> {
-        taskContainer.style.animation = "taskContainerAdd 0.8s ease-in-out";
         taskContainer.style.opacity = "1";
+        if (shadow != 'no shadow') {
+            taskContainer.style.animation = "taskContainerAdd 0.8s ease-in-out";
+        } 
     },50)
 }
 

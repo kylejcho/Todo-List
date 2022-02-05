@@ -1,8 +1,10 @@
 import { addTask, slideInTaskView } from "./animations";
+import { allTasks,} from "./create-task";
+
 
 const initialPageLoad = () => {
     loadingPage()
-    createAllTasksContainer();
+    createTasksContainer();
 }
 
 const loadingPage = () => {
@@ -21,27 +23,57 @@ const loadingPage = () => {
 }
 
 
-//ALL TASKS CONTENT
-const createAllTasksContainer = () => {
-    const allTasksContainer = document.createElement('div');
-    allTasksContainer.id = "allTasksContainer";
-    allTasksContainer.className = "tasksContainer";
-    
-    const allTasksTitle = document.createElement('div');
-    allTasksTitle.id = 'titleContainer';
-    allTasksTitle.className = "tasksTitle";
-    allTasksTitle.innerText = "All Tasks";
-    allTasksContainer.append(allTasksTitle);
-
-    createSubGroups("today", allTasksContainer);
-    createSubGroups("tomorrow", allTasksContainer);
-    createSubGroups("upcoming", allTasksContainer);
-
-    const contentContainer = document.querySelector('#contentContainer');
-    contentContainer.append(allTasksContainer);
+export const clearContent = () => {
+    if (document.querySelector('.tasksContainer')) {
+        document.querySelector('.tasksContainer').remove();
+        if (document.querySelector('.taskViewContainer')) {
+            document.querySelector('.taskViewContainer').remove();
+        }
+    }
 }
 
-const createSubGroups = (group, allTasksContainer) => {
+//ALL TASKS CONTENT
+export const createTasksContainer = (type) => {
+    const tasksContainer = document.createElement('div');
+    tasksContainer.id = "allTasksContainer";
+    tasksContainer.className = "tasksContainer";
+    
+
+    const tasksContainerTitle = document.createElement('div');
+    tasksContainerTitle.id = 'titleContainer';
+    tasksContainerTitle.className = "tasksTitle";
+    tasksContainer.append(tasksContainerTitle);
+
+
+    if (type == 'today') {
+        tasksContainerTitle.innerText = "Today's Tasks";
+        createSubGroups('today', tasksContainer);
+        allTasks.forEach((task)=> {
+            if (task.dueDate == 'today') {
+                setTimeout(() => {
+                    createTaskContainer(task.name, task.description, task.dueDate, task.key, 'no shadow');
+                }, 10);
+                
+            } else {
+                return
+            }
+        })
+    } else if (type == 'week') {
+        tasksContainerTitle.innerText = "This Week's Tasks";
+        createSubGroups("today", tasksContainer);
+        createSubGroups("tomorrow", tasksContainer);
+    } else {
+        tasksContainerTitle.innerText = "All Tasks";
+        createSubGroups("today", tasksContainer);
+        createSubGroups("tomorrow", tasksContainer);
+        createSubGroups("upcoming", tasksContainer);
+    }
+
+    const contentContainer = document.querySelector('#contentContainer');
+    contentContainer.append(tasksContainer);
+}
+
+const createSubGroups = (group, tasksContainer) => {
     const capitalize = (str) => {
         return str[0].toUpperCase() + str.slice(1)
     }
@@ -54,15 +86,12 @@ const createSubGroups = (group, allTasksContainer) => {
     subGroupTitle.className = "subGroupTitle";
     subGroupTitle.innerText = capitalize(group);
 
-    subGroup.append(subGroupTitle)
-    allTasksContainer.append(subGroup);
+    subGroup.append(subGroupTitle);
+    tasksContainer.append(subGroup);
 }   
 
 
-export const createTaskContainer = (task, description, dueDate, key) => {
-    const taskContainerShadow = document.createElement('div') 
-    taskContainerShadow.className = 'taskContainerShadow';
-
+export const createTaskContainer = (task, description, dueDate, key, shadow) => {
     const taskContainer = document.createElement('div');
     taskContainer.className = 'taskContainer';
     taskContainer.id = key;
@@ -88,16 +117,19 @@ export const createTaskContainer = (task, description, dueDate, key) => {
     taskContainer.append(deleteContainer);
     taskContainer.append(descriptionContainer);
     
+    
     let subGroup;
+
     if (dueDate == 'today') {
         subGroup = document.querySelector('#today');
     } else if (dueDate == 'tomorrow') {
         subGroup = document.querySelector('#tomorrow');
     }
 
+
     subGroup.insertBefore(taskContainer, subGroup.children[1]);
-    
-    addTask(taskContainer)
+
+    addTask(taskContainer, shadow);
 }
 
 export const createTaskView = (task, taskContainer) => {

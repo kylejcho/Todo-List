@@ -9,6 +9,7 @@ const createTask = (task, description, dueDate, list) => {
     let newTask = new Task(task, description, dueDate, list, key);
     allTasks.push(newTask);
     createTaskContainer(task, description, dueDate, key);
+    console.log(allTasks)
 }
 
 const generateTaskKey = () => {
