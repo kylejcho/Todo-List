@@ -14,12 +14,11 @@ const loadingPage = () => {
         body.style.overflowY= "hidden";
         setTimeout(()=> {
             loadingScreen.style.opacity = "0";
-            document.querySelector('.tasksContainer').style.animation = 'bottomTopBounce 0.5s cubic-bezier(0, 0.5, 0.5, 1) forward';
         }, 500)
         setTimeout(()=> {
             loadingScreen.remove();
             body.style.overflowY= "visible";
-        }, 800)
+        }, 1000)
     });
 }
 
@@ -52,8 +51,6 @@ export const createTasksContainer = (type) => {
     tasksContainerTitle.id = 'titleContainer';
     tasksContainerTitle.className = "tasksTitle";
     tasksContainer.append(tasksContainerTitle);
-
-    tasksContainer.style.animation = 'bottomTopBounce 0.5s cubic-bezier(0, 0.5, 0.5, 1)';
 
     if (type == 'today') {
         tasksContainerTitle.innerText = "Today";

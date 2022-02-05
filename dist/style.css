@@ -224,13 +224,16 @@ nav {
     width: 25%;
     margin: 38px auto auto auto;
     transition: all 0.3s cubic-bezier(0.5, 0, 0.5, 1);
+    animation: bottomTopBounce 0.5s cubic-bezier(0, 0.5, 0.5, 1);
 }
 
 @keyframes bottomTopBounce {
     0% {
+        opacity: 0;
         transform:translateY(10vh); 
     }
     100% {
+        opacity: 1;
         transform: translateY(0);
     }
 }

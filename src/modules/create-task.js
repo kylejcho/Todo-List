@@ -26,12 +26,14 @@ const generateTaskKey = () => {
 
 
 export const exampleTasks = () => {
+    createTask("Dinner at Olive Garden", "Pick up sister on the way", "today", '');
+    createTask("Make boiled denim", "Magnets and ghouls", "today", '');
+    createTask("PHYS231 homework assignment", "Chapter 14, questions 1-13", "today", '');
     createTask("Exercise", "Workout out for 45 minutes", "today", '');
     createTask("Coffee with friend", "Starbucks", "today", '');
     createTask("Baking class", "Bring homemade pie", "today", '');
-    createTask("PHYS231 homework assignment", "Chapter 14, questions 1-13", "today", '');
-    createTask("Dinner at Olive Garden", "Pick up sister on the way", "today", '');
-    createTask("Make boiled denim", "Magnets and ghouls", "today", '');
+    
+    
 
     createTask("Read Animal Farm", "Read two chapter", "tomorrow", '');
     createTask("Learn sign language", "Practice english alphabet", "tomorrow", '');
