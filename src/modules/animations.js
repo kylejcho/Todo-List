@@ -67,10 +67,21 @@ export const removeTaskView = () => {
 
 
 
-const checkTaskAnimation = (e) => {
-    const checkedTask = e.target.parentNode.parentNode;
-    const taskName = e.target.parentNode.nextElementSibling;
-    const checkContainer = e.target.parentNode;
+const checkTaskAnimation = (e,a) => {
+    let checkedTask
+    let taskName 
+    let checkContainer
+    if (e != '') {
+        checkedTask = e.target.parentNode.parentNode;
+        taskName = e.target.parentNode.nextElementSibling;
+        checkContainer = e.target.parentNode;
+    } else {
+        checkedTask = a.parentNode;
+        taskName = a.nextElementSibling;
+        checkContainer = a;
+    }
+
+    
     const deleteContainer = taskName.nextElementSibling;
     const taskViewContainer = document.querySelector('.taskViewContainer');
     const taskViewCheckContainer = document.querySelector('.taskViewCheckContainer');

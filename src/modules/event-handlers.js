@@ -93,7 +93,7 @@ const clickTask = () => {
         const target = e.target;
         if (target.className == "taskContainer" || target.className == "taskContainer completed") {
             taskSelection(target);
-        }
+        } 
     })
 }
 
@@ -134,7 +134,22 @@ const deselectTask = () => {
 const checkClick = () => {
     document.addEventListener('click', (e)=> {
         if (e.target.parentNode.className == 'checkContainer'|| e.target.parentNode.className == 'checkContainer completed') {
-            checkTaskAnimation(e);
+            checkTaskAnimation(e,'');
+        } else if (e.target.parentNode.className == "taskViewCheckContainer" || e.target.parentNode.className == "taskViewCheckContainer completed") {
+            const taskViewContainer = e.target.parentNode.parentNode.parentNode;
+            const key = taskViewContainer.id[1].toString();
+
+            let taskContainer;
+            const tasks = document.querySelectorAll('.taskContainer');
+            tasks.forEach(task => {
+                if (task.id == key) {
+                    taskContainer = task;
+                }
+            })
+            console.log(taskContainer)
+
+            const a = taskContainer.children[0];
+            checkTaskAnimation('',a);
         }
     })
 }
