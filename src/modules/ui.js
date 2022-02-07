@@ -1,6 +1,6 @@
 import { addTask, slideInTaskView } from "./animations";
 import { allTasks,} from "./create-task";
-
+import { isToday, isTomorrow, isThisWeek } from "date-fns";
 
 const initialPageLoad = () => {
     loadingPage()
@@ -56,7 +56,7 @@ export const createTasksContainer = (type) => {
         tasksContainerTitle.innerText = "Today";
         createSubGroups('today', tasksContainer);
         allTasks.forEach((task)=> {
-            if (task.dueDate == 'today') {
+            if (isToday(task.dueDate)) {
                 setTimeout(() => {
                     createTaskContainer(task.name, task.description, task.dueDate, task.key, 'no shadow');
                 }, 10);
@@ -67,7 +67,7 @@ export const createTasksContainer = (type) => {
         createSubGroups("today", tasksContainer);
         createSubGroups("tomorrow", tasksContainer);
         allTasks.forEach((task)=> {
-            if (task.dueDate == 'today' || task.dueDate == 'tomorrow') {
+            if (isThisWeek(task.dueDate)) {
                 setTimeout(() => {
                     createTaskContainer(task.name, task.description, task.dueDate, task.key, 'no shadow');
                 }, 10);
@@ -141,10 +141,12 @@ export const createTaskContainer = (task, description, dueDate, key, shadow) => 
     
     let subGroup;
 
-    if (dueDate == 'today') {
+    if (isToday(dueDate)) {
         subGroup = document.querySelector('#today');
-    } else if (dueDate == 'tomorrow') {
+    } else if (isTomorrow(dueDate)) {
         subGroup = document.querySelector('#tomorrow');
+    } else {
+        subGroup = document.querySelector('#upcoming');
     }
 
 

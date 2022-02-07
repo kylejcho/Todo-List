@@ -3,6 +3,7 @@ import { createTaskView, createTasksContainer, clearContent} from "./ui";
 import { allTasks } from "./create-task";
 import checkTaskAnimation from "./animations";
 import { deleteTask, removeTaskView } from "./animations";
+import { isToday, startOfToday,startOfTomorrow } from "date-fns";
 
 const addButton = document.querySelector('#addButton');
 const formAddButton = document.querySelector('#taskFormAddButton');
@@ -28,7 +29,11 @@ const formAddButtonClicked = () => {
             let dueDate;
             inputDueDate.forEach((e) =>{
                 if (e.className.includes('selected')) {
-                    dueDate = e.id.replace('input', '').toLowerCase();
+                    if (e.id == 'inputToday') {
+                        dueDate = startOfToday();
+                    } else if (e.id == 'inputTomorrow') {
+                        dueDate = startOfTomorrow();
+                    }
                 }         
             })
             createTask(inputTaskName.value, inputTaskDescription.value, dueDate);
