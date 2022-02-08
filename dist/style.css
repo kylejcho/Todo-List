@@ -21,6 +21,7 @@
     --primiary-blue: #3880ff;
     --secondary-blue: #5a96ff;
     --tertiary-blue: #aec6ff;
+    --primary-svg-color: invert(7%) sepia(7%) saturate(2512%) hue-rotate(178deg) brightness(97%) contrast(92%);
     --secondary-svg-color: brightness(0) saturate(100%) invert(74%) sepia(13%) saturate(227%) hue-rotate(177deg) brightness(103%) contrast(97%);
 }
 
@@ -306,6 +307,7 @@ nav {
     border-radius: 5px;
     box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
     opacity: 0;
+    background-color: white;
     transition: all 0.2s ease-in-out;
     border: 1.5px solid rgba(255, 255, 255, 0);
 }
@@ -322,7 +324,6 @@ nav {
 .taskContainer:hover::after {
      opacity: 1;
 }
-
 
 .taskContainer.viewing::after {
     opacity: 1;
@@ -413,12 +414,14 @@ nav {
     display: flex;
     align-items: center;
     filter: var(--secondary-svg-color);
-    transition: opacity ease-in-out 0.2s;
+    transition: opacity ease-in-out 0.2s, filter ease-in-out 0.2s;
 }
 
+
 .deleteContainer:hover {
-    filter: var(--secondary-svg-color);
+    filter: var(--primary-svg-color);
 }
+
 
 .deleteContainer.completed {
     opacity: 1;
@@ -443,7 +446,7 @@ nav {
     width: 400px;
     border-radius: 10px;
     box-shadow: -2px 2px 6px 0px rgba(0,0,0,0.15);
-    margin: 90px 0 auto 30px;
+    margin: 90px 0 auto 50px;
     opacity: 0;
     padding: 30px 20px;
     transition: all 0.25s cubic-bezier(0,.5,.5,1);
