@@ -28,7 +28,7 @@ const generateTaskKey = () => {
 
 
 export const exampleTasks = () => {
-    createTask("Dinner at Olive Garden", "Pick up sister on the way", startOfToday(), '');
+    createTask("Dinner to Olive Garden", "Pick up sister on the way", startOfToday(), '');
     createTask("PHYS231 homework assignment", "Chapter 14, questions 1-13", startOfToday(), '');
     createTask("Exercise", "Workout out for 45 minutes", startOfToday(), '');
     createTask("Coffee with friend", "Starbucks", startOfToday(), '');

@@ -157,6 +157,14 @@ export const createTaskContainer = (task, description, dueDate, key, shadow) => 
 }
 
 export const createTaskView = (task, taskContainer) => {
+    const taskContainers = document.querySelectorAll('.taskContainer');
+    taskContainers.forEach((tasks)=> {
+        tasks.classList.remove('viewing')
+    })
+
+
+    taskContainer.classList.toggle('viewing');
+
     const taskViewContainer = document.createElement('div');
     taskViewContainer.className = 'taskViewContainer';
     taskViewContainer.id = "s" + task.key;

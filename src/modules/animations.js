@@ -38,6 +38,11 @@ export const slideInTaskView = (tasksContainer, taskViewContainer) => {
 }
 
 export const removeTaskView = () => {
+    const taskContainers = document.querySelectorAll('.taskContainer');
+    taskContainers.forEach((tasks)=> {
+        tasks.classList.remove('viewing')
+    })
+
     const taskViewContainer = document.querySelector('.taskViewContainer'); 
     const tasksContainer = document.querySelector('.tasksContainer');
 

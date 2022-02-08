@@ -281,7 +281,7 @@ nav {
     color: #697384bd;
     border-radius: 5px;
     background-color: #bec7d542;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .taskContainer {
@@ -306,7 +306,8 @@ nav {
     border-radius: 5px;
     box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
     opacity: 0;
-    transition: opacity 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    border: 1.5px solid rgba(255, 255, 255, 0);
 }
 
 
@@ -320,6 +321,12 @@ nav {
 
 .taskContainer:hover::after {
      opacity: 1;
+}
+
+
+.taskContainer.viewing::after {
+    opacity: 1;
+    border: 1.5px solid var(--primiary-blue);
 }
 
 
@@ -518,7 +525,7 @@ nav {
     font-weight: 400;
     font-size: 1rem;
     color: var(--secondary-text-color);
-    margin-top: 10px;
+    margin-top: 10px
 }
 
 
