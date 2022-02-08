@@ -184,6 +184,17 @@ export const createTaskView = (task, taskContainer) => {
     taskViewDescription.innerText = task.description;
     taskViewDescriptionContainer.append(taskViewDescription)
 
+
+    const taskViewDueDateContainer = document.createElement('div');
+    taskViewDueDateContainer.className = "taskViewDescriptionContainer";
+    taskViewDueDateContainer.innerText = "Due:";
+    taskViewContainer.append(taskViewDueDateContainer);
+
+
+
+
+
+
     const tasksContainer = document.querySelector('.tasksContainer');
     tasksContainer.style.transition = "all 0.25s cubic-bezier(0.5, 0, 0.5, 1)";
 

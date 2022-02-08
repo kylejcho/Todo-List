@@ -151,8 +151,6 @@ const checkClick = () => {
                     taskContainer = task;
                 }
             })
-            console.log(taskContainer)
-
             const a = taskContainer.children[0];
             checkTaskAnimation('',a);
         }
