@@ -78,12 +78,18 @@ const formCancel = () => {
 const shortCutsClick = () => {
     const shortcutsContainer = document.querySelector('#sideBarShortcuts');
     shortcutsContainer.addEventListener('click', (e)=> {
+        const allShortcuts = shortcutsContainer.children;
+        for (let i = 0; i < allShortcuts.length; i++) {
+            allShortcuts[i].classList.remove('viewing')
+        }
+        e.target.classList.toggle('viewing');
+        e.target.children[0].classList.toggle('viewing');
         clearContent();
         setTimeout(() => {
             if (e.target.id == 'sideBarShortcutsToday') {
                 createTasksContainer('today');
             } else if (e.target.id == 'sideBarShortcutsWeek') {
-                createTasksContainer('week')
+                createTasksContainer('week');
             } else {
                 createTasksContainer();
             }

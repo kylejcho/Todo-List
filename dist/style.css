@@ -151,7 +151,6 @@ nav {
     padding: 8px 0 8px 15px;
     margin: 10px 0;
     border-radius: 5px;
-    background-color: var(--tertiary-bg-color);
     transform: translateX(-1px);
 }
 
@@ -167,6 +166,17 @@ nav {
     font-weight: 700;
     transform: translateX(-1px);
 }
+
+#sideBarShortcuts div {
+    cursor:pointer;
+}
+
+#sideBarShortcuts .viewing {
+    color: var(--primary-text-color);
+    background-color: var(--tertiary-bg-color);
+}
+
+
 
 .sideBarArrow {
     transition: all ease-in-out 0.1s;

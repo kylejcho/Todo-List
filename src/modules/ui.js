@@ -65,8 +65,8 @@ export const createTasksContainer = (type) => {
         })
     } else if (type == 'week') {
         tasksContainerTitle.innerText = "This Week";
-        createSubGroups("today", tasksContainer);
-        createSubGroups("tomorrow", tasksContainer);
+        createSubGroups("today", tasksContainer, 'title');
+        createSubGroups("tomorrow", tasksContainer, 'title');
         allTasks.forEach((task)=> {
             if (isThisWeek(task.dueDate)) {
                 setTimeout(() => {
@@ -76,9 +76,9 @@ export const createTasksContainer = (type) => {
         })
     } else {
         tasksContainerTitle.innerText = "All Tasks";
-        createSubGroups("today", tasksContainer);
-        createSubGroups("tomorrow", tasksContainer);
-        createSubGroups("upcoming", tasksContainer);
+        createSubGroups("today", tasksContainer, 'title');
+        createSubGroups("tomorrow", tasksContainer, 'title');
+        createSubGroups("upcoming", tasksContainer, 'title');
         allTasks.forEach((task)=> {
             setTimeout(() => {
                 createTaskContainer(task.name, task.description, task.dueDate, task.key, 'no shadow');
@@ -95,7 +95,7 @@ export const createTasksContainer = (type) => {
     }, 500);
 }
 
-const createSubGroups = (group, tasksContainer) => {
+const createSubGroups = (group, tasksContainer, title) => {
     const capitalize = (str) => {
         return str[0].toUpperCase() + str.slice(1)
     }
@@ -108,7 +108,10 @@ const createSubGroups = (group, tasksContainer) => {
     subGroupTitle.className = "subGroupTitle";
     subGroupTitle.innerText = capitalize(group);
 
-    subGroup.append(subGroupTitle);
+    if (title) {
+        subGroup.append(subGroupTitle);
+    }
+
     tasksContainer.append(subGroup);
 }   
 
