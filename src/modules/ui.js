@@ -1,6 +1,7 @@
 import { addTask, slideInTaskView } from "./animations";
 import { allTasks,} from "./create-task";
 import { isToday, isTomorrow, isThisWeek } from "date-fns";
+import { formatDate } from "./dates";
 
 const initialPageLoad = () => {
     loadingPage()
@@ -193,7 +194,10 @@ export const createTaskView = (task, taskContainer) => {
 
     const taskViewDueDate = document.createElement('div');
     taskViewDueDate.className = "taskViewDueDate";
-    taskViewDueDate.innerText = task.dueDate;
+
+    const dueDate = formatDate(task.dueDate)
+    
+    taskViewDueDate.innerText = dueDate;
     taskViewDueDateContainer.append(taskViewDueDate);
 
 

@@ -18,7 +18,7 @@ export const nextWeek = (date) => {
     return addDays(date, 7)
 }
 
-const formatDate = (date) => {
+export const formatDate = (date) => {
     const dateFormatted = format(date, 'MM/dd/yyyy');
     return dateFormatted;
 }
