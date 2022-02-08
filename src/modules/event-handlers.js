@@ -78,9 +78,13 @@ const formCancel = () => {
 const shortCutsClick = () => {
     const shortcutsContainer = document.querySelector('#sideBarShortcuts');
     shortcutsContainer.addEventListener('click', (e)=> {
-        const allShortcuts = shortcutsContainer.children;
-        for (let i = 0; i < allShortcuts.length; i++) {
-            allShortcuts[i].classList.remove('viewing')
+        if (e.target.className != 'sideBarShortcut') {
+            return
+        }
+        const shortcuts = document.querySelectorAll('.sideBarShortcut');
+        for (let i = 0; i < shortcuts.length; i++) {
+            shortcuts[i].classList.remove('viewing');
+            shortcuts[i].children[0].classList.remove('viewing')
         }
         e.target.classList.toggle('viewing');
         e.target.children[0].classList.toggle('viewing');
