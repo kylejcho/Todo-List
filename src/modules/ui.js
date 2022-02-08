@@ -186,12 +186,15 @@ export const createTaskView = (task, taskContainer) => {
 
 
     const taskViewDueDateContainer = document.createElement('div');
-    taskViewDueDateContainer.className = "taskViewDescriptionContainer";
+    taskViewDueDateContainer.className = "taskViewDueDateContainer";
     taskViewDueDateContainer.innerText = "Due:";
     taskViewContainer.append(taskViewDueDateContainer);
 
 
-
+    const taskViewDueDate = document.createElement('div');
+    taskViewDueDate.className = "taskViewDueDate";
+    taskViewDueDate.innerText = task.dueDate;
+    taskViewDueDateContainer.append(taskViewDueDate);
 
 
 

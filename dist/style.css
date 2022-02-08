@@ -506,7 +506,20 @@ nav {
     margin-top: 10px;
 }
 
+.taskViewDueDateContainer {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    color: var(--secondary-text-color);
+    margin-left: 35px;
+}
 
+.taskViewDueDate {
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--secondary-text-color);
+    margin-top: 10px;
+}
 
 
 /*TASK FORM*/
