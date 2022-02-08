@@ -19,7 +19,7 @@ export const nextWeek = (date) => {
 }
 
 export const formatDate = (date) => {
-    const dateFormatted = format(date, 'MM/dd/yyyy');
+    const dateFormatted = format(date, 'EEEE, LLL do, yyyy');
     return dateFormatted;
 }
 
