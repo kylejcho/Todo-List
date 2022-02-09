@@ -1,5 +1,5 @@
 import createTask from "./create-task";
-import { createTaskView, createTasksContainer, clearContent} from "./ui";
+import { createTaskView, createTasksContainer, clearContent, updateCounter} from "./ui";
 import { allTasks } from "./create-task";
 import checkTaskAnimation from "./animations";
 import { deleteTask, removeTaskView } from "./animations";
@@ -13,6 +13,7 @@ const inputDueDate = document.querySelectorAll('.inputDueDate');
 const formContainer = document.querySelector("#taskFormContainer");
 const form = document.querySelector("#taskForm");
 const contentContainer = document.querySelector("#contentContainer")
+
 
 //FORM
 const formButtonClicked = () => {
@@ -38,6 +39,7 @@ const formAddButtonClicked = () => {
             })
             createTask(inputTaskName.value, inputTaskDescription.value, dueDate);
             formCancel();
+            updateCounter();
         }
     })
 }
