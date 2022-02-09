@@ -195,7 +195,14 @@ const checkClick = () => {
 const deleteClick = () => {
     contentContainer.addEventListener('click', (e)=> {
         if (e.target.parentNode.className == 'deleteContainer' || e.target.parentNode.className == 'deleteContainer completed') {
-            deleteTask(e.target.parentNode.parentNode);
+            const taskContainer = e.target.parentNode.parentNode;
+            deleteTask(taskContainer);
+            allTasks.forEach(task=> {
+                if (taskContainer.id == task.key) {
+                    allTasks.splice(allTasks.indexOf(task), 1)
+                }
+            })
+            updateCounter();
         }
     })
 }

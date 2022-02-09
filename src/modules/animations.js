@@ -18,7 +18,7 @@ export const deleteTask = (taskContainer) => {
     taskContainer.style.opacity = "0";
     taskContainer.transform = "translateY(-100%)";
     taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
-    setTimeout(()=> {taskContainer.remove();},200)
+    setTimeout(()=> {taskContainer.remove()},200)
 }
 
 export const slideInTaskView = (tasksContainer, taskViewContainer) => {
