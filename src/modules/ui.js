@@ -75,7 +75,11 @@ export const createTasksContainer = (type) => {
             }
         })
     } else {
-        tasksContainerTitle.innerText = "All Tasks";
+        if (type == 'home') {
+            tasksContainerTitle.innerText = "Welcome, Kyle";
+        } else {
+            tasksContainerTitle.innerText = "All Tasks";
+        }
         createSubGroups("today", tasksContainer, 'title');
         createSubGroups("tomorrow", tasksContainer, 'title');
         createSubGroups("upcoming", tasksContainer, 'title');
