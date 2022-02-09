@@ -114,6 +114,11 @@ const createSubGroups = (group, tasksContainer, title) => {
 
     if (title) {
         subGroup.append(subGroupTitle);
+    } else {
+        subGroup.append(subGroupTitle);
+        subGroupTitle.style.opacity = "0";
+        subGroupTitle.style.height = "0";
+        subGroupTitle.style.margin = "0";
     }
 
     tasksContainer.append(subGroup);
