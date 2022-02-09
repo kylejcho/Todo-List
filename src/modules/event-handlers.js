@@ -81,13 +81,7 @@ const shortCutsClick = () => {
         if (e.target.className != 'sideBarShortcut') {
             return
         }
-        const shortcuts = document.querySelectorAll('.sideBarShortcut');
-        for (let i = 0; i < shortcuts.length; i++) {
-            shortcuts[i].classList.remove('viewing');
-            shortcuts[i].children[0].classList.remove('viewing')
-        }
-        e.target.classList.toggle('viewing');
-        e.target.children[0].classList.toggle('viewing');
+        shortcutToggle(e);
         clearContent();
         setTimeout(() => {
             if (e.target.id == 'sideBarShortcutsToday') {
@@ -99,6 +93,16 @@ const shortCutsClick = () => {
             }
         }, 350);
     })
+}
+
+const shortcutToggle = (e) => {
+    const shortcuts = document.querySelectorAll('.sideBarShortcut');
+    for (let i = 0; i < shortcuts.length; i++) {
+        shortcuts[i].classList.remove('viewing');
+        shortcuts[i].children[0].classList.remove('viewing')
+    }
+    e.target.classList.toggle('viewing');
+    e.target.children[0].classList.toggle('viewing');
 }
 
 

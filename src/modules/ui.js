@@ -165,7 +165,6 @@ export const createTaskView = (task, taskContainer) => {
         tasks.classList.remove('viewing')
     })
 
-
     taskContainer.classList.toggle('viewing');
 
     const taskViewContainer = document.createElement('div');
@@ -226,6 +225,28 @@ export const createTaskView = (task, taskContainer) => {
     slideInTaskView(tasksContainer, taskViewContainer);
 }
 
+export const updateCounter = () => {
+    let count = 0;
+    let todayCount = 0;
+    let weekCount = 0;
+
+    allTasks.forEach(task => {
+        count++
+        if (isToday(task.dueDate)) {
+            todayCount++
+        } 
+        if (isThisWeek(task.dueDate)) {
+            weekCount++;
+        } 
+    })
+
+    const todayCountDiv = document.querySelector('#todayCount');
+    const weekCountDiv = document.querySelector('#weekCount');
+    const allCountDiv = document.querySelector('#allCount');
+    todayCountDiv.innerText = todayCount;
+    weekCountDiv.innerText = weekCount;
+    allCountDiv.innerText = count;
+}
 
 
 export default initialPageLoad;
