@@ -207,7 +207,6 @@ const deleteClick = () => {
     })
 }
 
-
 const runEventHandlers = () => {
     formButtonClicked()
     checkClick();
@@ -219,6 +218,7 @@ const runEventHandlers = () => {
     clickTask();
     deselectTask();
     deleteClick();
+
 }
 
 export default runEventHandlers;

@@ -497,10 +497,12 @@ nav {
     width: 400px;
     border-radius: 10px;
     box-shadow: -2px 2px 6px 0px rgba(0,0,0,0.15);
-    margin: 90px 0 auto 50px;
+    margin: 50px 0 auto 50px;
     opacity: 0;
     padding: 30px 20px;
     transition: all 0.25s cubic-bezier(0,.5,.5,1);
+    position: sticky;
+    top: 90px;
 }
 
 
