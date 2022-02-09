@@ -78,9 +78,14 @@ const formCancel = () => {
 const homeClick = () => {
     const sideBarHome = document.querySelector('#sideBarHome');
     sideBarHome.addEventListener('click', (e) => {
-        shortcutToggle(e);
+        const shortcuts = document.querySelectorAll('.sideBarShortcut');
+        sideBarHome.classList.remove('viewing');
+        for (let i = 0; i < shortcuts.length; i++) {
+            shortcuts[i].classList.remove('viewing');
+            shortcuts[i].children[0].classList.remove('viewing')
+        }
         clearContent();
-        sideBarHome.classList.toggle('viewing');
+        sideBarHome.classList.add('viewing');
         setTimeout(() => {
             createTasksContainer('home');
         }, 350);

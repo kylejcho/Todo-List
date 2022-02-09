@@ -5,7 +5,7 @@ import { formatDate } from "./dates";
 
 const initialPageLoad = () => {
     loadingPage()
-    createTasksContainer();
+    createTasksContainer('home');
 }
 
 const loadingPage = () => {
