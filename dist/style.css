@@ -131,7 +131,7 @@ nav {
     width: 0.8rem;
   }
    
-  #contentContainer::-webkit-scrollbar-track {
+#contentContainer::-webkit-scrollbar-track {
     background-color: #f8f8fb;
 }
    
@@ -146,142 +146,109 @@ nav {
     overflow-x: hidden;
 }
 
-#sideBar {
+#sidebar {
     resize: horizontal;
     position: absolute;
     width: 10%;
     height: auto;
     min-height: calc(100vh - 110px);
-    padding: 30px;
-    font-size: 1;
+    padding: 40px 15px 25px 25px;
+    color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
 }
 
-
-#sideBar ion-icon {
-    margin-right: 13px;
+#sidebar ion-icon {
+    margin: 0 1rem 0 15px;
     font-size: 1.5rem;
 }
 
-#sideBarHome {
+.sidebarTabsContainer {
+    margin-top: 0.25rem;
+}
+
+.sidebarTab {
+    cursor:pointer;
     display: flex;
     align-items: center;
     width: 100%;
     border: none;
-    padding: 8px 0 8px 15px;
-    margin: 10px 0;
-    color: var(--secondary-text-color);
+    padding: 8px 0 8px 0;
+    transform: translateX(-1px);
     border-radius: 5px;
-    transform: translateX(-1px);
     transition: all ease-in-out 0.2s;
-    cursor: pointer;
 }
 
-#sideBarHome:hover {
-    color: var(--primary-text-color);
+.sidebarTab::after {
+    content: '';
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 5px;
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
 }
 
-#sideBarHome.viewing {
-    background-color: var(--tertiary-bg-color);
+
+
+.sidebarTab:hover {
     color: var(--primary-text-color);
 }
 
-
-
-#sideBarShortcuts {
-    margin: 20px 0;
+.sidebarTab:hover::after {
+    opacity: 1;
 }
 
-#sideBarShortcuts p {
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    padding: 10px 0 10px 15px;
-    font-weight: 700;
-    transform: translateX(-1px);
-}
-
-#sideBarShortcuts div {
-    cursor:pointer;
-}
-
-#sideBarShortcuts .viewing {
+.sidebarTab.viewing {
     color: var(--primary-text-color);
     background-color: var(--tertiary-bg-color);
 }
 
-
-
-.sideBarArrow {
+.sidebarArrow {
     transition: all ease-in-out 0.1s;
     color: var(--secondary-text-color);
 }
 
-.sideBarArrow:hover {
+.sidebarArrow:hover {
     transform: translateY(-1px);
     color: var(--primary-text-color);
 }
 
-#sideBarShortcuts > div {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    color: var(--secondary-text-color);
-    border: none;
-    padding: 8px 0 8px 15px;
-    transform: translateX(-1px);
-    border-radius: 5px;
-    transition: all ease-in-out 0.2s;
-}
-
-
-#sideBarShortcuts > div:hover *{
-    color: var(--primary-text-color);
-}
-
-#sideBarShortcuts > div:hover {
-    color: var(--primary-text-color);
-}
-
-#sideBarShortcuts div ion-icon {
-    color: var(--secondary-text-color);
-}
-
-#sideBarShortcuts > div:hover {
-    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
-}
-
-.sideBarCount {
+.sidebarCount {
     position: fixed;
-    color: var(--secondary-text-color);
     font-weight: 300;
     font-size: 0.8rem;
     right: 10px;
 }
 
-#sideBarShortcuts .viewing .sideBarCount {
-    color: var(--primary-text-color)
-}
-
-#sideBarLists p {
+.sidebarTitle {
     display: flex;
     align-items: center;
     font-size: 1rem;
-    padding: 10px 0 10px 15px;
+    margin-top: 30px;
     font-weight: 700;
+    color: var(--primary-text-color);
     transform: translateX(-1px);
 }
 
 
-
+/* TASKS CONTAINER */
 
 .tasksContainer {
     height: auto;
     width: 25%;
-    margin: 38px auto auto auto;
+    margin: 48px auto auto auto;
     transition: all 0.3s cubic-bezier(0.5, 0, 0.5, 1);
     animation: bottomTopBounce 0.5s cubic-bezier(0, 0.5, 0.5, 1);
+}
+
+.tasksTitle {
+    width: auto;
+    font-size: 1.75rem;
+    font-weight: 800;
+    height: 2.5rem;
+    margin-bottom: 10px;
 }
 
 @keyframes bottomTopBounce {
@@ -295,31 +262,13 @@ nav {
     }
 }
 
-
-
 @keyframes tasksContainerShiftLeft {
-    0% {
-        
-        transform:translateX(30%)
-    }
-    50% {
-        transform: translateX(-30%);
-    }
-}
-
-.tasksTitle {
-    width: auto;
-    font-size: 1.75rem;
-    font-weight: 800;
-    height: 2.5rem;
-    margin-bottom: 10px;
+    0% {transform:translateX(30%)}
+    50% {transform: translateX(-30%)}
 }
 
 
-
-
-
-
+/* SUB-GROUP */
 
 .subGroup {
     margin-top: 20px;
@@ -340,6 +289,9 @@ nav {
     background-color: #bec7d542;
     margin-bottom: 20px;
 }
+
+
+/* TASK CONTAINER */
 
 .taskContainer {
     position: relative;
@@ -368,7 +320,6 @@ nav {
     border: 1.5px solid rgba(255, 255, 255, 0);
 }
 
-
 .taskContainer:hover {
     transform: scale(1.007);
 }
@@ -386,11 +337,8 @@ nav {
     border: 1.5px solid var(--primiary-blue);
 }
 
-
 @keyframes taskContainerDelete {
-    100% {
-        transform: translateY(-100%);
-    }
+    100% {transform: translateY(-100%)}
 }
 
 @keyframes taskContainerAdd {
@@ -398,13 +346,8 @@ nav {
         box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
         transform: scale(1.007);
     }
-    50% {
-        box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
-    }
-
-    100% {
-        transform: scale(1);
-    }
+    50% {box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);}
+    100% {transform: scale(1);}
 }
 
 .completed div{
@@ -429,7 +372,6 @@ nav {
 .checkContainer svg:hover {
     filter: var(--secondary-svg-color);
 }
-
 
 @keyframes checkClick {
     50% {
@@ -473,7 +415,6 @@ nav {
     transition: opacity ease-in-out 0.2s;
 }
 
-
 .deleteContainer.completed {
     opacity: 1;
 }
@@ -490,7 +431,8 @@ nav {
     overflow-X: hidden;
 }
 
-/*TASKVIEW*/
+
+/* TASK VIEW */
 
 .taskViewContainer {
     height: 400px;
@@ -504,7 +446,6 @@ nav {
     position: sticky;
     top: 90px;
 }
-
 
 .taskViewNameContainer {
     display: flex;
@@ -527,8 +468,6 @@ nav {
 .taskViewCheckContainer svg:hover {
     filter: var(--secondary-svg-color)
 }
-
-
 
 .taskViewName {
     display: flex;
@@ -585,7 +524,7 @@ nav {
 }
 
 
-/*TASK FORM*/
+/* TASK FORM */
 
 #taskFormContainer {
     visibility: hidden;
@@ -628,7 +567,6 @@ nav {
     font-weight: 700;
 }
 
-
 #inputTaskName:hover {
     background-color: #f6f6fb;
 }
@@ -660,14 +598,11 @@ nav {
     
 }
 
-
 #inputDueDateContainer {
     display: flex;
     font-size: 0.9rem;
     align-items: center;
 }
-
-
 
 .inputDueDate {
     display: flex;
@@ -685,7 +620,6 @@ nav {
 }
 
 .inputDueDate ion-icon {
-    
     color: #171c24;
     font-size: 1.25rem;
     margin-right: 5px;
@@ -694,10 +628,6 @@ nav {
 .inputDueDate:hover {
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
 }
-
-
-
-
 
 #taskFormAddButton {
     display: flex;
@@ -736,24 +666,7 @@ nav {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* LOADING SCREEN */
 
 #loadingScreen {
     position: fixed;

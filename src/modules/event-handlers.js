@@ -78,16 +78,16 @@ const formCancel = () => {
 
 //Sidebar
 const homeClick = () => {
-    const sideBarHome = document.querySelector('#sideBarHome');
-    sideBarHome.addEventListener('click', (e) => {
-        const shortcuts = document.querySelectorAll('.sideBarShortcut');
-        sideBarHome.classList.remove('viewing');
+    const sidebarHome = document.querySelector('#sidebarHome');
+    sidebarHome.addEventListener('click', (e) => {
+        const shortcuts = document.querySelectorAll('.sidebarShortcut');
+        sidebarHome.classList.remove('viewing');
         for (let i = 0; i < shortcuts.length; i++) {
             shortcuts[i].classList.remove('viewing');
             shortcuts[i].children[0].classList.remove('viewing')
         }
         clearContent();
-        sideBarHome.classList.add('viewing');
+        sidebarHome.classList.add('viewing');
         setTimeout(() => {
             createTasksContainer('home');
         }, 350);
@@ -95,29 +95,29 @@ const homeClick = () => {
 }
 
 const shortCutsClick = () => {
-    const shortcutsContainer = document.querySelector('#sideBarShortcuts');
+    const shortcutsContainer = document.querySelector('#sidebarShortcuts');
     shortcutsContainer.addEventListener('click', (e)=> {
-        if (e.target.className != 'sideBarShortcut') {
+        if (!e.target.className.includes('sidebarShortcut')) {
             return
         }
         shortcutToggle(e);
         clearContent();
         setTimeout(() => {
-            if (e.target.id == 'sideBarShortcutsToday') {
+            if (e.target.id == 'sidebarShortcutsToday') {
                 createTasksContainer('today');
-            } else if (e.target.id == 'sideBarShortcutsWeek') {
+            } else if (e.target.id == 'sidebarShortcutsWeek') {
                 createTasksContainer('week');
             } else {
-                createTasksContainer();
+                createTasksContainer('allTasks');
             }
         }, 350);
     })
 }
 
 const shortcutToggle = (e) => {
-    const shortcuts = document.querySelectorAll('.sideBarShortcut');
-    const sideBarHome = document.querySelector('#sideBarHome');
-    sideBarHome.classList.remove('viewing');
+    const shortcuts = document.querySelectorAll('.sidebarShortcut');
+    const sidebarHome = document.querySelector('#sidebarHome');
+    sidebarHome.classList.remove('viewing');
     for (let i = 0; i < shortcuts.length; i++) {
         shortcuts[i].classList.remove('viewing');
         shortcuts[i].children[0].classList.remove('viewing')

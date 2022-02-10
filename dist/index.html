@@ -32,28 +32,29 @@
         </div>
     </nav>
     <div id="contentContainer">
-        <div id="sideBar">
-            <div id="sideBarHome" class="viewing"><ion-icon name="home-outline"></ion-icon>Home</div>
-            <div id="sideBarShortcuts">
-                <p id = "sideBarShorcutsTitle"><ion-icon name="chevron-down-outline" id = "shortCutsArrow" class="sideBarArrow"></ion-icon>Shortcuts</p>
-                <div id="sideBarShortcutsToday" class="sideBarShortcut">
+        <div id="sidebar">
+            <div id="sidebarHome" class="sidebarTab viewing"><ion-icon name="home-outline"></ion-icon>Home</div>
+            <p id = "sidebarShortcutsTitle" class="sidebarTitle"><ion-icon name="chevron-down-outline" id = "shortCutsArrow" class="sidebarArrow"></ion-icon>Shortcuts</p>
+            <div id="sidebarShortcuts" class="sidebarTabsContainer">
+                <div id="sidebarShortcutsToday" class="sidebarShortcut sidebarTab">
                     <ion-icon name="calendar-number-outline"></ion-icon>
                     Today
-                    <div class = "sideBarCount" id="todayCount"></div>
+                    <div class = "sidebarCount" id="todayCount"></div>
                 </div>
-                <div id="sideBarShortcutsWeek" class="sideBarShortcut">
+                <div id="sidebarShortcutsWeek" class="sidebarShortcut sidebarTab">
                     <ion-icon name="calendar-outline"></ion-icon>
                     This Week
-                    <div class = "sideBarCount" id="weekCount"></div>
+                    <div class = "sidebarCount" id="weekCount"></div>
                 </div>
-                <div id="sideBarShortcutsAllTasks" class="sideBarShortcut">
+                <div id="sidebarShortcutsAllTasks" class="sidebarShortcut sidebarTab">
                     <ion-icon name="calendar-clear-outline"></ion-icon>
                     All Tasks
-                    <div class = "sideBarCount" id="allCount"></div>
+                    <div class = "sidebarCount" id="allCount"></div>
                 </div>
             </div>
-            <div id="sideBarLists">
-                <p><ion-icon name="chevron-down-outline" id = "listsArrow" class="sideBarArrow"></ion-icon>Lists</p>
+            <p id="sidebarListsTitle" class="sidebarTitle"><ion-icon name="chevron-down-outline" id = "listsArrow" class="sidebarArrow"></ion-icon>Lists</p>
+            <div id="sidebarLists">
+                
             </div>
         </div>
     </div>

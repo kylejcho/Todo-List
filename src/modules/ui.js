@@ -44,7 +44,7 @@ export const clearContent = () => {
 //ALL TASKS CONTENT
 export const createTasksContainer = (type) => {
     const tasksContainer = document.createElement('div');
-    tasksContainer.id = "allTasksContainer";
+    tasksContainer.id = type + "Container";
     tasksContainer.className = "tasksContainer";
     
 

@@ -24,7 +24,7 @@ export const deleteTask = (taskContainer) => {
 export const slideInTaskView = (tasksContainer, taskViewContainer) => {
     setTimeout(()=> {
         tasksContainer.style.transition = "none";
-        tasksContainer.style.margin = "38px 0 auto 30%";
+        tasksContainer.style.margin = "48px 0 auto 30%";
         tasksContainer.style.transform = "translateX(0)";
 
         const contentContainer = document.querySelector('#contentContainer');
@@ -56,7 +56,7 @@ export const removeTaskView = () => {
 
         taskViewContainer.style.transform = "translateX("+ deltaX +"px)"
         tasksContainer.style.transition = "none";
-        tasksContainer.style.margin = "38px auto auto auto";
+        tasksContainer.style.margin = "48px auto auto auto";
         tasksContainer.style.transform = "translateX(-30%)";
         setTimeout(()=> {
             taskViewContainer.style.transition = "all 0.4s cubic-bezier(.5, 0, 0, 1)";
