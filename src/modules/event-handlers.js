@@ -173,24 +173,21 @@ const deselectTask = () => {
 
 const checkClick = () => {
     document.addEventListener('click', (e)=> {
-        if (e.target.parentNode.className == 'checkContainer') {
+        if (e.target.parentNode.className.includes('checkContainer')) {
             const taskContainer = e.target.parentNode.parentNode;
             allTasks.forEach(task => {
                 if (task.key == taskContainer.id) {
-                    task.status = "complete";
-                }
-            })
-            checkTaskAnimation(e,'');
-        } else if (e.target.parentNode.className == 'checkContainer completed') {
-            const taskContainer = e.target.parentNode.parentNode;
-            allTasks.forEach(task => {
-                if (task.key == taskContainer.id) {
-                    task.status = "";
+                    if (e.target.parentNode.className == 'checkContainer') {
+                        task.status = "complete";
+                    } else {
+                        task.status = "";
+                    }
                 }
             })
             checkTaskAnimation(e,'');
         }
-        else if (e.target.parentNode.className == "taskViewCheckContainer") {
+
+        else if (e.target.parentNode.className.includes("taskViewCheckContainer")) {
             const taskViewContainer = e.target.parentNode.parentNode.parentNode;
             const key = taskViewContainer.id[1].toString();
 
@@ -204,35 +201,15 @@ const checkClick = () => {
 
             allTasks.forEach(task => {
                 if (task.key == taskContainer.id) {
-                    task.status = "complete";
+                    if (e.target.parentNode.className == "taskViewCheckContainer") {
+                        task.status = "complete";
+                    } else {
+                        task.status = "";
+                    }
                 }
             })
-
-
-            const a = taskContainer.children[0];
-            checkTaskAnimation('',a);
-        } else if (e.target.parentNode.className == "taskViewCheckContainer completed") {
-            const taskViewContainer = e.target.parentNode.parentNode.parentNode;
-            const key = taskViewContainer.id[1].toString();
-
-            let taskContainer;
-            const tasks = document.querySelectorAll('.taskContainer');
-            tasks.forEach(task => {
-                if (task.id == key) {
-                    taskContainer = task;
-                }
-            })
-
-            allTasks.forEach(task => {
-                if (task.key == taskContainer.id) {
-                    task.status = "";
-                }
-            })
-
-
-            const a = taskContainer.children[0];
-            checkTaskAnimation('',a);
-        }
+            checkTaskAnimation('', taskContainer.children[0]);
+        } 
     })
 }
 
