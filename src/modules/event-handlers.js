@@ -174,7 +174,17 @@ const deselectTask = () => {
 const checkClick = () => {
     document.addEventListener('click', (e)=> {
         if (e.target.parentNode.className == 'checkContainer'|| e.target.parentNode.className == 'checkContainer completed') {
+            const taskContainer = e.target.parentNode.parentNode;
+            allTasks.forEach(task => {
+                if (task.key == taskContainer.id) {
+                    task.status = "complete";
+                    console.log(allTasks);
+                }
+            })
+
             checkTaskAnimation(e,'');
+            
+
         } else if (e.target.parentNode.className == "taskViewCheckContainer" || e.target.parentNode.className == "taskViewCheckContainer completed") {
             const taskViewContainer = e.target.parentNode.parentNode.parentNode;
             const key = taskViewContainer.id[1].toString();
@@ -186,6 +196,10 @@ const checkClick = () => {
                     taskContainer = task;
                 }
             })
+
+            
+
+
             const a = taskContainer.children[0];
             checkTaskAnimation('',a);
         }

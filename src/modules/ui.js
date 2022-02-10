@@ -59,7 +59,7 @@ export const createTasksContainer = (type) => {
         allTasks.forEach((task)=> {
             if (isToday(task.dueDate)) {
                 setTimeout(() => {
-                    createTaskContainer(task.name, task.description, task.dueDate, task.key, 'no shadow');
+                    createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key, 'no shadow');
                 }, 10);
             }
         })
@@ -70,7 +70,7 @@ export const createTasksContainer = (type) => {
         allTasks.forEach((task)=> {
             if (isThisWeek(task.dueDate)) {
                 setTimeout(() => {
-                    createTaskContainer(task.name, task.description, task.dueDate, task.key, 'no shadow');
+                    createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key, 'no shadow');
                 }, 10);
             }
         })
@@ -85,7 +85,7 @@ export const createTasksContainer = (type) => {
         createSubGroups("upcoming", tasksContainer, 'title');
         allTasks.forEach((task)=> {
             setTimeout(() => {
-                createTaskContainer(task.name, task.description, task.dueDate, task.key, 'no shadow');
+                createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key, 'no shadow');
             }, 10);
         })
     }
@@ -97,6 +97,8 @@ export const createTasksContainer = (type) => {
     setTimeout(() => {  
         tasksContainer.style.pointerEvents = "unset";
     }, 500);
+
+    console.log(allTasks)
 }
 
 const createSubGroups = (group, tasksContainer, title) => {
@@ -125,7 +127,7 @@ const createSubGroups = (group, tasksContainer, title) => {
 }   
 
 
-export const createTaskContainer = (task, description, dueDate, key, shadow) => {
+export const createTaskContainer = (task, description, dueDate, status, key, shadow) => {
     const taskContainer = document.createElement('div');
     taskContainer.className = 'taskContainer';
     taskContainer.id = key;
@@ -162,8 +164,17 @@ export const createTaskContainer = (task, description, dueDate, key, shadow) => 
         subGroup = document.querySelector('#upcoming');
     }
 
-
-    subGroup.insertBefore(taskContainer, subGroup.children[1]);
+    if (status == 'complete') {
+        taskContainer.classList.add('completed');
+        taskContainer.children[0].classList.toggle('completed');
+        taskContainer.children[0].innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-e</title><path d="M256,48C141.31,48,48,141.31,48,256s93.31,208,208,208,208-93.31,208-208S370.69,48,256,48ZM364.25,186.29l-134.4,160a16,16,0,0,1-12,5.71h-.27a16,16,0,0,1-11.89-5.3l-57.6-64a16,16,0,1,1,23.78-21.4l45.29,50.32L339.75,165.71a16,16,0,0,1,24.5,20.58Z"/></svg>';
+        taskContainer.children[1].classList.toggle('completed');
+        taskContainer.children[2].classList.toggle('completed');
+        subGroup.appendChild(taskContainer);
+    } else {
+        subGroup.insertBefore(taskContainer, subGroup.children[1]);
+    }
+    
 
     addTask(taskContainer, shadow);
 }

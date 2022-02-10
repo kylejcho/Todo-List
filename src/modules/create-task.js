@@ -6,11 +6,11 @@ import { formatDate, nextWeek } from "./dates"
 
 export let allTasks = [];
 
-const createTask = (task, description, dueDate, list) => {
+const createTask = (task, description, dueDate, list, status) => {
     let key = generateTaskKey();
-    let newTask = new Task(task, description, dueDate, list, key);
+    let newTask = new Task(task, description, dueDate, list, status, key);
     allTasks.push(newTask);
-    createTaskContainer(task, description, dueDate, key);
+    createTaskContainer(task, description, dueDate, status, key);
     console.log(allTasks)
 }
 
@@ -28,7 +28,7 @@ const generateTaskKey = () => {
 
 
 export const exampleTasks = () => {
-    createTask("Dinner to Olive Garden", "Pick up sister on the way", startOfToday(), '');
+    createTask("Dinner at Olive Garden", "Pick up sister on the way", startOfToday(), '');
     createTask("PHYS231 homework assignment", "Chapter 14, questions 1-13", startOfToday(), '');
     createTask("Exercise", "Workout out for 45 minutes", startOfToday(), '');
     createTask("Coffee with friend", "Starbucks", startOfToday(), '');
@@ -37,65 +37,13 @@ export const exampleTasks = () => {
     createTask("Read Animal Farm", "Read two chapter", startOfTomorrow(), '');
     createTask("Learn sign language", "Practice english alphabet", startOfTomorrow(), '');
 
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
+    
+    
+    createTask("PHYS231 homework assignment", "Chapter 14, questions 1-13", nextWeek(startOfToday()), '');
+    createTask("Exercise", "Workout out for 45 minutes", nextWeek(startOfToday()), '');
+    createTask("Coffee with friend", "Starbucks", nextWeek(startOfToday()), '');
+    createTask("Baking class", "Bring homemade pie", nextWeek(startOfToday()), '');
+    createTask("Dinner at Olive Garden", "Pick up sister on the way", nextWeek(startOfToday()), '');
     createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
 }
 

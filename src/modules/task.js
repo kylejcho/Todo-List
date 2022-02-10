@@ -1,9 +1,10 @@
 class Task {
-    constructor(name, description, dueDate, list, key) {
+    constructor(name, description, dueDate, status, list, key) {
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
         this.list = list;
+        this.status = status;
         this.key = key;
     }
 
