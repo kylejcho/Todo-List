@@ -178,7 +178,6 @@ const checkClick = () => {
             allTasks.forEach(task => {
                 if (task.key == taskContainer.id) {
                     task.status = "complete";
-                    console.log(allTasks);
                 }
             })
 
@@ -197,7 +196,11 @@ const checkClick = () => {
                 }
             })
 
-            
+            allTasks.forEach(task => {
+                if (task.key == taskContainer.id) {
+                    task.status = "complete";
+                }
+            })
 
 
             const a = taskContainer.children[0];
