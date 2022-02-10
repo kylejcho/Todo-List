@@ -18,7 +18,7 @@
     --primary-bg-color: #ffffff;
     --secondary-bg-color: #f8f8fb;
     --tertiary-bg-color: #e9ebf1;
-    --primiary-blue: #3880ff;
+    --primary-blue: #3880ff;
     --secondary-blue: #5a96ff;
     --tertiary-blue: #aec6ff;
     --primary-svg-color: invert(7%) sepia(7%) saturate(2512%) hue-rotate(178deg) brightness(97%) contrast(92%);
@@ -42,7 +42,7 @@ nav {
     align-items: center;
     height: 50px;
     background-color: var(--secondary-bg-color);
-    padding: 0 55px 0 41px;
+    padding: 0 55px 0 36px;
 }
 
 #pageTitle {
@@ -51,7 +51,7 @@ nav {
 }
 
 .logo {
-    color: var(--primiary-blue);
+    color: var(--primary-blue);
     font-size: 1.75rem;
     --ionicon-stroke-width: 50px;
 }
@@ -204,6 +204,10 @@ nav {
     background-color: var(--tertiary-bg-color);
 }
 
+.sidebarTab.viewing ion-icon {
+    color: var(--primary-blue)
+}
+
 .sidebarArrow {
     transition: all ease-in-out 0.1s;
     color: var(--secondary-text-color);
@@ -333,7 +337,7 @@ nav {
 
 .taskContainer.viewing::after {
     opacity: 1;
-    border: 1.5px solid var(--primiary-blue);
+    border: 1.5px solid var(--primary-blue);
 }
 
 @keyframes taskContainerDelete {

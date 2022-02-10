@@ -64,7 +64,7 @@ export const createTasksContainer = (type) => {
             }
         })
     } else if (type == 'week') {
-        tasksContainerTitle.innerText = "Next 7 Days";
+        tasksContainerTitle.innerText = "This Week";
         createSubGroups("today", tasksContainer, 'title');
         createSubGroups("tomorrow", tasksContainer, 'title');
         allTasks.forEach((task)=> {

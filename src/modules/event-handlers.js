@@ -178,13 +178,14 @@ const checkClick = () => {
             allTasks.forEach(task => {
                 if (task.key == taskContainer.id) {
                     if (e.target.parentNode.className == 'checkContainer') {
-                        task.status = "complete";
+                        task.status = "completed";
                     } else {
                         task.status = "";
                     }
                 }
             })
             checkTaskAnimation(e,'');
+            console.log(allTasks)
         }
 
         else if (e.target.parentNode.className.includes("taskViewCheckContainer")) {
@@ -202,7 +203,7 @@ const checkClick = () => {
             allTasks.forEach(task => {
                 if (task.key == taskContainer.id) {
                     if (e.target.parentNode.className == "taskViewCheckContainer") {
-                        task.status = "complete";
+                        task.status = "completed";
                     } else {
                         task.status = "";
                     }
