@@ -77,33 +77,18 @@ const formCancel = () => {
 
 
 //Sidebar
-const homeClick = () => {
-    const sidebarHome = document.querySelector('#sidebarHome');
-    sidebarHome.addEventListener('click', (e) => {
-        const shortcuts = document.querySelectorAll('.sidebarShortcut');
-        sidebarHome.classList.remove('viewing');
-        for (let i = 0; i < shortcuts.length; i++) {
-            shortcuts[i].classList.remove('viewing');
-            shortcuts[i].children[0].classList.remove('viewing')
-        }
-        clearContent();
-        sidebarHome.classList.add('viewing');
-        setTimeout(() => {
-            createTasksContainer('home');
-        }, 350);
-    })
-}
-
-const shortCutsClick = () => {
-    const shortcutsContainer = document.querySelector('#sidebarShortcuts');
-    shortcutsContainer.addEventListener('click', (e)=> {
-        if (!e.target.className.includes('sidebarShortcut')) {
+const sidebarTabClick = () => {
+    const sidebar = document.querySelector('#sidebar');
+    sidebar.addEventListener('click', (e)=> {
+        if (!e.target.className.includes('sidebarShortcut') && e.target.id != 'sidebarHome') {
             return
         }
         shortcutToggle(e);
         clearContent();
         setTimeout(() => {
-            if (e.target.id == 'sidebarShortcutsToday') {
+            if (e.target.id == 'sidebarHome') {
+                createTasksContainer('home');
+            } else if (e.target.id == 'sidebarShortcutsToday') {
                 createTasksContainer('today');
             } else if (e.target.id == 'sidebarShortcutsWeek') {
                 createTasksContainer('week');
@@ -235,7 +220,7 @@ const runEventHandlers = () => {
     formAddButtonClicked();
     formDueDateClick();
     formCancelClick();
-    homeClick();
+    sidebarTabClick();
     shortCutsClick();
     clickTask();
     deselectTask();
