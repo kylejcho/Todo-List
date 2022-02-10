@@ -23,5 +23,9 @@ export const formatDate = (date) => {
     return dateFormatted;
 }
 
+export const getDayOfMonth = (date) => {
+    return format(date, 'd')
+}
+
 
 export default getDate;

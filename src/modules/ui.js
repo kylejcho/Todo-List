@@ -1,11 +1,12 @@
 import { addTask, slideInTaskView } from "./animations";
 import { allTasks,} from "./create-task";
-import { isToday, isTomorrow, isThisWeek } from "date-fns";
-import { formatDate } from "./dates";
+import { isToday, isTomorrow, isThisWeek, startOfToday } from "date-fns";
+import { formatDate, getDayOfMonth} from "./dates";
 
 const initialPageLoad = () => {
     loadingPage()
     createTasksContainer('home');
+    createCalendarIcon(); 
 }
 
 const loadingPage = () => {
@@ -40,6 +41,12 @@ export const clearContent = () => {
     }, 300);
     
 }
+
+const createCalendarIcon = () => {
+    const todayIconNumber = document.querySelector('.todayIconNumber')
+    todayIconNumber.innerHTML = getDayOfMonth(startOfToday());
+}
+
 
 //ALL TASKS CONTENT
 export const createTasksContainer = (type) => {
@@ -175,7 +182,6 @@ export const createTaskContainer = (task, description, dueDate, status, key, sha
         subGroup.insertBefore(taskContainer, subGroup.children[1]);
     }
     
-
     addTask(taskContainer, shadow);
 }
 

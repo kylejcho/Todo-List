@@ -221,7 +221,6 @@ const runEventHandlers = () => {
     formDueDateClick();
     formCancelClick();
     sidebarTabClick();
-    shortCutsClick();
     clickTask();
     deselectTask();
     deleteClick();

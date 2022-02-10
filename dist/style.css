@@ -161,6 +161,28 @@ nav {
     font-size: 1.5rem;
 }
 
+#sidebarShortcuts p {
+    pointer-events: none;
+}
+
+#sidebarShortcuts ion-icon {
+    pointer-events: none;
+}
+
+#sidebarShortcutsToday svg {
+    pointer-events: none;
+    margin-left: 15px;
+}
+
+.todayIconNumber {
+    font-weight: 600;
+}
+
+#sidebarShortcutsToday p:nth-child(2) {
+    margin-left: 1rem;
+}   
+
+
 .sidebarTabsContainer {
     margin-top: 0.25rem;
 }
@@ -208,6 +230,10 @@ nav {
     color: var(--primary-blue)
 }
 
+.sidebarTab.viewing svg {
+    filter: sepia(100%) saturate(400%) hue-rotate(185deg) brightness(90%) contrast(100%)
+}
+
 .sidebarArrow {
     transition: all ease-in-out 0.1s;
     color: var(--secondary-text-color);
@@ -220,9 +246,13 @@ nav {
 
 .sidebarCount {
     position: fixed;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 0.8rem;
     right: 10px;
+}
+
+.sidebarTab.viewing .sidebarCount {
+    color: var(--secondary-text-color);
 }
 
 .sidebarTitle {
