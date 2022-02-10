@@ -173,18 +173,24 @@ const deselectTask = () => {
 
 const checkClick = () => {
     document.addEventListener('click', (e)=> {
-        if (e.target.parentNode.className == 'checkContainer'|| e.target.parentNode.className == 'checkContainer completed') {
+        if (e.target.parentNode.className == 'checkContainer') {
             const taskContainer = e.target.parentNode.parentNode;
             allTasks.forEach(task => {
                 if (task.key == taskContainer.id) {
                     task.status = "complete";
                 }
             })
-
             checkTaskAnimation(e,'');
-            
-
-        } else if (e.target.parentNode.className == "taskViewCheckContainer" || e.target.parentNode.className == "taskViewCheckContainer completed") {
+        } else if (e.target.parentNode.className == 'checkContainer completed') {
+            const taskContainer = e.target.parentNode.parentNode;
+            allTasks.forEach(task => {
+                if (task.key == taskContainer.id) {
+                    task.status = "";
+                }
+            })
+            checkTaskAnimation(e,'');
+        }
+        else if (e.target.parentNode.className == "taskViewCheckContainer") {
             const taskViewContainer = e.target.parentNode.parentNode.parentNode;
             const key = taskViewContainer.id[1].toString();
 
@@ -199,6 +205,27 @@ const checkClick = () => {
             allTasks.forEach(task => {
                 if (task.key == taskContainer.id) {
                     task.status = "complete";
+                }
+            })
+
+
+            const a = taskContainer.children[0];
+            checkTaskAnimation('',a);
+        } else if (e.target.parentNode.className == "taskViewCheckContainer completed") {
+            const taskViewContainer = e.target.parentNode.parentNode.parentNode;
+            const key = taskViewContainer.id[1].toString();
+
+            let taskContainer;
+            const tasks = document.querySelectorAll('.taskContainer');
+            tasks.forEach(task => {
+                if (task.id == key) {
+                    taskContainer = task;
+                }
+            })
+
+            allTasks.forEach(task => {
+                if (task.key == taskContainer.id) {
+                    task.status = "";
                 }
             })
 
