@@ -147,14 +147,13 @@ nav {
 }
 
 #sidebar {
-    resize: horizontal;
     position: absolute;
-    width: 10%;
-    height: auto;
-    min-height: calc(100vh - 110px);
+    width: 12%;
+    height: calc(100% - 115px);
     padding: 40px 15px 25px 25px;
     color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
+    overflow-y: hidden;
 }
 
 #sidebar ion-icon {
