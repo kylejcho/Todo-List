@@ -169,6 +169,11 @@ nav {
     transition: all ease-in-out 0.2s;
 }
 
+#sidebarShortcuts.close {
+    opacity: 0;
+    pointer-events: none;
+}
+
 #sidebarShortcuts p {
     pointer-events: none;
 }
@@ -692,6 +697,7 @@ nav {
 #sidebarListsTitle {
     height: auto;
     width: auto;
+    margin-top: 10px;
     background-color: var(--secondary-bg-color);
 }
 

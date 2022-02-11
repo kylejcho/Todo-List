@@ -14,6 +14,7 @@ const formContainer = document.querySelector("#taskFormContainer");
 const form = document.querySelector("#taskForm");
 const contentContainer = document.querySelector("#contentContainer")
 const sidebar = document.querySelector('#sidebar');
+const sidebarShortcuts = document.querySelector('#sidebarShortcuts');
 
 //FORM
 const formButtonClicked = () => {
@@ -112,28 +113,22 @@ const shortcutToggle = (e) => {
 }
 
 
-const sidebarArrowClick = () => {
+const shortcutArrowClick = () => {
     sidebar.addEventListener('click', (e)=> {
-        if (e.target.className.includes('sidebarArrow')) {
-            const arrow = e.target;
+        if (e.target.id == 'shortcutsArrow') {
             if (e.target.className.includes('close')) {
-                arrow.classList.toggle('close');
-                const shortcuts = document.querySelector('#sidebarShortcuts')
-                const shortcutsHeight = shortcuts.clientHeight;
-                shortcuts.style.marginBottom =  '0';
-                shortcuts.style.opacity = '1';
-                shortcuts.style.pointerEvents = 'auto';
+                sidebarShortcuts.style.marginBottom = '0';
             } else {
-                arrow.classList.toggle('close');
-                const shortcuts = document.querySelector('#sidebarShortcuts')
-                const shortcutsHeight = shortcuts.clientHeight;
-                shortcuts.style.marginBottom =  -shortcutsHeight + 'px';
-                shortcuts.style.opacity = '0';
-                shortcuts.style.pointerEvents = 'none';
+                sidebarShortcuts.style.marginBottom = `${-sidebarShortcuts.clientHeight}px`;
             }
+            sidebarShortcuts.classList.toggle('close');
+            e.target.classList.toggle('close');
         }
     })
 }
+
+
+
 
 
 //Tasks
@@ -245,7 +240,7 @@ const runEventHandlers = () => {
     formDueDateClick();
     formCancelClick();
     sidebarTabClick();
-    sidebarArrowClick();
+    shortcutArrowClick();
     clickTask();
     deselectTask();
     deleteClick();
