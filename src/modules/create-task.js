@@ -1,7 +1,7 @@
 import Task from "./task";
 import {createTaskContainer} from "./ui";
 import { startOfToday,startOfTomorrow } from "date-fns";
-import { formatDate, nextWeek } from "./dates"
+import { nextWeek } from "./dates"
 
 
 export let allTasks = [];

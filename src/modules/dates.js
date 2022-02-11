@@ -1,13 +1,13 @@
-import {format, addDays} from 'date-fns';
+import {format, addDays, isAfter, isBefore, isToday, getHours} from 'date-fns';
 
 const getDate = () => {
     return today();
 }
 
 
-const today = (date) => {
-    date = new Date();
-    return date;
+const today = () => {
+    return new Date();
+
 }
 
 const tomorrow = (date) => {
@@ -27,5 +27,23 @@ export const getDayOfMonth = (date) => {
     return format(date, 'd')
 }
 
+
+export const isMorning = () => {
+    if (getHours(new Date()) < 12) {
+        return true
+    }
+}
+
+export const isAfternoon = () => {
+    if (getHours(new Date()) >= 12 && getHours(new Date())< 18){
+        return true
+    }
+}
+
+export const isEvening = () => {
+    if (getHours(new Date()) >= 18 || getHours(new Date()) <= 24){
+        return true
+    }
+}
 
 export default getDate;

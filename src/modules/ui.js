@@ -1,7 +1,7 @@
 import { addTask, slideInTaskView } from "./animations";
 import { allTasks,} from "./create-task";
 import { isToday, isTomorrow, isThisWeek, startOfToday } from "date-fns";
-import { formatDate, getDayOfMonth} from "./dates";
+import { formatDate, getDayOfMonth, isMorning, isAfternoon, isEvening} from "./dates";
 
 const initialPageLoad = () => {
     loadingPage()
@@ -71,7 +71,7 @@ export const createTasksContainer = (type) => {
             }
         })
     } else if (type == 'week') {
-        tasksContainerTitle.innerText = "This Week";
+        tasksContainerTitle.innerText = "Next 7 Days";
         createSubGroups("today", tasksContainer, 'title');
         createSubGroups("tomorrow", tasksContainer, 'title');
         allTasks.forEach((task)=> {
@@ -83,7 +83,14 @@ export const createTasksContainer = (type) => {
         })
     } else {
         if (type == 'home') {
-            tasksContainerTitle.innerText = "Welcome, Kyle";
+            if (isMorning) {
+                tasksContainerTitle.innerText = "Good Morning, Kyle.";
+            } else if (isAfternoon) {
+                tasksContainerTitle.innerText = "Good Afternoon, Kyle.";
+            } else {
+                tasksContainerTitle.innerText = "Good Evening, Kyle.";
+            }
+
         } else {
             tasksContainerTitle.innerText = "All Tasks";
         }
