@@ -113,16 +113,17 @@ const shortcutToggle = (e) => {
 }
 
 
-const shortcutArrowClick = () => {
+const sidebarArrowClick = () => {
     sidebar.addEventListener('click', (e)=> {
-        if (e.target.id == 'shortcutsArrow') {
-            if (e.target.className.includes('close')) {
-                sidebarShortcuts.style.marginBottom = '0';
+        if (e.target.id == 'shortcutsArrow' || e.target.id == 'listsArrow') {
+            const arrow = e.target
+            if (arrow.className.includes('close')) {
+                arrow.parentNode.nextElementSibling.style.marginBottom = '0';
             } else {
-                sidebarShortcuts.style.marginBottom = `${-sidebarShortcuts.clientHeight}px`;
+                arrow.parentNode.nextElementSibling.style.marginBottom = `${-sidebarShortcuts.clientHeight}px`;
             }
-            sidebarShortcuts.classList.toggle('close');
-            e.target.classList.toggle('close');
+            arrow.parentNode.nextElementSibling.classList.toggle('close');
+            arrow.classList.toggle('close');
         }
     })
 }
@@ -240,7 +241,7 @@ const runEventHandlers = () => {
     formDueDateClick();
     formCancelClick();
     sidebarTabClick();
-    shortcutArrowClick();
+    sidebarArrowClick();
     clickTask();
     deselectTask();
     deleteClick();

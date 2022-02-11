@@ -249,6 +249,7 @@ nav {
 
 .sidebarArrow {
     color: var(--secondary-text-color);
+    cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
 
@@ -709,6 +710,10 @@ nav {
     background-color: var(--secondary-bg-color);
 }
 
+#sidebarLists.close {
+    opacity: 0;
+    pointer-events: none;
+}
 
 
 
