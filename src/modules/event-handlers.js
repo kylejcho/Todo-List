@@ -13,7 +13,7 @@ const inputDueDate = document.querySelectorAll('.inputDueDate');
 const formContainer = document.querySelector("#taskFormContainer");
 const form = document.querySelector("#taskForm");
 const contentContainer = document.querySelector("#contentContainer")
-
+const sidebar = document.querySelector('#sidebar');
 
 //FORM
 const formButtonClicked = () => {
@@ -78,7 +78,7 @@ const formCancel = () => {
 
 //Sidebar
 const sidebarTabClick = () => {
-    const sidebar = document.querySelector('#sidebar');
+    
     sidebar.addEventListener('click', (e)=> {
         if (!e.target.className.includes('sidebarShortcut') && e.target.id != 'sidebarHome') {
             return
@@ -109,6 +109,30 @@ const shortcutToggle = (e) => {
     }
     e.target.classList.toggle('viewing');
     e.target.children[0].classList.toggle('viewing');
+}
+
+
+const sidebarArrowClick = () => {
+    sidebar.addEventListener('click', (e)=> {
+        if (e.target.className.includes('sidebarArrow')) {
+            const arrow = e.target;
+            if (e.target.className.includes('close')) {
+                arrow.classList.toggle('close');
+                const shortcuts = document.querySelector('#sidebarShortcuts')
+                const shortcutsHeight = shortcuts.clientHeight;
+                shortcuts.style.marginBottom =  '0';
+                shortcuts.style.opacity = '1';
+                shortcuts.style.pointerEvents = 'auto';
+            } else {
+                arrow.classList.toggle('close');
+                const shortcuts = document.querySelector('#sidebarShortcuts')
+                const shortcutsHeight = shortcuts.clientHeight;
+                shortcuts.style.marginBottom =  -shortcutsHeight + 'px';
+                shortcuts.style.opacity = '0';
+                shortcuts.style.pointerEvents = 'none';
+            }
+        }
+    })
 }
 
 
@@ -221,10 +245,10 @@ const runEventHandlers = () => {
     formDueDateClick();
     formCancelClick();
     sidebarTabClick();
+    sidebarArrowClick();
     clickTask();
     deselectTask();
     deleteClick();
-
 }
 
 export default runEventHandlers;

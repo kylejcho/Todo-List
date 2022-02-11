@@ -161,6 +161,14 @@ nav {
     font-size: 1.5rem;
 }
 
+#sidebarHome {
+    margin-bottom: 30px;
+}
+
+#sidebarShortcuts {
+    transition: all ease-in-out 0.2s;
+}
+
 #sidebarShortcuts p {
     pointer-events: none;
 }
@@ -235,13 +243,12 @@ nav {
 }
 
 .sidebarArrow {
-    transition: all ease-in-out 0.1s;
     color: var(--secondary-text-color);
+    transition: all 0.2s ease-in-out;
 }
 
-.sidebarArrow:hover {
-    transform: translateY(-1px);
-    color: var(--primary-text-color);
+.sidebarArrow.close {
+    transform: rotate(-90deg);
 }
 
 .sidebarCount {
@@ -259,7 +266,6 @@ nav {
     display: flex;
     align-items: center;
     font-size: 1rem;
-    margin-top: 30px;
     font-weight: 700;
     color: var(--primary-text-color);
     transform: translateX(-1px);
@@ -683,9 +689,19 @@ nav {
     color: white;
 }
 
+#sidebarListsTitle {
+    height: auto;
+    width: auto;
+    background-color: var(--secondary-bg-color);
+}
 
-
-
+#sidebarLists {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: var(--secondary-bg-color);
+}
 
 
 
@@ -712,7 +728,7 @@ nav {
     height: 100vh;
     width: 100vw;
     background-color: white;
-    z-index: 1;
+    z-index: 2;
     transition: 0.5s all ease-in-out;
 }
 
