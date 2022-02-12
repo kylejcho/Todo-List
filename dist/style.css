@@ -31,6 +31,7 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: var(--main-bg-color);
+    line-height: 1.6;
 }
 
 svg path {
@@ -106,6 +107,7 @@ nav {
 
 
 #addButton {
+    cursor: pointer;
     font-size: 1.5rem;
     border-radius: 5px;
     width: 30px;
@@ -115,8 +117,7 @@ nav {
 }
 
 #addButton:hover {
-    color: var(--tertiary-text-color);
-    transform: translateY(-1px);
+    color: var(--primary-text-color);
 }
 
 
@@ -252,6 +253,11 @@ nav {
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
+
+.sidebarArrow:hover {
+    color: var(--primary-text-color);
+}
+
 
 .sidebarArrow.close {
     transform: rotate(-90deg);
@@ -492,16 +498,8 @@ nav {
     top: 90px;
 }
 
-.taskViewNameContainer {
-    display: flex;
-    align-items: center;
-}
-
-.taskViewNameContainer {
-    background-size: 0% 100%;
-}
-
 .taskViewCheckContainer.completed {
+    cursor: pointer;
     animation: checkClick 0.3s ease-out;
     filter: var(--secondary-svg-color);
 }
@@ -514,6 +512,18 @@ nav {
     filter: var(--secondary-svg-color)
 }
 
+.taskViewNameContainer {
+    cursor: text;
+    display: flex;
+    align-items: center;
+}
+
+.taskViewNameContainer {
+    background-size: 0% 100%;
+    border-radius: 5px;
+}
+
+
 .taskViewName {
     display: flex;
     align-items: center;
@@ -522,6 +532,7 @@ nav {
     width: 100%;
     height: 20px;
     margin: 12px 25px 12px 10px;
+    border-radius: 5px;
     background-image: linear-gradient(to bottom,
         #00000000 50%,
         var(--tertiary-text-color) 50%, 
@@ -530,12 +541,19 @@ nav {
     );
     background-size: 0 100%;
     background-repeat: no-repeat;
-    transition: 0.4s ease;
+    transition: background-size 0.4s ease, color 0.4s ease, background-color 0.4s ease-in-out;
+}
+
+.taskViewName:hover {
+    margin: 0;
+    padding: 12px 25px 12px 10px;
+    background-color: #f6f6fb;
 }
 
 .taskViewName.completed {
     background-size: 100% 100%;
     color:var(--tertiary-text-color);
+    pointer-events: none;
 }
 
 .taskViewDescriptionContainer {
@@ -547,10 +565,18 @@ nav {
 }
 
 .taskViewDescription {
+    display: flex;
+    align-items: center;
+    cursor: text;
     font-weight: 400;
     font-size: 1rem;
     color: var(--secondary-text-color);
     margin-top: 10px;
+    height: 30px;
+}
+
+.taskViewDescription:hover {
+    background-color: #f6f6fb;
 }
 
 .taskViewDueDateContainer {
@@ -559,15 +585,23 @@ nav {
     margin-top: 20px;
     color: var(--secondary-text-color);
     margin-left: 35px;
+    fill: #697384;
 }
 
 .taskViewDueDate {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
     font-weight: 400;
     font-size: 1rem;
+    width: max-content;
     color: var(--secondary-text-color);
-    margin-top: 10px
+    margin-top: 10px;
 }
 
+.taskViewDueDate svg {
+    padding: 0 5px 0 2px;
+}
 
 /* TASK FORM */
 

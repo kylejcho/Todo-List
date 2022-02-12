@@ -19,7 +19,7 @@ export const nextWeek = (date) => {
 }
 
 export const formatDate = (date) => {
-    const dateFormatted = format(date, 'EEEE, LLL do, yyyy');
+    const dateFormatted = format(date, 'EEEE, LLLL do, yyyy');
     return dateFormatted;
 }
 
@@ -36,12 +36,6 @@ export const isMorning = () => {
 
 export const isAfternoon = () => {
     if (getHours(new Date()) >= 12 && getHours(new Date())< 18){
-        return true
-    }
-}
-
-export const isEvening = () => {
-    if (getHours(new Date()) >= 18 || getHours(new Date()) <= 24){
         return true
     }
 }

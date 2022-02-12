@@ -1,7 +1,7 @@
 import { addTask, slideInTaskView } from "./animations";
 import { allTasks,} from "./create-task";
 import { isToday, isTomorrow, isThisWeek, startOfToday } from "date-fns";
-import { formatDate, getDayOfMonth, isMorning, isAfternoon, isEvening} from "./dates";
+import { formatDate, getDayOfMonth, isMorning, isAfternoon} from "./dates";
 
 const initialPageLoad = () => {
     loadingPage()
@@ -83,9 +83,9 @@ export const createTasksContainer = (type) => {
         })
     } else {
         if (type == 'home') {
-            if (isMorning) {
+            if (isMorning()) {
                 tasksContainerTitle.innerText = "Good Morning, Kyle.";
-            } else if (isAfternoon) {
+            } else if (isAfternoon()) {
                 tasksContainerTitle.innerText = "Good Afternoon, Kyle.";
             } else {
                 tasksContainerTitle.innerText = "Good Evening, Kyle.";
@@ -239,8 +239,15 @@ export const createTaskView = (task, taskContainer) => {
     taskViewDueDate.className = "taskViewDueDate";
 
     const dueDate = formatDate(task.dueDate)
-    
-    taskViewDueDate.innerText = dueDate;
+    const caret = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 512 512"><title>ionicons-v5-b</title><path d="M190.06,414,353.18,274.22a24,24,0,0,0,0-36.44L190.06,98c-15.57-13.34-39.62-2.28-39.62,18.22V395.82C150.44,416.32,174.49,427.38,190.06,414Z"/></svg>'
+    if (isToday(task.dueDate)) {
+        taskViewDueDate.innerHTML = `Today ${caret} ${dueDate}`;
+    } else if (isTomorrow(task.dueDate)) {
+        taskViewDueDate.innerHTML = `Tomorrow ${caret} ${dueDate}`;
+    } else {
+        taskViewDueDate.innerHTML = dueDate;
+    }
+
     taskViewDueDateContainer.append(taskViewDueDate);
 
 
