@@ -43,7 +43,7 @@ nav {
     align-items: center;
     height: 50px;
     background-color: var(--secondary-bg-color);
-    padding: 0 55px 0 36px;
+    padding: 0 100px 0 36px;
 }
 
 #pageTitle {
@@ -120,7 +120,28 @@ nav {
     color: var(--primary-text-color);
 }
 
+#navSettingsContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0 10px;
+    border-radius: 5px;
+    height: 32px;
+    background-color: var(--tertiary-bg-color);
+}
 
+#navSettingsContainer ion-icon {
+    display: flex;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    color: var(--secondary-text-color);
+    transition: color ease-in-out 0.2s;
+}
+
+#navSettingsContainer ion-icon:hover {
+    color: var(--primary-text-color)
+}
 
 #contentContainer {
     display: flex;
