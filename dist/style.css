@@ -537,13 +537,16 @@ nav {
     cursor: text;
     display: flex;
     align-items: center;
-}
-
-.taskViewNameContainer {
     background-size: 0% 100%;
     border-radius: 5px;
 }
 
+
+
+.taskViewNameContainer svg {
+    display: flex;
+    align-items: center;
+}
 
 .taskViewName {
     display: flex;
