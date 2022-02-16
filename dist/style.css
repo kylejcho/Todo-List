@@ -196,10 +196,6 @@ nav {
     pointer-events: none;
 }
 
-#sidebarShortcuts p {
-    pointer-events: none;
-}
-
 #sidebarShortcuts ion-icon {
     pointer-events: none;
 }
@@ -259,6 +255,14 @@ nav {
 .sidebarTab.viewing {
     color: var(--primary-text-color);
     background-color: var(--tertiary-bg-color);
+}
+
+.sidebarTab p {
+    pointer-events: none;
+}
+
+.sidebarTab.viewing p{
+    font-weight: 600;
 }
 
 .sidebarTab.viewing:hover::after {
