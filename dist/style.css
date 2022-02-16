@@ -527,8 +527,11 @@ nav {
     top: 90px;
 }
 
-.taskViewCheckContainer.completed {
+.taskViewCheckContainer {
     cursor: pointer;
+}
+
+.taskViewCheckContainer.completed {
     animation: checkClick 0.3s ease-out;
     filter: var(--secondary-svg-color);
 }
@@ -542,13 +545,15 @@ nav {
 }
 
 .taskViewNameContainer {
-    cursor: text;
     display: flex;
     align-items: center;
     background-size: 0% 100%;
     border-radius: 5px;
 }
 
+.taskViewName {
+    cursor: text;
+}
 
 
 .taskViewNameContainer svg {
