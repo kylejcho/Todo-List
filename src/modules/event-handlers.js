@@ -80,7 +80,7 @@ const formCancel = () => {
 //Sidebar
 const sidebarTabClick = () => {
     sidebar.addEventListener('click', (e)=> {
-        if (!e.target.className.includes('sidebarShortcut') && e.target.id != 'sidebarHome') {
+        if (!e.target.className.includes('sidebarShortcut') && e.target.id != 'sidebarHome' || e.target.className.includes('viewing')) {
             return
         }
         shortcutToggle(e);

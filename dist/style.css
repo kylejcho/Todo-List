@@ -257,7 +257,6 @@ nav {
 }
 
 .sidebarTab.viewing {
-    pointer-events: none;
     color: var(--primary-text-color);
     background-color: var(--tertiary-bg-color);
 }
