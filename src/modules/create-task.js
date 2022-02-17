@@ -38,7 +38,7 @@ export const exampleTasks = () => {
     createTask("Dinner at Olive Garden", "Pick up sister on the way", startOfToday());
     createTask("PHYS231 homework assignment", "Chapter 14, questions 1-13", startOfToday(),'School');
     createTask("Exercise", "Workout out for 45 minutes", startOfToday());
-    createTask("Coffee with friend", "Starbucks", startOfToday());
+    createTask("Coffee with friend", "Starbucks", startOfToday(), 'Reading');
     createTask("Baking class", "Bring homemade pie", startOfToday(),'School');
 
     createTask("Read Animal Farm", "Read two chapter", startOfTomorrow());

@@ -15,7 +15,7 @@ const form = document.querySelector("#taskForm");
 const contentContainer = document.querySelector("#contentContainer")
 const sidebar = document.querySelector('#sidebar');
 const sidebarShortcuts = document.querySelector('#sidebarShortcuts');
-
+const sidebarLists = document.querySelector('#sidebarLists')
 //FORM
 const formButtonClicked = () => {
     addButton.addEventListener('click', function() {
@@ -114,13 +114,17 @@ const shortcutToggle = (e) => {
 
 const sidebarArrowClick = () => {
     sidebar.addEventListener('click', (e)=> {
-        if (e.target.id == 'shortcutsArrow' || e.target.id == 'listsArrow') {
+        if (e.target.className.includes('sidebarArrow')) {
             const arrow = e.target
             if (arrow.className.includes('close')) {
                 arrow.parentNode.nextElementSibling.style.marginBottom = '0';
             } else {
-                arrow.parentNode.nextElementSibling.style.marginBottom = `${-sidebarShortcuts.clientHeight}px`;
-            }
+                if (e.target.id == 'shortcutsArrow') {
+                    arrow.parentNode.nextElementSibling.style.marginBottom = `${-sidebarShortcuts.clientHeight}px`;
+                } else {
+                    arrow.parentNode.nextElementSibling.style.marginBottom = `${-sidebarLists.clientHeight}px`;
+                }
+             }
             arrow.parentNode.nextElementSibling.classList.toggle('close');
             arrow.classList.toggle('close');
         }
