@@ -786,7 +786,9 @@ nav {
     pointer-events: none;
 }
 
-
+.sidebarListContainer {
+    display: flex;
+}
 
 
 
