@@ -788,6 +788,13 @@ nav {
 
 .sidebarListContainer {
     display: flex;
+    align-items: center;
+}
+
+.sidebarListContainer svg {
+    display: flex;
+    align-items: center;
+    margin: 0 1rem 0 15px;
 }
 
 

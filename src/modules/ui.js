@@ -293,11 +293,12 @@ export const createSidebarList = (list) => {
     const sidebarLists = document.querySelector('#sidebarLists');
 
     const sidebarListContainer = document.createElement('div');
-    sidebarListContainer.className = 'sidebarListContainer'
+    sidebarListContainer.className = 'sidebarListContainer';
+    sidebarListContainer.classList.add('sidebarTab')
     sidebarLists.append(sidebarListContainer)
 
     const svg = document.createElement('div');
-    svg.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>'
+    svg.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>'
 
     const listName = document.createElement('p');
     listName.innerText = list;
