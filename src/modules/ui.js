@@ -288,5 +288,9 @@ export const updateCounter = () => {
     allCountDiv.innerText = count;
 }
 
+export const createSidebarList = (listName) => {
+
+}
+
 
 export default initialPageLoad;

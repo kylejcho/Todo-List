@@ -1,17 +1,24 @@
 import Task from "./task";
-import {createTaskContainer} from "./ui";
+import {createTaskContainer, createSidebarList} from "./ui";
 import { startOfToday,startOfTomorrow } from "date-fns";
 import { nextWeek } from "./dates"
 
 
 export let allTasks = [];
+export let allLists = [];
 
 const createTask = (task, description, dueDate, list, status) => {
     let key = generateTaskKey();
     let newTask = new Task(task, description, dueDate, list, status, key);
     allTasks.push(newTask);
     createTaskContainer(task, description, dueDate, status, key);
-    console.log(allTasks)
+
+    if (!allLists.includes(list)) {
+        allLists.push(list);
+        createSidebarList(list);
+    } 
+
+    console.log(allTasks);
 }
 
 const generateTaskKey = () => {
