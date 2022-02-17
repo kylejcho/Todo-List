@@ -13,7 +13,7 @@ const createTask = (task, description, dueDate, list, status) => {
     allTasks.push(newTask);
     createTaskContainer(task, description, dueDate, status, key);
 
-    if (!allLists.includes(list)) {
+    if (!allLists.includes(list) && list != undefined) {
         allLists.push(list);
         createSidebarList(list);
     } 
