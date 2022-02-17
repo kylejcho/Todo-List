@@ -28,23 +28,23 @@ const generateTaskKey = () => {
 
 
 export const exampleTasks = () => {
-    createTask("Dinner at Olive Garden", "Pick up sister on the way", startOfToday(), '');
-    createTask("PHYS231 homework assignment", "Chapter 14, questions 1-13", startOfToday(), '');
-    createTask("Exercise", "Workout out for 45 minutes", startOfToday(), '');
-    createTask("Coffee with friend", "Starbucks", startOfToday(), '');
-    createTask("Baking class", "Bring homemade pie", startOfToday(), '');
+    createTask("Dinner at Olive Garden", "Pick up sister on the way", startOfToday());
+    createTask("PHYS231 homework assignment", "Chapter 14, questions 1-13", startOfToday(),'School');
+    createTask("Exercise", "Workout out for 45 minutes", startOfToday());
+    createTask("Coffee with friend", "Starbucks", startOfToday());
+    createTask("Baking class", "Bring homemade pie", startOfToday(),'School');
 
-    createTask("Read Animal Farm", "Read two chapter", startOfTomorrow(), '');
-    createTask("Learn sign language", "Practice english alphabet", startOfTomorrow(), '');
+    createTask("Read Animal Farm", "Read two chapter", startOfTomorrow());
+    createTask("Learn sign language", "Practice english alphabet", startOfTomorrow());
 
     
     
-    createTask("PHYS231 homework assignment", "Chapter 14, questions 1-13", nextWeek(startOfToday()), '');
-    createTask("Exercise", "Workout out for 45 minutes", nextWeek(startOfToday()), '');
-    createTask("Coffee with friend", "Starbucks", nextWeek(startOfToday()), '');
-    createTask("Baking class", "Bring homemade pie", nextWeek(startOfToday()), '');
-    createTask("Dinner at Olive Garden", "Pick up sister on the way", nextWeek(startOfToday()), '');
-    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()), '');
+    createTask("PHYS231 homework assignment", "Chapter 14, questions 1-13", nextWeek(startOfToday()));
+    createTask("Exercise", "Workout out for 45 minutes", nextWeek(startOfToday()));
+    createTask("Coffee with friend", "Starbucks", nextWeek(startOfToday()));
+    createTask("Baking class", "Bring homemade pie", nextWeek(startOfToday()));
+    createTask("Dinner at Olive Garden", "Pick up sister on the way", nextWeek(startOfToday()));
+    createTask("Make boiled denim", "Magnets and ghouls", nextWeek(startOfToday()));
 }
 
 
