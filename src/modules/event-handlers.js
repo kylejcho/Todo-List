@@ -80,7 +80,7 @@ const formCancel = () => {
 //Sidebar
 const sidebarTabClick = () => {
     sidebar.addEventListener('click', (e)=> {
-        if (!e.target.className.includes('sidebarShortcut') && e.target.id != 'sidebarHome' || e.target.className.includes('viewing')) {
+        if (!e.target.className.includes('sidebarTab') && e.target.id != 'sidebarHome' || e.target.className.includes('viewing')) {
             return
         }
         shortcutToggle(e);
@@ -92,8 +92,10 @@ const sidebarTabClick = () => {
                 createTasksContainer('today');
             } else if (e.target.id == 'sidebarShortcutsWeek') {
                 createTasksContainer('week');
-            } else {
+            } else if (e.target.id == 'sidebarShortcutsAllTasks') {
                 createTasksContainer('allTasks');
+            } else {
+                createTasksContainer(e.target.children[1].innerText);
             }
         }, 350);
     })
@@ -102,11 +104,17 @@ const sidebarTabClick = () => {
 const shortcutToggle = (e) => {
     const shortcuts = document.querySelectorAll('.sidebarShortcut');
     const sidebarHome = document.querySelector('#sidebarHome');
+    const sidebarListContainers = document.querySelectorAll('.sidebarListContainer')
     sidebarHome.classList.remove('viewing');
     for (let i = 0; i < shortcuts.length; i++) {
         shortcuts[i].classList.remove('viewing');
         shortcuts[i].children[0].classList.remove('viewing')
     }
+    for (let i = 0; i < sidebarListContainers.length; i++) {
+        sidebarListContainers[i].classList.remove('viewing');
+        sidebarListContainers[i].children[0].classList.remove('viewing')
+    }
+
     e.target.classList.toggle('viewing');
     e.target.children[0].classList.toggle('viewing');
 }

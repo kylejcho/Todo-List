@@ -81,7 +81,7 @@ export const createTasksContainer = (type) => {
                 }, 10);
             }
         })
-    } else {
+    } else if (type == 'home' || type == 'allTasks') {
         if (type == 'home') {
             if (isMorning()) {
                 tasksContainerTitle.innerText = "Good Morning, Kyle.";
@@ -90,7 +90,6 @@ export const createTasksContainer = (type) => {
             } else {
                 tasksContainerTitle.innerText = "Good Evening, Kyle.";
             }
-
         } else {
             tasksContainerTitle.innerText = "All Tasks";
         }
@@ -101,6 +100,19 @@ export const createTasksContainer = (type) => {
             setTimeout(() => {
                 createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key, 'no shadow');
             }, 10);
+        })
+    } else {
+        tasksContainerTitle.innerText = type;
+        createSubGroups("today", tasksContainer, 'title');
+        createSubGroups("tomorrow", tasksContainer, 'title');
+        createSubGroups("upcoming", tasksContainer, 'title');
+        allTasks.forEach((task)=> {
+            if (task.list == type) {
+                setTimeout(() => {
+                    createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key, 'no shadow');
+                }, 10);
+            }
+            
         })
     }
 
