@@ -55,16 +55,18 @@ const formAddButtonClicked = () => {
 
 const formListClick = () => {
     const inputListItems = document.querySelectorAll('.inputListItem');
+    const listSelectionName = document.querySelector('#listSelectionName')
     inputListItems.forEach(list =>{
         list.addEventListener('click', ()=> {
             inputListItems.forEach(element =>{
                 element.classList.remove('selected');
             })
-            list.classList.toggle('selected')
+            list.classList.toggle('selected');
+            listSelectionName.innerText = list.innerText;
         })
     })
 
-    const inputListContainer = document.querySelector('#inputListContainer')
+    
     inputListContainer.addEventListener('click', ()=> {
         inputListContainer.classList.toggle('selected');
     })

@@ -751,6 +751,7 @@ nav {
     flex-direction: column;
     position: relative;
     margin: 5px;
+    border-radius: 5px;
 }
 
 #inputListContainer.selected {
