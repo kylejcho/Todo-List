@@ -721,6 +721,7 @@ nav {
 }
 
 .inputDueDate {
+    cursor: pointer;
     display: flex;
     align-items: center;
     margin: 5px;
@@ -745,6 +746,72 @@ nav {
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
 }
 
+#inputListContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 5px;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+#inputListContainer.selected #inputListOptions {
+    pointer-events: all;
+    opacity: 1;
+}
+
+#inputListContainer.selected #inputList {
+    box-shadow: none;
+}
+
+#inputList {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #171c24;
+    border-radius: 5px;
+    transition: all ease-in-out 0.2s;
+}
+
+#inputList .dot {
+    margin: 0 5px 0 0 ;
+}
+
+#inputList:hover {
+    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
+}
+
+
+
+#inputListOptions {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    margin-top: 50px;
+    height: 200px;
+    width: 125px;
+    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
+    border-radius: 5px;
+    background-color: white;
+    transform: translateX();
+    transition: all 0.2s ease-in-out;
+}
+
+.inputListItem {
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.inputListItem:hover {
+    background-color: #ecf0f6;
+}
+
+.inputListItem.selected {
+    background-color: #ecf0f6;
+}
+
+
 #taskFormAddButton {
     display: flex;
     align-items: center;
@@ -759,6 +826,7 @@ nav {
     margin-top: 20px;
   
 }
+
 
 #taskFormAddButton ion-icon {
     font-size: 1.25rem;
@@ -807,7 +875,6 @@ nav {
     height: 100%;
     background-color: var(--secondary-bg-color);
 }
-
 
 
 
