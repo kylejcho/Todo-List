@@ -103,6 +103,7 @@ const formCancel = () => {
         element.classList.remove('selected')
     })
     inputDueDate[0].classList.toggle('selected');
+    document.querySelector('#inputListContainer').classList.remove('selected')
     document.querySelector('#listSelectionName').innerText = 'Add to list'
     const inputListItems = document.querySelectorAll('.inputListItem');
     inputListItems.forEach(listItem=> {
