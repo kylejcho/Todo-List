@@ -776,20 +776,36 @@ nav {
 #sidebarLists {
     position: relative;
     z-index: 1;
-    height: 100%;
-    width: 100%;
+    width: auto;
     background-color: var(--secondary-bg-color);
+    transition: all ease-in-out 0.2s;
 }
 
 #sidebarLists.close {
     opacity: 0;
-    pointer-events: none;
+}
+
+.sidebarListContainer {
+    display: flex;
+    align-items: center;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    margin: 0 22px;
+    background-color: var(--primary-blue);
+    border-radius: 50px;
 }
 
 
-
-
-
+.abc {
+    position: relative;
+    z-index: 2;
+    width: auto;
+    height: 100%;
+    background-color: var(--secondary-bg-color);
+}
 
 
 
@@ -810,7 +826,7 @@ nav {
     height: 100vh;
     width: 100vw;
     background-color: white;
-    z-index: 2;
+    z-index: 3;
     transition: 0.5s all ease-in-out;
 }
 
