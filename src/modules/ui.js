@@ -1,5 +1,5 @@
 import { addTask, slideInTaskView } from "./animations";
-import { allTasks,} from "./create-task";
+import { allTasks, allLists} from "./create-task";
 import { isToday, isTomorrow, isThisWeek, startOfToday } from "date-fns";
 import { formatDate, getDayOfMonth, isMorning, isAfternoon} from "./dates";
 
@@ -320,5 +320,16 @@ export const createSidebarList = (list) => {
 
 }
 
+export const createInputListItem = (item) => {
+    const inputListOptions = document.querySelector('#inputListOptions')
+    allLists.forEach(list => {
+        if (item == list) {
+            const inputListItem = document.createElement('p');
+            inputListItem.className = 'inputListItem';
+            inputListItem.innerText = item; 
+            inputListOptions.append(inputListItem);
+        }
+    })
+}
 
 export default initialPageLoad;

@@ -45,13 +45,27 @@ const formAddButtonClicked = () => {
     })
 }
 
-const formDueDateClick = () => {
-    inputDueDate.forEach(dueDate =>{
-        dueDate.addEventListener('click', ()=> {
-            inputDueDate.forEach(element => {
+const formListClick = () => {
+    const inputListItems = document.querySelectorAll('.inputListItem');
+    inputListItems.forEach(list =>{
+        list.addEventListener('click', ()=> {
+            inputListItems.forEach(element =>{
                 element.classList.remove('selected');
             })
-            dueDate.classList.toggle('selected');
+            list.classList.toggle('selected')
+        })
+    })
+}
+
+const formDueDateClick = () => {
+    formContainer.addEventListener('click', (e)=>{
+        inputDueDate.forEach(dueDate =>{
+            dueDate.addEventListener('click', ()=> {
+                inputDueDate.forEach(element => {
+                    element.classList.remove('selected');
+                })
+                dueDate.classList.toggle('selected');
+            })
         })
     })
 }
@@ -250,6 +264,7 @@ const runEventHandlers = () => {
     checkClick();
     formAddButtonClicked();
     formDueDateClick();
+    formListClick();
     formCancelClick();
     sidebarTabClick();
     sidebarArrowClick();
