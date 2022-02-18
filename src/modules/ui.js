@@ -49,9 +49,14 @@ const createCalendarIcon = () => {
 
 
 //ALL TASKS CONTENT
-export const createTasksContainer = (type) => {
+export const createTasksContainer = (type, list) => {
     const tasksContainer = document.createElement('div');
-    tasksContainer.id = type + "Container";
+
+    if (list == 'list') {
+        tasksContainer.id = type + "ListContainer";
+    } else {
+        tasksContainer.id = type + "Container";
+    }
     tasksContainer.className = "tasksContainer";
     
 
@@ -66,7 +71,7 @@ export const createTasksContainer = (type) => {
         allTasks.forEach((task)=> {
             if (isToday(task.dueDate)) {
                 setTimeout(() => {
-                    createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key, 'no shadow');
+                    createTaskContainer(task.name, task.description, task.dueDate, task.list, task.status, task.key, 'no shadow');
                 }, 10);
             }
         })
@@ -77,7 +82,7 @@ export const createTasksContainer = (type) => {
         allTasks.forEach((task)=> {
             if (isThisWeek(task.dueDate)) {
                 setTimeout(() => {
-                    createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key, 'no shadow');
+                    createTaskContainer(task.name, task.description, task.dueDate, task.list, task.status, task.key, 'no shadow');
                 }, 10);
             }
         })
@@ -98,7 +103,7 @@ export const createTasksContainer = (type) => {
         createSubGroups("upcoming", tasksContainer, 'title');
         allTasks.forEach((task)=> {
             setTimeout(() => {
-                createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key, 'no shadow');
+                createTaskContainer(task.name, task.description, task.dueDate, task.list, task.status, task.key, 'no shadow');
             }, 10);
         })
     } else {
@@ -109,7 +114,7 @@ export const createTasksContainer = (type) => {
         allTasks.forEach((task)=> {
             if (task.list == type) {
                 setTimeout(() => {
-                    createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key, 'no shadow');
+                    createTaskContainer(task.name, task.description, task.dueDate, task.list, task.status, task.key, 'no shadow');
                 }, 10);
             }
             
@@ -153,7 +158,7 @@ const createSubGroups = (group, tasksContainer, title) => {
 }   
 
 
-export const createTaskContainer = (task, description, dueDate, status, key, shadow) => {
+export const createTaskContainer = (task, description, dueDate, list, status, key, shadow) => {
     const taskContainer = document.createElement('div');
     taskContainer.className = 'taskContainer';
     taskContainer.id = key;
@@ -181,10 +186,12 @@ export const createTaskContainer = (task, description, dueDate, status, key, sha
     
     
     let subGroup;
-
     if (isToday(dueDate)) {
         subGroup = document.querySelector('#today');
     } else if (isTomorrow(dueDate)) {
+        if (document.querySelector('.tasksContainer').id == "todayContainer") {
+            return
+        } 
         subGroup = document.querySelector('#tomorrow');
     } else {
         subGroup = document.querySelector('#upcoming');

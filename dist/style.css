@@ -303,6 +303,7 @@ nav {
 .sidebarTab.viewing {
     color: var(--primary-text-color);
     background-color: var(--tertiary-bg-color);
+
 }
 
 .sidebarTab p {

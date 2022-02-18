@@ -103,6 +103,11 @@ const formCancel = () => {
         element.classList.remove('selected')
     })
     inputDueDate[0].classList.toggle('selected');
+    document.querySelector('#listSelectionName').innerText = 'Add to list'
+    const inputListItems = document.querySelectorAll('.inputListItem');
+    inputListItems.forEach(listItem=> {
+        listItem.classList.remove('selected')
+    })
 }
 
 
@@ -124,7 +129,7 @@ const sidebarTabClick = () => {
             } else if (e.target.id == 'sidebarShortcutsAllTasks') {
                 createTasksContainer('allTasks');
             } else {
-                createTasksContainer(e.target.children[1].innerText);
+                createTasksContainer(e.target.children[1].innerText, 'list');
             }
         }, 350);
     })
@@ -188,9 +193,7 @@ const taskSelection = (taskContainer) => {
             return true
         }
     })
-
     const taskView = document.querySelector('.taskViewContainer')
-
     if (taskView) {
         if (taskView.id == "s" + selectedTask.key) {
             removeTaskView();

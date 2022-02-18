@@ -11,14 +11,24 @@ const createTask = (task, description, dueDate, list, status) => {
     let key = generateTaskKey();
     let newTask = new Task(task, description, dueDate, list, status, key);
     allTasks.push(newTask);
-    createTaskContainer(task, description, dueDate, status, key);
+    
+    
 
     if (!allLists.includes(list) && list != undefined) {
         allLists.push(list);
-        console.log(allLists)
+        console.log(allLists);
         createSidebarList(list);
         createInputListItem(list);
     } 
+
+    const tasksContainer = document.querySelector('.tasksContainer')
+    if (list != undefined && tasksContainer.id.includes('ListContainer') && tasksContainer.id != list + 'ListContainer') {
+        return
+    } else if (list == undefined && tasksContainer.id.includes('ListContainer')) {
+        return
+    }
+
+    createTaskContainer(task, description, dueDate, list, status, key);
 
     console.log(allTasks);
 }
