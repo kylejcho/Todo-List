@@ -779,6 +779,7 @@ nav {
     width: auto;
     background-color: var(--secondary-bg-color);
     transition: all ease-in-out 0.2s;
+    padding-bottom: 10px;
 }
 
 #sidebarLists.close {
