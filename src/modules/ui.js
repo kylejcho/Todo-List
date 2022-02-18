@@ -327,6 +327,7 @@ export const createInputListItem = (item) => {
             const inputListItem = document.createElement('p');
             inputListItem.className = 'inputListItem';
             inputListItem.innerText = item; 
+            inputListItem.id = item + 'List';  
             inputListOptions.append(inputListItem);
         }
     })

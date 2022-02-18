@@ -753,6 +753,15 @@ nav {
     margin: 5px;
 }
 
+#inputListContainer.selected {
+    background-color: none;
+}
+
+#inputListContainer.selected #inputListOptions {
+    pointer-events: all;
+    opacity: 1;
+}
+
 #inputList {
     cursor: pointer;
     display: flex;
@@ -774,14 +783,21 @@ nav {
 
 
 #inputListOptions {
+    opacity: 0;
+    pointer-events: none;
     position: absolute;
     margin-top: 50px;
     height: 200px;
-    width: 200px;
+    width: 125px;
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
     border-radius: 5px;
     background-color: white;
     transform: translateX()
+}
+
+.inputListItem {
+    cursor: pointer;
+    padding-left: 10px;
 }
 
 .inputListItem.selected {

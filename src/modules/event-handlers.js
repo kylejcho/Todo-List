@@ -29,6 +29,7 @@ const formAddButtonClicked = () => {
     formAddButton.addEventListener('click', function() {
         if (inputTaskName.value) {
             let dueDate;
+            let list;
             inputDueDate.forEach((e) =>{
                 if (e.className.includes('selected')) {
                     if (e.id == 'inputToday') {
@@ -38,7 +39,14 @@ const formAddButtonClicked = () => {
                     }
                 }         
             })
-            createTask(inputTaskName.value, inputTaskDescription.value, dueDate);
+            const inputListItem = document.querySelectorAll('.inputListItem')
+            inputListItem.forEach((e) =>{
+                if (e.className.includes('selected')) {
+                    list = e.id.replace('List', '')
+                }         
+            })
+
+            createTask(inputTaskName.value, inputTaskDescription.value, dueDate, list);
             formCancel();
             updateCounter();
         }
@@ -54,6 +62,11 @@ const formListClick = () => {
             })
             list.classList.toggle('selected')
         })
+    })
+
+    const inputListContainer = document.querySelector('#inputListContainer')
+    inputListContainer.addEventListener('click', ()=> {
+        inputListContainer.classList.toggle('selected');
     })
 }
 
