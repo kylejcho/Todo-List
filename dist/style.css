@@ -91,7 +91,7 @@ nav {
     align-items: center;
     height: 50px;
     background-color: var(--secondary-bg-color);
-    padding: 0 100px 0 36px;
+    padding: 0 36px;
 }
 
 #pageTitle {
@@ -145,7 +145,8 @@ nav {
 }
 
 #searchBar {
-    width: 250px;
+    width: 17vw;
+    min-width: 225px;
     height: 32px;
     border: none;
     padding-left: 8px;
@@ -220,8 +221,9 @@ nav {
 #sidebar {
     position: absolute;
     width: 12%;
-    min-width: 225px;
-    height: calc(100% - 115px);
+    min-width: 210px;
+    height: max-content;
+    min-height: calc(100% - 115px);
     padding: 40px 15px 25px 25px;
     color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
@@ -231,10 +233,6 @@ nav {
 #sidebar ion-icon {
     margin: 0 1rem 0 15px;
     font-size: 1.5rem;
-}
-
-#sidebarHome {
-    margin-bottom: 30px;
 }
 
 #sidebarShortcuts {
@@ -359,6 +357,7 @@ nav {
     align-items: center;
     font-size: 1rem;
     font-weight: 700;
+    margin-top: 20px;
     color: var(--primary-text-color);
     transform: translateX(-1px);
 }
@@ -380,6 +379,7 @@ nav {
     font-weight: 800;
     height: 2.5rem;
     margin-bottom: 10px;
+    white-space: nowrap;
 }
 
 @keyframes bottomTopBounce {
@@ -602,9 +602,6 @@ nav {
     border-radius: 5px;
 }
 
-.taskViewName {
-    cursor: text;
-}
 
 
 .taskViewNameContainer svg {
@@ -613,6 +610,7 @@ nav {
 }
 
 .taskViewName {
+    cursor: text;
     display: flex;
     align-items: center;
     font-size: 1.5rem;
@@ -797,6 +795,10 @@ nav {
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
 }
 
+.inputDueDate.selected:hover {
+    box-shadow: none;
+}
+
 #inputListContainer {
     display: flex;
     flex-direction: column;
@@ -896,7 +898,6 @@ nav {
 #sidebarListsTitle {
     height: auto;
     width: auto;
-    margin-top: 10px;
     background-color: var(--secondary-bg-color);
 }
 

@@ -75,14 +75,12 @@ const formListClick = () => {
 }
 
 const formDueDateClick = () => {
-    formContainer.addEventListener('click', (e)=>{
-        inputDueDate.forEach(dueDate =>{
-            dueDate.addEventListener('click', ()=> {
-                inputDueDate.forEach(element => {
-                    element.classList.remove('selected');
-                })
-                dueDate.classList.toggle('selected');
+    inputDueDate.forEach(dueDate =>{
+        dueDate.addEventListener('click', ()=> {
+            inputDueDate.forEach(element => {
+                element.classList.remove('selected');
             })
+            dueDate.classList.toggle('selected');
         })
     })
 }
