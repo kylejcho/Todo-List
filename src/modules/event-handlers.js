@@ -54,6 +54,7 @@ const formAddButtonClicked = () => {
 }
 
 const formListClick = () => {
+    const inputList = document.querySelector('#inputList')
     const inputListItems = document.querySelectorAll('.inputListItem');
     const listSelectionName = document.querySelector('#listSelectionName')
     inputListItems.forEach(list =>{
@@ -63,11 +64,12 @@ const formListClick = () => {
             })
             list.classList.toggle('selected');
             listSelectionName.innerText = list.innerText;
+            inputListContainer.classList.toggle('selected');
+            return
         })
     })
 
-    
-    inputListContainer.addEventListener('click', ()=> {
+    inputList.addEventListener('click', ()=> {
         inputListContainer.classList.toggle('selected');
     })
 }
@@ -117,7 +119,6 @@ const navLogo = () => {
     const sidebarHome = document.querySelector('#sidebarHome')
     pageTitle.addEventListener('click', ()=> {
         shortcutToggle(sidebarHome)
-
         clearContent();
         setTimeout(() => {
             createTasksContainer('home');
