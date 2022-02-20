@@ -220,6 +220,7 @@ nav {
 #sidebar {
     position: absolute;
     width: 12%;
+    min-width: 225px;
     height: calc(100% - 115px);
     padding: 40px 15px 25px 25px;
     color: var(--secondary-text-color);
