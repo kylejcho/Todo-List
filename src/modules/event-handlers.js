@@ -116,20 +116,7 @@ const navLogo = () => {
     const pageTitle = document.querySelector('#pageTitle');
     const sidebarHome = document.querySelector('#sidebarHome')
     pageTitle.addEventListener('click', ()=> {
-        const shortcuts = document.querySelectorAll('.sidebarShortcut');
-        const sidebarListContainers = document.querySelectorAll('.sidebarListContainer')
-        sidebarHome.classList.remove('viewing');
-        for (let i = 0; i < shortcuts.length; i++) {
-            shortcuts[i].classList.remove('viewing');
-            shortcuts[i].children[0].classList.remove('viewing')
-        }
-        for (let i = 0; i < sidebarListContainers.length; i++) {
-            sidebarListContainers[i].classList.remove('viewing');
-            sidebarListContainers[i].children[0].classList.remove('viewing')
-        }
-
-        sidebarHome.classList.toggle('viewing');
-        sidebarHome.children[0].classList.toggle('viewing');
+        shortcutToggle(sidebarHome)
 
         clearContent();
         setTimeout(() => {
@@ -145,7 +132,7 @@ const sidebarTabClick = () => {
         if (!e.target.className.includes('sidebarTab') && e.target.id != 'sidebarHome' || e.target.className.includes('viewing')) {
             return
         }
-        shortcutToggle(e);
+        shortcutToggle(e.target);
         clearContent();
         setTimeout(() => {
             if (e.target.id == 'sidebarHome') {
@@ -163,7 +150,7 @@ const sidebarTabClick = () => {
     })
 }
 
-const shortcutToggle = (e) => {
+const shortcutToggle = (target) => {
     const shortcuts = document.querySelectorAll('.sidebarShortcut');
     const sidebarHome = document.querySelector('#sidebarHome');
     const sidebarListContainers = document.querySelectorAll('.sidebarListContainer')
@@ -177,8 +164,8 @@ const shortcutToggle = (e) => {
         sidebarListContainers[i].children[0].classList.remove('viewing')
     }
 
-    e.target.classList.toggle('viewing');
-    e.target.children[0].classList.toggle('viewing');
+    target.classList.toggle('viewing');
+    target.children[0].classList.toggle('viewing');
 }
 
 
