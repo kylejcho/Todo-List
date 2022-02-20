@@ -705,6 +705,7 @@ nav {
 #taskForm {
     opacity: 0;
     background-color: white;
+    min-width: 450px;
     width: 30vw;
     height: 25vh;
     transform: scale(0);
@@ -803,6 +804,7 @@ nav {
     display: flex;
     flex-direction: column;
     position: relative;
+    width: 110px;
     margin: 5px;
     border-radius: 5px;
     transition: all 0.2s ease-in-out;
@@ -819,6 +821,7 @@ nav {
 
 #inputList {
     cursor: pointer;
+    position: relative;
     display: flex;
     align-items: center;
     padding: 10px;
@@ -835,29 +838,76 @@ nav {
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
 }
 
-#inputListTextArea {
-    border-bottom: 1.5px solid #d6d6d6 !important;
+#inputListTextArea::placeholder {
     color: var(--secondary-text-color);
+}
+
+#inputListTextArea {
+    border-bottom: 1px solid #d6d6d6 !important;
+    padding-left: 5px;
+    color: var(--primary-text-color);
     font-weight: 400;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+#createListButton {
+    padding-left: 10px;
+}
+
+#createListButton:hover {
+    background-color: #ecf0f6;
 }
 
 #inputListOptions {
     opacity: 0;
     pointer-events: none;
     position: absolute;
-    margin-top: 50px;
+    margin-top: 55px;
     height: max-content;
-    width: 125px;
+    width: 150%;
     font-weight: 400;
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
     border-radius: 5px;
-    border: 1.5px solid #d6d6d6;
+    border: 1px solid #d6d6d6;
     background-color: white;
-    transform: translateX();
+    transform: translateX(-14%);
     transition: all 0.2s ease-in-out;
 }
+
+#inputListOptions:before {
+    content:'';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-bottom: solid 6px #d6d6d6;
+    border-left: solid 7px transparent;
+    border-right: solid 7px transparent;
+}
+
+#inputListOptions:after {
+    content:'';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-bottom: solid 5px #ffffff;
+    border-left: solid 6px transparent;
+    border-right: solid 6px transparent;
+}
+
+
 
 .inputListItem {
     cursor: pointer;

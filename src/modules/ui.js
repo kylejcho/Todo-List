@@ -340,4 +340,10 @@ export const createInputListItem = (item) => {
     })
 }
 
+export const updateCreateListButton = (listName) => {
+    const listOptions = document.querySelector('#inputListOptions');
+    const createListButton = document.querySelector('#createListButton');
+    createListButton.innerText = "create " + '"' + listName + '"';
+}
+
 export default initialPageLoad;

@@ -1,6 +1,6 @@
 import createTask from "./create-task";
-import { createTaskView, createTasksContainer, clearContent, updateCounter} from "./ui";
-import { allTasks } from "./create-task";
+import { createTaskView, createTasksContainer, clearContent, updateCounter, updateCreateListButton} from "./ui";
+import { allTasks, allLists } from "./create-task";
 import checkTaskAnimation from "./animations";
 import { deleteTask, removeTaskView } from "./animations";
 import { isToday, startOfToday,startOfTomorrow } from "date-fns";
@@ -53,6 +53,17 @@ const formAddButtonClicked = () => {
     })
 }
 
+const formDueDateClick = () => {
+    inputDueDate.forEach(dueDate =>{
+        dueDate.addEventListener('click', ()=> {
+            inputDueDate.forEach(element => {
+                element.classList.remove('selected');
+            })
+            dueDate.classList.toggle('selected');
+        })
+    })
+}
+
 const formListClick = () => {
     const inputList = document.querySelector('#inputList')
     const inputListItems = document.querySelectorAll('.inputListItem');
@@ -74,16 +85,43 @@ const formListClick = () => {
     })
 }
 
-const formDueDateClick = () => {
-    inputDueDate.forEach(dueDate =>{
-        dueDate.addEventListener('click', ()=> {
-            inputDueDate.forEach(element => {
-                element.classList.remove('selected');
-            })
-            dueDate.classList.toggle('selected');
+const formSearchInput = () => {
+    const searchInput = document.querySelector('#inputListTextArea');
+    const inputListItems = document.querySelectorAll('.inputListItem');
+
+    searchInput.addEventListener('input', e => {
+        const value = e.target.value.toLowerCase();
+        const listOptions = document.querySelector('#inputListOptions')
+        inputListItems.forEach(item => {
+            const valueMatch = item.innerText.toLowerCase().includes(value);
+            
+            item.classList.toggle('hidden', !valueMatch);            
         })
+        const searchCheck = allLists.some(list => {
+            return list.toLowerCase().includes(searchInput.value)
+        })
+
+        const createListButton = document.querySelector('#createListButton');
+        if (searchCheck) {
+            createListButton.classList.add('hidden')
+        } else {
+            updateCreateListButton(searchInput.value);
+            createListButton.classList.remove('hidden')
+        }
     })
 }
+
+const createListClick = () => {
+    const createListButton = document.querySelector('#createListButton');
+    createListButton.addEventListener('click', (e)=>{
+        const listSelectionName = document.querySelector('#listSelectionName');
+        const inputListTextArea = document.querySelector('#inputListTextArea');
+        const inputListContainer = document.querySelector('#inputListContainer')
+        listSelectionName.innerText = inputListTextArea.value;
+        inputListContainer.classList.remove('selected')
+    })
+}
+
 
 const formCancelClick = () => {
     formContainer.addEventListener('click', (e)=>{
@@ -106,9 +144,18 @@ const formCancel = () => {
     document.querySelector('#inputListContainer').classList.remove('selected')
     document.querySelector('#listSelectionName').innerText = 'Add to list'
     const inputListItems = document.querySelectorAll('.inputListItem');
+    const searchInput = document.querySelector('#inputListTextArea');
+    searchInput.value = '';
+
     inputListItems.forEach(listItem=> {
-        listItem.classList.remove('selected')
+        listItem.classList.remove('selected');
+        listItem.classList.remove('hidden');
     })
+
+    const createListButton = document.querySelector('#createListButton');
+    if (!createListButton.className.includes('hidden')) {
+        createListButton.classList.add('hidden')
+    }
 }
 
 //Navbar
@@ -297,6 +344,8 @@ const runEventHandlers = () => {
     formAddButtonClicked();
     formDueDateClick();
     formListClick();
+    formSearchInput();
+    createListClick();
     formCancelClick();
     navLogo();
     sidebarTabClick();
