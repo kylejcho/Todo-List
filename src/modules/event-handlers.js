@@ -111,6 +111,33 @@ const formCancel = () => {
     })
 }
 
+//Navbar
+const navLogo = () => {
+    const pageTitle = document.querySelector('#pageTitle');
+    const sidebarHome = document.querySelector('#sidebarHome')
+    pageTitle.addEventListener('click', ()=> {
+        const shortcuts = document.querySelectorAll('.sidebarShortcut');
+        const sidebarListContainers = document.querySelectorAll('.sidebarListContainer')
+        sidebarHome.classList.remove('viewing');
+        for (let i = 0; i < shortcuts.length; i++) {
+            shortcuts[i].classList.remove('viewing');
+            shortcuts[i].children[0].classList.remove('viewing')
+        }
+        for (let i = 0; i < sidebarListContainers.length; i++) {
+            sidebarListContainers[i].classList.remove('viewing');
+            sidebarListContainers[i].children[0].classList.remove('viewing')
+        }
+
+        sidebarHome.classList.toggle('viewing');
+        sidebarHome.children[0].classList.toggle('viewing');
+
+        clearContent();
+        setTimeout(() => {
+            createTasksContainer('home');
+        }, 350);
+    })
+}
+
 
 //Sidebar
 const sidebarTabClick = () => {
@@ -285,6 +312,7 @@ const runEventHandlers = () => {
     formDueDateClick();
     formListClick();
     formCancelClick();
+    navLogo();
     sidebarTabClick();
     sidebarArrowClick();
     clickTask();
