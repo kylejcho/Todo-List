@@ -1,1 +1,1 @@
-Live preview: https://kylejcho.github.io/todo-list/
+Live preview: https://kylejcho.github.io/clickDO/
