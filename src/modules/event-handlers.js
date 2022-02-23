@@ -39,12 +39,8 @@ const formAddButtonClicked = () => {
                     }
                 }         
             })
-            const inputListItem = document.querySelectorAll('.inputListItem')
-            inputListItem.forEach((e) =>{
-                if (e.className.includes('selected')) {
-                    list = e.id.replace('List', '')
-                }         
-            })
+            const listSelectionName = document.querySelector('#listSelectionName');
+            list = listSelectionName.innerText;
 
             createTask(inputTaskName.value, inputTaskDescription.value, dueDate, list);
             formCancel();
@@ -68,17 +64,21 @@ const formListClick = () => {
     const inputList = document.querySelector('#inputList')
     const inputListItems = document.querySelectorAll('.inputListItem');
     const listSelectionName = document.querySelector('#listSelectionName')
-    inputListItems.forEach(list =>{
-        list.addEventListener('click', ()=> {
+
+
+    const inputListOptions = document.querySelector('#inputListOptions');
+    inputListOptions.addEventListener('click', (e)=> {
+        if (e.target.classList == 'inputListItem') {
             inputListItems.forEach(element =>{
                 element.classList.remove('selected');
             })
-            list.classList.toggle('selected');
-            listSelectionName.innerText = list.innerText;
+            e.target.classList.toggle('selected');
+            listSelectionName.innerText = e.target.innerText;
             inputListContainer.classList.toggle('selected');
-            return
-        })
+        }
     })
+
+    
 
     inputList.addEventListener('click', ()=> {
         inputListContainer.classList.toggle('selected');
