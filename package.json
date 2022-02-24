@@ -1,5 +1,5 @@
 {
-  "name": "clickDO",
+  "name": "checkr",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kylejcho/clickDo.git"
+    "url": "git+https://github.com/kylejcho/checkr.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kylejcho/clickDO/issues"
+    "url": "https://github.com/kylejcho/checkr/issues"
   },
-  "homepage": "https://github.com/kylejcho/clickDO",
+  "homepage": "https://github.com/kylejcho/checkr",
   "devDependencies": {
     "gh-pages": "^3.2.3",
     "push-dir": "^0.4.1",

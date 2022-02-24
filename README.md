@@ -1,1 +1,1 @@
-Live preview: https://kylejcho.github.io/clickDO/
+Live preview: https://kylejcho.github.io/checkr/
