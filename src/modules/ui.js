@@ -266,9 +266,29 @@ export const createTaskView = (task, taskContainer) => {
     } else {
         taskViewDueDate.innerHTML = dueDate;
     }
-
+    
     taskViewDueDateContainer.append(taskViewDueDate);
 
+
+    if (task.list != undefined) {
+        const taskViewListContainer = document.createElement('div');
+        taskViewListContainer.className = "taskViewListContainer";
+        taskViewListContainer.innerText = "List:";
+        taskViewContainer.append(taskViewListContainer);
+
+        const taskViewList = document.createElement('div');
+        taskViewList.className = "taskViewList";
+        const taskViewListP = document.createElement('p');
+        taskViewListP.innerText = task.list;
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+
+        taskViewList.append(dot);
+        taskViewList.append(taskViewListP);
+        taskViewListContainer.append(taskViewList);
+    }
+
+    
 
 
     const tasksContainer = document.querySelector('.tasksContainer');
