@@ -40,7 +40,9 @@ const formAddButtonClicked = () => {
                 }         
             })
             const listSelectionName = document.querySelector('#listSelectionName');
-            list = listSelectionName.innerText;
+            if (listSelectionName.innerText!= 'Add to list') {
+                list = listSelectionName.innerText;
+            }
 
             createTask(inputTaskName.value, inputTaskDescription.value, dueDate, list);
             formCancel();
