@@ -1,12 +1,13 @@
 import { addTask, slideInTaskView } from "./animations";
 import { allTasks, allLists} from "./create-task";
 import { isToday, isTomorrow, isThisWeek, startOfToday } from "date-fns";
-import { formatDate, getDayOfMonth, isMorning, isAfternoon} from "./dates";
+import { formatDate, getDayOfMonth, isMorning, isAfternoon, getMonth, getYear} from "./dates";
 
 const initialPageLoad = () => {
     loadingPage()
     createTasksContainer('home');
     createCalendarIcon(); 
+    createCalendarMonth(getMonth());
 }
 
 const loadingPage = () => {
@@ -364,6 +365,11 @@ export const updateCreateListButton = (listName) => {
     const listOptions = document.querySelector('#inputListOptions');
     const createListButton = document.querySelector('#createListButton');
     createListButton.innerText = "create " + '"' + listName + '"';
+}
+
+export const createCalendarMonth = (month) => {
+    const calendarMonth = document.querySelector('#calendarMonth');
+    calendarMonth.innerHTML  = month + ' ' + getYear();
 }
 
 export default initialPageLoad;

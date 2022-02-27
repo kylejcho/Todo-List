@@ -23,6 +23,14 @@ export const formatDate = (date) => {
     return dateFormatted;
 }
 
+export const getMonth = () => {
+    return format(new Date, 'LLL')
+}
+
+export const getYear = () => {
+    return format(new Date, 'yyyy')
+}
+
 export const getDayOfMonth = (date) => {
     return format(date, 'd')
 }

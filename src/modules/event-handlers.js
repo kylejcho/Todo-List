@@ -10,6 +10,8 @@ const formAddButton = document.querySelector('#taskFormAddButton');
 const inputTaskName = document.querySelector('#inputTaskName');
 const inputTaskDescription = document.querySelector('#inputTaskDescription');
 const inputDueDate = document.querySelectorAll('.inputDueDate');
+const inputCalendarContainer = document.querySelector('#inputCalendarContainer');
+const dateSelection = document.querySelector('#dateSelection')
 const formContainer = document.querySelector("#taskFormContainer");
 const form = document.querySelector("#taskForm");
 const contentContainer = document.querySelector("#contentContainer")
@@ -57,16 +59,34 @@ const formDueDateClick = () => {
             inputDueDate.forEach(element => {
                 element.classList.remove('selected');
             })
+            inputCalendarContainer.classList.remove('selected');
+            dateSelection.innerText = 'Pick Date'
             dueDate.classList.toggle('selected');
         })
     })
 }
 
 const formCalendarClick = () => {
-    const inputCalendar = document.querySelector('#inputCalendarContainer');
+    
     const inputCalendarOptions = document.querySelector('#inputCalendarOptions');
-    inputCalendar.addEventListener('click', ()=> {
-        inputCalendar.classList.toggle('selected');
+    const calendar = document.querySelector('#calendar');
+    const calendarMonth = document.querySelector('#calendarMonth')
+    const inputDueDate = document.querySelectorAll('.inputDueDate')
+    calendar.addEventListener('click', (e)=> {
+        const monthString = calendarMonth.innerText;
+        const month = monthString.substring(0, monthString.length - 4);
+        dateSelection.innerText = month + ' ' + e.target.innerText;
+        inputDueDate.forEach(date => {
+            date.classList.remove('selected');
+        })
+    })
+
+    inputCalendarContainer.addEventListener('click', ()=> {
+        if (!inputCalendarContainer.className.includes('selected')) {
+            inputCalendarContainer.classList.toggle('selected');
+        } else if (inputCalendarContainer.className.includes('selected') && dateSelection.innerText == 'Pick Date') {
+            inputCalendarContainer.classList.remove('selected');
+        }
         inputCalendarOptions.classList.toggle('selected');
     })
 }   
