@@ -848,7 +848,7 @@ nav {
     pointer-events: auto;
     position: absolute;
     margin-top: 55px;
-    padding: 10px;
+    padding: 10px 10px 0 10px;
     width: 200%;
     aspect-ratio: 1 / 0.8;
     font-weight: 400;
@@ -888,26 +888,49 @@ nav {
     border-right: solid 6px transparent;
 }
 
+#calendarHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
 #calendarMonth {
     font-weight: 600;
 }
 
+#calendarArrowContainer {
+    display: flex;
+    align-items: center;
+}
+
+#calendarArrowContainer ion-icon {
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--secondary-text-color);
+    transition: color 0.2s ease-in-out;
+}
+
+#calendarArrowContainer ion-icon:hover {
+    color: var(--primary-text-color);
+}
+
 #daysOfWeek {
     display: grid;
-    grid-template-columns: repeat(7, auto);
+    grid-template-columns: repeat(7, 1fr);
     justify-items: center;
     margin-top: 10px;
-    transform: translateX(-1px);
+    margin-bottom: 5px;
 }
 
 #daysOfWeek div {
     color: var(--secondary-text-color);
     font-size: 0.8rem;
+    overflow: hidden;
 }
 
 #calendar {
     display: grid;
-    grid-template: repeat(7,auto) / repeat(7,auto);
+    grid-template: repeat(6,auto) / repeat(7,1fr);
     width: 100%;
     height: 100%;
 }
@@ -921,6 +944,7 @@ nav {
 
 
 .calendarDay {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
