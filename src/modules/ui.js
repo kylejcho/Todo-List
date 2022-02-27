@@ -1,7 +1,7 @@
 import { addTask, slideInTaskView } from "./animations";
 import { allTasks, allLists} from "./create-task";
 import { isToday, isTomorrow, isThisWeek, startOfToday } from "date-fns";
-import { formatDate, getDayOfMonth, isMorning, isAfternoon, getMonth, getYear} from "./dates";
+import { formatDate, getDayOfMonth, isMorning, isAfternoon, within7Days, getMonth, getYear} from "./dates";
 
 const initialPageLoad = () => {
     loadingPage()
@@ -80,8 +80,9 @@ export const createTasksContainer = (type, list) => {
         tasksContainerTitle.innerText = "Next 7 Days";
         createSubGroups("today", tasksContainer, 'title');
         createSubGroups("tomorrow", tasksContainer, 'title');
+        createSubGroups("upcoming", tasksContainer, 'title');
         allTasks.forEach((task)=> {
-            if (isThisWeek(task.dueDate)) {
+            if (within7Days(task.dueDate)) {
                 setTimeout(() => {
                     createTaskContainer(task.name, task.description, task.dueDate, task.list, task.status, task.key, 'no shadow');
                 }, 10);

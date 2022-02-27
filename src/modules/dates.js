@@ -1,21 +1,17 @@
-import {format, addDays, isAfter, isBefore, isToday, getHours} from 'date-fns';
+import {format, startOfDay, addDays, isAfter, isBefore, isToday, getHours, isWithinInterval} from 'date-fns';
 
 const getDate = () => {
     return today();
 }
 
-
-const today = () => {
-    return new Date();
-
-}
-
-const tomorrow = (date) => {
-    return date = addDays(date, 1)
-}
-
 export const nextWeek = (date) => {
     return addDays(date, 7)
+}
+
+export const within7Days = (date) => {
+   
+
+    return isWithinInterval(date, { start: startOfDay(new Date()), end: addDays(new Date(),7) })
 }
 
 export const formatDate = (date) => {

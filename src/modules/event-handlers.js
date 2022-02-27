@@ -78,12 +78,16 @@ const formCalendarClick = () => {
     const calendarMonth = document.querySelector('#calendarMonth')
     const inputDueDate = document.querySelectorAll('.inputDueDate')
     calendar.addEventListener('click', (e)=> {
-        const monthString = calendarMonth.innerText;
-        const month = monthString.substring(0, monthString.length - 4);
-        dateSelection.innerText = month + ' ' + e.target.innerText;
-        inputDueDate.forEach(date => {
-            date.classList.remove('selected');
-        })
+        if (e.target.className == 'calendarDay') {
+            const monthString = calendarMonth.innerText;
+            const month = monthString.substring(0, monthString.length - 4);
+            dateSelection.innerText = month + ' ' + e.target.innerText;
+            inputDueDate.forEach(date => {
+                date.classList.remove('selected');
+            })
+        } else {
+            return
+        }
     })
 
     inputCalendarContainer.addEventListener('click', ()=> {

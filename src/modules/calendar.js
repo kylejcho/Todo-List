@@ -13,7 +13,6 @@ export const getDayOfWeek = () => {
 
 const makeCalendar = () => {
     const startDay = getDayOfWeek();
-    const today = parseInt(format(new Date(), 'd')) 
 
     for (let i = 0; i < startDay; i++) {
         const calendarBlank = document.createElement('div');
@@ -21,19 +20,26 @@ const makeCalendar = () => {
         calendar.append(calendarBlank);
     }
 
+    const today = parseInt(format(new Date(), 'd')) 
     const daysInMonth = getDaysMonth();
-
     const daysRemaining = daysInMonth - today + 1;
 
     console.log(daysRemaining)
     let day = 1;
-    for (let i = 0; i < daysInMonth; i++) {
+    for (let i = 0; i < today - 1; i++) {
+        const calendarDay = document.createElement('div');
+        calendarDay.className = "calendarDayPast";
+        calendarDay.innerText = day;
+        calendar.append(calendarDay);
+        day++;
+    }    
+    for (let i = 0; i < daysRemaining; i++) {
         const calendarDay = document.createElement('div');
         calendarDay.className = "calendarDay";
         calendarDay.innerText = day;
         calendar.append(calendarDay);
         day++;
-    }    
+    }
 }
 
 

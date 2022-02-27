@@ -949,7 +949,16 @@ nav {
 }
 
 
-
+.calendarDayPast {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--secondary-text-color);
+}
 
 .calendarDay {
     cursor: pointer;
