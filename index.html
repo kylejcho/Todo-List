@@ -31,9 +31,6 @@
             <div id="darkLightModeContainer">
                 <ion-icon name="moon-outline"></ion-icon>
             </div>
-            <div id="githubContainer">
-                <a href="https://github.com/kylejcho"><ion-icon name="logo-github"></ion-icon></a>
-            </div>
             <div id="userProfileContainer">
                 <ion-icon name="person-circle-outline"></ion-icon>
             </div>
@@ -75,7 +72,32 @@
             <div id="inputDueDateContainer">
                 <div class="inputDueDate selected" id ="inputToday"><ion-icon name="calendar-number-outline"></ion-icon>Today</div>
                 <div class="inputDueDate" id ="inputTomorrow"><ion-icon name="today-outline"></ion-icon>Tomorrow</div>
-                <div class="inputDueDate" id ="inputCustom"><ion-icon name="calendar-clear-outline"></ion-icon>Custom</div>
+                <div id ="inputCalendarContainer">
+                    <div id="inputCalendar">
+                        <ion-icon name="calendar-clear-outline"></ion-icon>
+                        <p id="dateSelection">Pick Date</p>
+                    </div>
+                    <div id="inputCalendarOptions">
+                        <div id="calendarHeader">
+                            <div id="calendarMonth"></div>
+                            <div id="calendarArrowContainer">
+                                <ion-icon name="chevron-back-outline"></ion-icon>
+                                <ion-icon name="chevron-forward-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <div id="daysOfWeek">
+                            <div>S</div>
+                            <div>M</div>
+                            <div>T</div>
+                            <div>W</div>
+                            <div>T</div>
+                            <div>F</div>
+                            <div>S</div>
+                        </div>
+                        <div id="calendar">
+                        </div>
+                    </div>
+                </div>
                 <div id="inputListContainer">
                     <div id="inputList">
                         <div class="dot"></div>
@@ -83,6 +105,7 @@
                     </div>
                     <div id="inputListOptions">
                         <input id="inputListTextArea" type="text" placeholder="Type a list">
+                        <div id="createListButton" class="hidden"></div>
                     </div>
                 </div>
                 

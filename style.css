@@ -235,10 +235,6 @@ nav {
     font-size: 1.5rem;
 }
 
-#sidebarHome {
-    margin-bottom: 30px;
-}
-
 #sidebarShortcuts {
     transition: all ease-in-out 0.2s;
 }
@@ -361,6 +357,7 @@ nav {
     align-items: center;
     font-size: 1rem;
     font-weight: 700;
+    margin-top: 20px;
     color: var(--primary-text-color);
     transform: translateX(-1px);
 }
@@ -581,9 +578,6 @@ nav {
     top: 90px;
 }
 
-.taskViewCheckContainer {
-    cursor: pointer;
-}
 
 .taskViewCheckContainer.completed {
     animation: checkClick 0.3s ease-out;
@@ -591,6 +585,7 @@ nav {
 }
 
 .taskViewCheckContainer svg {
+    cursor: pointer;
     transition: all ease-in-out 0.1s;
 }
 
@@ -605,9 +600,6 @@ nav {
     border-radius: 5px;
 }
 
-.taskViewName {
-    cursor: text;
-}
 
 
 .taskViewNameContainer svg {
@@ -635,11 +627,6 @@ nav {
     transition: background-size 0.4s ease, color 0.4s ease, background-color 0.4s ease-in-out;
 }
 
-.taskViewName:hover {
-    margin: 0;
-    padding: 12px 25px 12px 10px;
-    background-color: #f6f6fb;
-}
 
 .taskViewName.completed {
     background-size: 100% 100%;
@@ -658,16 +645,11 @@ nav {
 .taskViewDescription {
     display: flex;
     align-items: center;
-    cursor: text;
     font-weight: 400;
     font-size: 1rem;
     color: var(--secondary-text-color);
     margin-top: 10px;
     height: 30px;
-}
-
-.taskViewDescription:hover {
-    background-color: #f6f6fb;
 }
 
 .taskViewDueDateContainer {
@@ -682,7 +664,6 @@ nav {
 .taskViewDueDate {
     display: flex;
     align-items: center;
-    cursor: pointer;
     font-weight: 400;
     font-size: 1rem;
     width: max-content;
@@ -694,26 +675,52 @@ nav {
     padding: 0 5px 0 2px;
 }
 
+.taskViewListContainer {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    color: var(--secondary-text-color);
+    margin-left: 35px;
+    fill: #697384;
+}
+
+.taskViewList {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 1rem;
+    width: max-content;
+    color: var(--secondary-text-color);
+    margin-top: 10px;
+}
+
+.taskViewList .dot {
+    margin: 0 10px 0 0;
+}
+
 /* TASK FORM */
 
 #taskFormContainer {
     visibility: hidden;
-    padding-top: 35vh;
     position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     left: 0;
     top: 0;
     height: 100vh;
     width: 100vw;
     transition: all ease-in-out 0.2s;
+    z-index: 3;
 }
 
 #taskForm {
     opacity: 0;
     background-color: white;
+    min-width: 450px;
     width: 30vw;
     height: 25vh;
     transform: scale(0);
-    margin: 0 auto;
     border-radius: 10px;
     box-shadow: 0 5px 40px rgba(0, 0, 0, 0.3);
     padding: 15px;
@@ -800,10 +807,182 @@ nav {
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
 }
 
+.inputDueDate.selected:hover {
+    box-shadow: none;
+}
+
+#inputCalendarContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 120px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+#inputCalendarContainer:hover {
+    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
+}
+
+
+#inputCalendar {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #171c24;
+    border-radius: 5px;
+    transition: all ease-in-out 0.2s;
+}
+
+#inputCalendar ion-icon {
+    color: #171c24;
+    font-size: 1.25rem;
+    margin-right: 5px;
+}
+
+#inputCalendarOptions {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    margin-top: 55px;
+    padding: 10px 10px 0 10px;
+    width: 200%;
+    aspect-ratio: 1 / 0.8;
+    font-weight: 400;
+    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
+    border-radius: 5px;
+    border: 1px solid #d6d6d6;
+    background-color: white;
+    transform: translateX(-25%);
+    transition: all 0.2s ease-in-out;
+}
+#inputCalendarContainer.selected {
+    box-shadow: none;
+}
+
+#inputCalendarOptions.selected {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#inputCalendarOptions:before {
+    content:'';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-bottom: solid 6px #d6d6d6;
+    border-left: solid 7px transparent;
+    border-right: solid 7px transparent;
+}
+
+#inputCalendarOptions:after {
+    content:'';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-bottom: solid 5px #ffffff;
+    border-left: solid 6px transparent;
+    border-right: solid 6px transparent;
+}
+
+#calendarHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+#calendarMonth {
+    font-weight: 600;
+}
+
+#calendarArrowContainer {
+    display: flex;
+    align-items: center;
+}
+
+#calendarArrowContainer ion-icon {
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--secondary-text-color);
+    transition: color 0.2s ease-in-out;
+}
+
+#calendarArrowContainer ion-icon:hover {
+    color: var(--primary-text-color);
+}
+
+#daysOfWeek {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    justify-items: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#daysOfWeek div {
+    color: var(--secondary-text-color);
+    font-size: 0.8rem;
+    overflow: hidden;
+}
+
+#calendar {
+    display: grid;
+    grid-template: repeat(6,auto) / repeat(7,1fr);
+    width: 100%;
+    height: 100%;
+}
+
+.calendarBlank {
+    width: 100%;
+    height: 100%;
+}
+
+
+.calendarDayPast {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--tertiary-text-color);
+}
+
+.calendarDay {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 0.8rem;
+    font-weight: 400;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 5px;
+}
+
+.calendarDay:hover {
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-blue);
+}
+
 #inputListContainer {
     display: flex;
     flex-direction: column;
     position: relative;
+    width: 110px;
     margin: 5px;
     border-radius: 5px;
     transition: all 0.2s ease-in-out;
@@ -820,6 +999,7 @@ nav {
 
 #inputList {
     cursor: pointer;
+    position: relative;
     display: flex;
     align-items: center;
     padding: 10px;
@@ -836,29 +1016,76 @@ nav {
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
 }
 
-#inputListTextArea {
-    border-bottom: 1.5px solid #d6d6d6 !important;
+#inputListTextArea::placeholder {
     color: var(--secondary-text-color);
+}
+
+#inputListTextArea {
+    border-bottom: 1px solid #d6d6d6 !important;
+    padding-left: 5px;
+    color: var(--primary-text-color);
     font-weight: 400;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+#createListButton {
+    padding-left: 10px;
+}
+
+#createListButton:hover {
+    background-color: #ecf0f6;
 }
 
 #inputListOptions {
     opacity: 0;
     pointer-events: none;
     position: absolute;
-    margin-top: 50px;
+    margin-top: 55px;
     height: max-content;
-    width: 125px;
+    width: 150%;
     font-weight: 400;
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
     border-radius: 5px;
-    border: 1.5px solid #d6d6d6;
+    border: 1px solid #d6d6d6;
     background-color: white;
-    transform: translateX();
+    transform: translateX(-14%);
     transition: all 0.2s ease-in-out;
 }
+
+#inputListOptions:before {
+    content:'';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-bottom: solid 6px #d6d6d6;
+    border-left: solid 7px transparent;
+    border-right: solid 7px transparent;
+}
+
+#inputListOptions:after {
+    content:'';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-bottom: solid 5px #ffffff;
+    border-left: solid 6px transparent;
+    border-right: solid 6px transparent;
+}
+
+
 
 .inputListItem {
     cursor: pointer;
@@ -899,7 +1126,6 @@ nav {
 #sidebarListsTitle {
     height: auto;
     width: auto;
-    margin-top: 10px;
     background-color: var(--secondary-bg-color);
 }
 
@@ -934,7 +1160,7 @@ nav {
     position: relative;
     z-index: 2;
     width: auto;
-    height: 100%;
+    height: 300px;
     background-color: var(--secondary-bg-color);
 }
 
