@@ -12,13 +12,15 @@ const inputTaskName = document.querySelector('#inputTaskName');
 const inputTaskDescription = document.querySelector('#inputTaskDescription');
 const inputDueDate = document.querySelectorAll('.inputDueDate');
 const inputCalendarContainer = document.querySelector('#inputCalendarContainer');
+const inputCalendarOptions = document.querySelector('#inputCalendarOptions');
 const dateSelection = document.querySelector('#dateSelection')
 const formContainer = document.querySelector("#taskFormContainer");
 const form = document.querySelector("#taskForm");
 const contentContainer = document.querySelector("#contentContainer")
 const sidebar = document.querySelector('#sidebar');
 const sidebarShortcuts = document.querySelector('#sidebarShortcuts');
-const sidebarLists = document.querySelector('#sidebarLists')
+const sidebarLists = document.querySelector('#sidebarLists');
+
 //FORM
 const formButtonClicked = () => {
     addButton.addEventListener('click', function() {
@@ -65,15 +67,14 @@ const formDueDateClick = () => {
                 element.classList.remove('selected');
             })
             inputCalendarContainer.classList.remove('selected');
-            dateSelection.innerText = 'Pick Date'
+            inputCalendarOptions.classList.remove('selected');
+            dateSelection.innerText = 'Pick Date';
             dueDate.classList.toggle('selected');
         })
     })
 }
 
 const formCalendarClick = () => {
-    
-    const inputCalendarOptions = document.querySelector('#inputCalendarOptions');
     const calendar = document.querySelector('#calendar');
     const calendarMonth = document.querySelector('#calendarMonth')
     const inputDueDate = document.querySelectorAll('.inputDueDate')
@@ -131,12 +132,19 @@ const formSearchInput = () => {
 
     searchInput.addEventListener('input', e => {
         const value = e.target.value.toLowerCase();
-        const listOptions = document.querySelector('#inputListOptions')
-        inputListItems.forEach(item => {
-            const valueMatch = item.innerText.toLowerCase().includes(value);
-            
-            item.classList.toggle('hidden', !valueMatch);            
+        console.log(e.target)
+
+        const inputItems = e.target.parentNode.childNodes;
+        console.log(inputItems)
+
+        inputItems.forEach(item=> {
+            if (item.className == 'inputListItem' || item.className == 'inputListItem hidden') {
+                const valueMatch = item.innerText.toLowerCase().includes(value);
+                item.classList.toggle('hidden', !valueMatch);    
+            }
         })
+
+        
         const searchCheck = allLists.some(list => {
             return list.toLowerCase().includes(searchInput.value)
         })
