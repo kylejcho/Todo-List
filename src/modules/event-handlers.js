@@ -4,6 +4,7 @@ import { allTasks, allLists } from "./create-task";
 import checkTaskAnimation from "./animations";
 import { deleteTask, removeTaskView } from "./animations";
 import { isToday, startOfToday,startOfTomorrow } from "date-fns";
+import { stringToDate } from "./calendar";
 
 const addButton = document.querySelector('#addButton');
 const formAddButton = document.querySelector('#taskFormAddButton');
@@ -41,6 +42,10 @@ const formAddButtonClicked = () => {
                     }
                 }         
             })
+            if (dateSelection.innerText != 'Pick Date') {
+                dueDate = stringToDate(dateSelection.innerText);
+            }
+
             const listSelectionName = document.querySelector('#listSelectionName');
             if (listSelectionName.innerText!= 'Add to list') {
                 list = listSelectionName.innerText;
@@ -177,6 +182,9 @@ const formCancel = () => {
     const inputListItems = document.querySelectorAll('.inputListItem');
     const searchInput = document.querySelector('#inputListTextArea');
     searchInput.value = '';
+
+    inputCalendarContainer.classList.remove('selected');
+    dateSelection.innerText = 'Pick Date';
 
     inputListItems.forEach(listItem=> {
         listItem.classList.remove('selected');

@@ -5,6 +5,7 @@ import runEventHandlers from "./modules/event-handlers";
 import {updateCounter} from "./modules/ui"
 import makeCalendar from "./modules/calendar"
 
+
 initialPageLoad();
 exampleTasks();
 runEventHandlers();
