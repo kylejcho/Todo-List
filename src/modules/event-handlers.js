@@ -351,7 +351,7 @@ const checkClick = () => {
         else if (e.target.parentNode.className.includes("taskViewCheckContainer")) {
             const taskViewContainer = e.target.parentNode.parentNode.parentNode;
             const key = taskViewContainer.id.substring(1)
-            console.log(key)
+            
             let taskContainer;
             const tasks = document.querySelectorAll('.taskContainer');
             tasks.forEach(task => {

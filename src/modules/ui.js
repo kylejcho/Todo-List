@@ -8,6 +8,7 @@ const initialPageLoad = () => {
     createTasksContainer('home');
     createCalendarIcon(); 
     createCalendarMonth(getMonth());
+    
 }
 
 const loadingPage = () => {
@@ -209,6 +210,17 @@ export const createTaskContainer = (task, description, dueDate, list, status, ke
     } else {
         subGroup.insertBefore(taskContainer, subGroup.children[1]);
     }
+
+
+    let distance = 60;
+    for (let i = 2; i < subGroup.children.length; i++) {
+        subGroup.children[i].style.transform = `translateY(${distance}px)`;
+        distance += 60;
+    }    
+
+    
+    let subGroupHeight = subGroup.children.length * 60; 
+    subGroup.style.height = `${subGroupHeight}px`
     
     addTask(taskContainer, shadow);
 }

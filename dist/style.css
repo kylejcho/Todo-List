@@ -197,6 +197,7 @@ nav {
     display: flex;
     height: calc(100vh - 50px);
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #contentContainer::-webkit-scrollbar {
@@ -210,12 +211,6 @@ nav {
 #contentContainer::-webkit-scrollbar-thumb {
     background-color: #d4d4d8;
     border-radius: 50px;
-}
-
-
-#contentContainer {
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 #sidebar {
@@ -368,6 +363,7 @@ nav {
 .tasksContainer {
     height: auto;
     width: 25%;
+    position: relative;
     margin: 48px auto auto auto;
     transition: all 0.3s cubic-bezier(0.5, 0, 0.5, 1);
     animation: bottomTopBounce 0.5s cubic-bezier(0, 0.5, 0.5, 1);
@@ -425,12 +421,13 @@ nav {
 /* TASK CONTAINER */
 
 .taskContainer {
-    position: relative;
+    position: absolute;
     cursor: pointer;
     display: grid;
+    height: 57px;
+    width: 20vw;
     grid-template: 30px 30px/25px auto 25px;
     border-radius: 5px;
-    padding-top: 3px;
     padding-left: 12px;
     padding-right: 5px;
     transition: all ease-in-out 0.2s;
@@ -452,7 +449,7 @@ nav {
 }
 
 .taskContainer:hover {
-    transform: scale(1.007);
+    transform: scale(1.00);
 }
 
 .taskContainer:hover > .deleteContainer {
@@ -470,15 +467,6 @@ nav {
 
 @keyframes taskContainerDelete {
     100% {transform: translateY(-100%)}
-}
-
-@keyframes taskContainerAdd {
-    0% {
-        box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);
-        transform: scale(1.007);
-    }
-    50% {box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.17);}
-    100% {transform: scale(1);}
 }
 
 .completed div{
@@ -504,14 +492,6 @@ nav {
     filter: var(--secondary-svg-color);
 }
 
-@keyframes checkClick {
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
 
 .nameContainer {
     pointer-events: none;
@@ -531,7 +511,7 @@ nav {
     );
     background-size: 0 100%;
     background-repeat: no-repeat;
-    transition: 0.4s ease;
+    transition: 0.8s ease;
 }
 
 .nameContainer.completed {

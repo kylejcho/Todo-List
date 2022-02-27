@@ -2,10 +2,7 @@ export const addTask = (taskContainer, shadow) => {
     setTimeout(()=> {
         if (shadow == 'no shadow') {
             taskContainer.style.transition = 'none';
-        } else {
-            taskContainer.style.animation = "taskContainerAdd 0.8s ease-in-out";
-            
-        }
+        } 
         taskContainer.style.opacity = "1";
     },10) 
     setTimeout(() => {
@@ -127,48 +124,50 @@ const checkTaskAnimation = (e,a) => {
     }
 
     const taskContainer = taskName.parentNode;
-    const taskContainerHeight = taskContainer.clientHeight;
-    
-    const spacer = document.createElement('div');
-    spacer.style.height = taskContainerHeight + "px";
-    spacer.style.marginBottom = "-" + taskContainerHeight + "px";
-    spacer.style.transition = "all ease-in-out 0.2s";
     const subGroup = taskContainer.parentNode;
+    const subGroupHeight = subGroup.children.length * 60
 
+    let startingPoint;
+    for (let i = 1; i < subGroup.children.length; i++) {
+        if (taskContainer == subGroup.children[i]) {
+            startingPoint = i;
+        }
+    }
+
+    taskContainer.style.transition = 'all 0.4s ease-in-out';
     if (checkedTask.className.includes('completed') && taskContainer.nextElementSibling) {
-        taskContainer.parentNode.appendChild(spacer);
-
         setTimeout(()=> {
-            taskContainer.style.opacity = "0";
-            taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
-            spacer.style.marginBottom = 0;
+            taskContainer.style.transform = `translateY(${subGroupHeight - 120}px)`
+            let distance;
+            if (startingPoint == 1) {
+                distance = 0;
+            } else {
+                distance = startingPoint * 60 - 60;
+            }
+            for (let i = startingPoint+1; i < subGroup.children.length; i++) {
+                subGroup.children[i].style.transform = `translateY(${distance}px)`;
+                distance += 60;
+            }    
+        },300)
+       setTimeout(()=> {
+           taskContainer.remove();
+           subGroup.appendChild(taskContainer)
+       },700)
+    } 
+
+    else if (!checkedTask.className.includes('completed') && taskContainer != subGroup.children[1]) {
+        setTimeout(()=> {
+            taskContainer.style.transform = `translateY(0px)`
+            let distance2 = 60;
+            for (let i = 1 ; i < startingPoint; i++) {
+                subGroup.children[i].style.transform = `translateY(${distance2}px)`;
+                distance2 += 60;
+            }    
         },300)
         setTimeout(()=> {
-            taskContainer.style.marginBottom = 0;
-            spacer.remove();
-            subGroup.appendChild(taskContainer);
-        },500)
-        setTimeout(()=>{
-            taskContainer.style.opacity = "1";
-        },600)
-
-    } else if (!checkedTask.className.includes('completed') && taskContainer != subGroup.children[1]) {
-        const subGroup = taskContainer.parentNode;
-        subGroup.insertBefore(spacer, subGroup.children[1]);
-
-        setTimeout(()=> {
-            taskContainer.style.opacity = "0";
-            taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
-            spacer.style.marginBottom = 0;
-        },300)
-        setTimeout(()=> {
-            taskContainer.style.marginBottom = 0;
-            spacer.remove();
+            taskContainer.remove();
             subGroup.insertBefore(taskContainer, subGroup.children[1]);
-        },500)
-        setTimeout(()=>{
-            taskContainer.style.opacity = "100";
-        },600)
+        },800)
     }   
 }
 

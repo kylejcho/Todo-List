@@ -1,5 +1,6 @@
 import Task from "./task";
-import {createTaskContainer, createSidebarList, createInputListItem} from "./ui";
+import {createTaskContainer, createSidebarList, createInputListItem, createTaskView} from "./ui";
+import { removeTaskView } from "./animations";
 import { startOfToday,startOfTomorrow } from "date-fns";
 import { nextWeek } from "./dates"
 
@@ -56,8 +57,6 @@ export const exampleTasks = () => {
     createTask("Read Animal Farm", "Read two chapter", startOfTomorrow(),'Reading');
     createTask("Learn sign language", "Practice english alphabet", startOfTomorrow(), 'Personal');
 
-    
-    
     createTask("BIO231 homework assignment", "Chapter 12, questions 1-8", nextWeek(startOfToday()), 'School');
     createTask("Exercise", "Workout out for 45 minutes", nextWeek(startOfToday()));
     createTask("Coffee with friend", "Starbucks", nextWeek(startOfToday()));
