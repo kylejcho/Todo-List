@@ -62,6 +62,15 @@ const formDueDateClick = () => {
     })
 }
 
+const formCalendarClick = () => {
+    const inputCalendar = document.querySelector('#inputCalendarContainer');
+    const inputCalendarOptions = document.querySelector('#inputCalendarOptions');
+    inputCalendar.addEventListener('click', ()=> {
+        inputCalendar.classList.toggle('selected');
+        inputCalendarOptions.classList.toggle('selected');
+    })
+}   
+
 const formListClick = () => {
     const inputList = document.querySelector('#inputList')
     const inputListItems = document.querySelectorAll('.inputListItem');
@@ -345,6 +354,7 @@ const runEventHandlers = () => {
     checkClick();
     formAddButtonClicked();
     formDueDateClick();
+    formCalendarClick();
     formListClick();
     formSearchInput();
     createListClick();
