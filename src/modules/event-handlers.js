@@ -223,28 +223,37 @@ const navLogo = () => {
 }
 
 
-//Sidebar
-const sidebarTabClick = () => {
-    sidebar.addEventListener('click', (e)=> {
-        if (!e.target.className.includes('sidebarTab') && e.target.id != 'sidebarHome' || e.target.className.includes('viewing')) {
-            return
+//Sidebar Click Listener 
+const sideBarClick = () => {
+    sidebar.addEventListener('click', (e)=>{
+        if (e.target.className.includes('sidebarArrow')) {
+            sidebarArrowClick(e);
+        } else {
+            sidebarTabClick(e);
         }
-        shortcutToggle(e.target);
-        clearContent();
-        setTimeout(() => {
-            if (e.target.id == 'sidebarHome') {
-                createTasksContainer('home');
-            } else if (e.target.id == 'sidebarShortcutsToday') {
-                createTasksContainer('today');
-            } else if (e.target.id == 'sidebarShortcutsWeek') {
-                createTasksContainer('week');
-            } else if (e.target.id == 'sidebarShortcutsAllTasks') {
-                createTasksContainer('allTasks');
-            } else {
-                createTasksContainer(e.target.children[1].innerText, 'list');
-            }
-        }, 350);
     })
+}
+
+
+const sidebarTabClick = (e) => {
+    if (!e.target.className.includes('sidebarTab') && e.target.id != 'sidebarHome' || e.target.className.includes('viewing')) {
+        return
+    }
+    shortcutToggle(e.target);
+    clearContent();
+    setTimeout(() => {
+        if (e.target.id == 'sidebarHome') {
+            createTasksContainer('home');
+        } else if (e.target.id == 'sidebarShortcutsToday') {
+            createTasksContainer('today');
+        } else if (e.target.id == 'sidebarShortcutsWeek') {
+            createTasksContainer('week');
+        } else if (e.target.id == 'sidebarShortcutsAllTasks') {
+            createTasksContainer('allTasks');
+        } else {
+            createTasksContainer(e.target.children[1].innerText, 'list');
+        }
+    }, 350);
 }
 
 const shortcutToggle = (target) => {
@@ -260,44 +269,44 @@ const shortcutToggle = (target) => {
         sidebarListContainers[i].classList.remove('viewing');
         sidebarListContainers[i].children[0].classList.remove('viewing')
     }
-
     target.classList.toggle('viewing');
     target.children[0].classList.toggle('viewing');
 }
 
 
-const sidebarArrowClick = () => {
-    sidebar.addEventListener('click', (e)=> {
-        if (e.target.className.includes('sidebarArrow')) {
-            const arrow = e.target
-            if (arrow.className.includes('close')) {
-                arrow.parentNode.nextElementSibling.style.marginBottom = '0';
-            } else {
-                if (e.target.id == 'shortcutsArrow') {
-                    arrow.parentNode.nextElementSibling.style.marginBottom = `${-sidebarShortcuts.clientHeight}px`;
-                } else {
-                    arrow.parentNode.nextElementSibling.style.marginBottom = `${-sidebarLists.clientHeight}px`;
-                }
-             }
-            arrow.parentNode.nextElementSibling.classList.toggle('close');
-            arrow.classList.toggle('close');
+const sidebarArrowClick = (e) => {
+    const arrow = e.target
+    if (arrow.className.includes('close')) {
+        arrow.parentNode.nextElementSibling.style.marginBottom = '0';
+    } else {
+        if (e.target.id == 'shortcutsArrow') {
+            arrow.parentNode.nextElementSibling.style.marginBottom = `${-sidebarShortcuts.clientHeight}px`;
+        } else {
+            arrow.parentNode.nextElementSibling.style.marginBottom = `${-sidebarLists.clientHeight}px`;
+        }
+     }
+    arrow.parentNode.nextElementSibling.classList.toggle('close');
+    arrow.classList.toggle('close');
+}
+
+
+
+//Content-Container Click Listener
+const contentContainerClick = () => {
+    contentContainer.addEventListener('click', (e)=>{
+        if (e.target.className == "taskContainer" || e.target.className == "taskContainer completed") {
+            taskSelection(e.target);
+        } else if (e.target == document.querySelector('#contentContainer')) {
+            removeTaskView();
+        } else if (e.target.parentNode.className.includes('checkContainer') || e.target.parentNode.className.includes("taskViewCheckContainer")) {
+            checkClick(e);
+        } else if (e.target.parentNode.className == 'deleteContainer' || e.target.parentNode.className == 'deleteContainer completed') {
+            deleteClick(e);
         }
     })
 }
 
-
-
-
-
 //Tasks
-const clickTask = () => {
-    contentContainer.addEventListener('click', (e)=> {
-        const target = e.target;
-        if (target.className == "taskContainer" || target.className == "taskContainer completed") {
-            taskSelection(target);
-        } 
-    })
-}
 
 const taskSelection = (taskContainer) => {
     const selectedTask = allTasks.find((task)=> {
@@ -320,78 +329,60 @@ const taskSelection = (taskContainer) => {
     createTaskView(selectedTask, taskContainer);  
 }
 
-const deselectTask = () => {
-    contentContainer.addEventListener('click', (e)=> {
-        if (e.target == document.querySelector('#contentContainer')) {
-            removeTaskView();
-        }
-    })
+const checkClick = (e) => {
+    if (e.target.parentNode.className.includes('checkContainer')) {
+        const taskContainer = e.target.parentNode.parentNode;
+        allTasks.forEach(task => {
+            if (task.key == taskContainer.id) {
+                if (e.target.parentNode.className == 'checkContainer') {
+                    task.status = "completed";
+                } else {
+                    task.status = "";
+                }
+            }
+        })
+        checkTaskAnimation(e,'');
+        console.log(allTasks)
+    } else if (e.target.parentNode.className.includes("taskViewCheckContainer")) {
+        const taskViewContainer = e.target.parentNode.parentNode.parentNode;
+        const key = taskViewContainer.id.substring(1)
+        
+        let taskContainer;
+        const tasks = document.querySelectorAll('.taskContainer');
+        tasks.forEach(task => {
+            if (task.id == key) {
+                taskContainer = task;
+            }
+        })
+
+        allTasks.forEach(task => {
+            if (task.key == taskContainer.id) {
+                if (e.target.parentNode.className == "taskViewCheckContainer") {
+                    task.status = "completed";
+                } else {
+                    task.status = "";
+                }
+            }
+        })
+        checkTaskAnimation('', taskContainer.children[0]);
+    } 
 }
 
-
-
-
-const checkClick = () => {
-    document.addEventListener('click', (e)=> {
-        if (e.target.parentNode.className.includes('checkContainer')) {
-            const taskContainer = e.target.parentNode.parentNode;
-            allTasks.forEach(task => {
-                if (task.key == taskContainer.id) {
-                    if (e.target.parentNode.className == 'checkContainer') {
-                        task.status = "completed";
-                    } else {
-                        task.status = "";
-                    }
-                }
-            })
-            checkTaskAnimation(e,'');
-            console.log(allTasks)
-        }
-
-        else if (e.target.parentNode.className.includes("taskViewCheckContainer")) {
-            const taskViewContainer = e.target.parentNode.parentNode.parentNode;
-            const key = taskViewContainer.id.substring(1)
-            
-            let taskContainer;
-            const tasks = document.querySelectorAll('.taskContainer');
-            tasks.forEach(task => {
-                if (task.id == key) {
-                    taskContainer = task;
-                }
-            })
-
-            allTasks.forEach(task => {
-                if (task.key == taskContainer.id) {
-                    if (e.target.parentNode.className == "taskViewCheckContainer") {
-                        task.status = "completed";
-                    } else {
-                        task.status = "";
-                    }
-                }
-            })
-            checkTaskAnimation('', taskContainer.children[0]);
-        } 
-    })
-}
-
-const deleteClick = () => {
-    contentContainer.addEventListener('click', (e)=> {
-        if (e.target.parentNode.className == 'deleteContainer' || e.target.parentNode.className == 'deleteContainer completed') {
-            const taskContainer = e.target.parentNode.parentNode;
-            deleteTask(taskContainer);
-            allTasks.forEach(task=> {
-                if (taskContainer.id == task.key) {
-                    allTasks.splice(allTasks.indexOf(task), 1)
-                }
-            })
-            updateCounter();
-        }
-    })
+const deleteClick = (e) => {
+    if (e.target.parentNode.className == 'deleteContainer' || e.target.parentNode.className == 'deleteContainer completed') {
+        const taskContainer = e.target.parentNode.parentNode;
+        deleteTask(taskContainer);
+        allTasks.forEach(task=> {
+            if (taskContainer.id == task.key) {
+                allTasks.splice(allTasks.indexOf(task), 1)
+            }
+        })
+        updateCounter();
+    }
 }
 
 const runEventHandlers = () => {
     formButtonClicked()
-    checkClick();
     formAddButtonClicked();
     formDueDateClick();
     formCalendarClick();
@@ -400,11 +391,8 @@ const runEventHandlers = () => {
     createListClick();
     formCancelClick();
     navLogo();
-    sidebarTabClick();
-    sidebarArrowClick();
-    clickTask();
-    deselectTask();
-    deleteClick();
+    sideBarClick();
+    contentContainerClick();
 }
 
 export default runEventHandlers;
