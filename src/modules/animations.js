@@ -11,11 +11,36 @@ export const addTask = (taskContainer, shadow) => {
 }
 
 export const deleteTask = (taskContainer) => {
-    const taskContainerHeight = taskContainer.clientHeight;
-    taskContainer.style.opacity = "0";
-    taskContainer.transform = "translateY(-100%)";
-    taskContainer.style.marginBottom = "-" + taskContainerHeight + "px";
-    setTimeout(()=> {taskContainer.remove()},200)
+    taskContainer.parentNode.childNodes.forEach((task)=>{
+        task.style.pointerEvents = 'none';
+    })
+    const subGroup = taskContainer.parentNode;
+    let startingPoint;
+    for (let i = 1; i < subGroup.children.length; i++) {
+        if (taskContainer == subGroup.children[i]) {
+            startingPoint = i;
+        }
+    }
+    taskContainer.style.opacity = 0;
+    let distance;
+    if (startingPoint == 1) {
+        distance = 0;
+    } else {
+        distance = startingPoint * 60 - 60;
+    }
+    for (let i = startingPoint+1; i < subGroup.children.length; i++) {
+        subGroup.children[i].style.transform = `translateY(${distance}px)`;
+        distance += 60;
+    }    
+    
+    subGroup.style.height = `${subGroup.children.length * 60 - 60}px `
+    setTimeout(()=> {
+        taskContainer.parentNode.childNodes.forEach((task)=>{
+            task.style.pointerEvents = 'auto';
+        })
+        taskContainer.remove();
+    },200)
+
 }
 
 export const slideInTaskView = (tasksContainer, taskViewContainer) => {
@@ -148,11 +173,8 @@ const checkTaskAnimation = (e,a) => {
                 subGroup.children[i].style.transform = `translateY(${distance}px)`;
                 distance += 60;
             }    
-        },300)
-       setTimeout(()=> {
-           taskContainer.remove();
-           subGroup.appendChild(taskContainer)
-       },700)
+        },400)
+       setTimeout(()=> subGroup.appendChild(taskContainer),800)
     } 
 
     else if (!checkedTask.className.includes('completed') && taskContainer != subGroup.children[1]) {
@@ -163,7 +185,7 @@ const checkTaskAnimation = (e,a) => {
                 subGroup.children[i].style.transform = `translateY(${distance2}px)`;
                 distance2 += 60;
             }    
-        },300)
+        },400)
         setTimeout(()=> {
             taskContainer.remove();
             subGroup.insertBefore(taskContainer, subGroup.children[1]);

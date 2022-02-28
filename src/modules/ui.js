@@ -8,7 +8,6 @@ const initialPageLoad = () => {
     createTasksContainer('home');
     createCalendarIcon(); 
     createCalendarMonth(getMonth());
-    
 }
 
 const loadingPage = () => {

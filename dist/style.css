@@ -400,6 +400,7 @@ nav {
 .subGroup {
     margin-top: 20px;
     margin-bottom: 35px;
+    transition: all 0.2s ease-in-out;
 }
 
 .subGroupTitle {
@@ -481,7 +482,6 @@ nav {
 
 .checkContainer.completed {
     filter: var(--secondary-svg-color);
-    animation: checkClick 0.3s ease-out;
 }
 
 .checkContainer svg {
@@ -511,7 +511,7 @@ nav {
     );
     background-size: 0 100%;
     background-repeat: no-repeat;
-    transition: 0.8s ease;
+    transition: 0.5s ease;
 }
 
 .nameContainer.completed {
@@ -560,7 +560,6 @@ nav {
 
 
 .taskViewCheckContainer.completed {
-    animation: checkClick 0.3s ease-out;
     filter: var(--secondary-svg-color);
 }
 
