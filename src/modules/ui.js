@@ -1,16 +1,22 @@
 import { addTask, slideInTaskView } from "./animations";
-import { allTasks, allLists} from "./create-task";
+import { allTasks, allLists, exampleTasks} from "./create-task";
+import runEventHandlers from "./event-handlers";
 import { isToday, isTomorrow, isThisWeek, startOfToday } from "date-fns";
 import { formatDate, getDayOfMonth, isMorning, isAfternoon, within7Days, getMonth, getYear} from "./dates";
+import makeCalendar from "./calendar"
 
-const initialPageLoad = () => {
-    loadingPage()
+export const initialPageLoad = () => {
+    loadingScreen();
     createTasksContainer('home');
     createCalendarIcon(); 
     createCalendarMonth(getMonth());
+    makeCalendar();
+    exampleTasks();
+    updateCounter();
+    runEventHandlers();
 }
 
-const loadingPage = () => {
+const loadingScreen = () => {
     const loadingScreen = document.querySelector("#loadingScreen");
     window.addEventListener('load', () => {
         const body = document.querySelector('body')
@@ -27,20 +33,21 @@ const loadingPage = () => {
 
 
 export const clearContent = () => {
-    document.querySelector('.tasksContainer').style.transition = 'all 0.3s cubic-bezier(0.5, 0, 0.5, 1)';
-    document.querySelector('.tasksContainer').style.opacity = 0;
-    if (document.querySelector('.taskViewContainer')) {
-        document.querySelector('.taskViewContainer').style.opacity = 0;
+    const tasksContainer = document.querySelector('.tasksContainer');
+    const taskViewContainer = document.querySelector('.taskViewContainer');
+    tasksContainer.style.transition = 'all 0.3s cubic-bezier(0.5, 0, 0.5, 1)';
+    tasksContainer.style.opacity = 0;
+    if (taskViewContainer) {
+        taskViewContainer.style.opacity = 0;
     }
     setTimeout(() => {
-        if (document.querySelector('.tasksContainer')) {
-            document.querySelector('.tasksContainer').remove();
-            if (document.querySelector('.taskViewContainer')) {
-                document.querySelector('.taskViewContainer').remove();
-            }
+        if (tasksContainer) {
+            tasksContainer.remove();
+        }
+        if (taskViewContainer) {
+            taskViewContainer.remove();
         }
     }, 300);
-    
 }
 
 const createCalendarIcon = () => {
@@ -341,9 +348,7 @@ export const updateCounter = () => {
 }
 
 export const createSidebarList = (list) => {
-
     const sidebarLists = document.querySelector('#sidebarLists');
-
     const sidebarListContainer = document.createElement('div');
     sidebarListContainer.className = 'sidebarListContainer';
     sidebarListContainer.classList.add('sidebarTab')
@@ -383,5 +388,3 @@ export const createCalendarMonth = (month) => {
     const calendarMonth = document.querySelector('#calendarMonth');
     calendarMonth.innerHTML  = month + ' ' + getYear();
 }
-
-export default initialPageLoad;

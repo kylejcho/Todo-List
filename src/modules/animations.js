@@ -166,7 +166,6 @@ const checkTaskAnimation = (e,a) => {
 
     taskContainer.style.transition = 'all 0.4s ease-in-out';
     if (!checkedTask.className.includes('completed')) {
-        console.log('hola')
         setTimeout(()=> {
             taskContainer.style.transform = `translateY(${subGroupHeight - 120}px)`
             let distance;
@@ -180,10 +179,7 @@ const checkTaskAnimation = (e,a) => {
                 distance += 60;
             }    
         },300)
-    } 
-
-    else if (checkedTask.className.includes('completed')) {
-        console.log('hi')
+    } else if (checkedTask.className.includes('completed')) {
         subGroup.insertBefore(taskContainer, subGroup.children[1]);
         setTimeout(()=> {
             taskContainer.style.transform = `translateY(0px)`

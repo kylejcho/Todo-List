@@ -100,6 +100,10 @@ nav {
     align-items: center;
 }
 
+#pageTitle>* {
+    pointer-events: none;
+}
+
 .logo {
     color: var(--primary-blue);
     font-size: 1.75rem;
@@ -228,6 +232,10 @@ nav {
 #sidebar ion-icon {
     margin: 0 1rem 0 15px;
     font-size: 1.5rem;
+}
+
+#sidebarHome ion-icon {
+    pointer-events: none;
 }
 
 #sidebarShortcuts {

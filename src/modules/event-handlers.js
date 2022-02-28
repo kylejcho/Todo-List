@@ -3,11 +3,9 @@ import { createTaskView, createTasksContainer, clearContent, updateCounter, upda
 import { allTasks, allLists } from "./create-task";
 import checkTaskAnimation from "./animations";
 import { deleteTask, removeTaskView } from "./animations";
-import { isToday, startOfToday,startOfTomorrow } from "date-fns";
+import { startOfToday,startOfTomorrow } from "date-fns";
 import { stringToDate } from "./calendar";
 
-const addButton = document.querySelector('#addButton');
-const formAddButton = document.querySelector('#taskFormAddButton');
 const inputTaskName = document.querySelector('#inputTaskName');
 const inputTaskDescription = document.querySelector('#inputTaskDescription');
 const inputDueDate = document.querySelectorAll('.inputDueDate');
@@ -16,62 +14,61 @@ const inputCalendarOptions = document.querySelector('#inputCalendarOptions');
 const dateSelection = document.querySelector('#dateSelection')
 const formContainer = document.querySelector("#taskFormContainer");
 const form = document.querySelector("#taskForm");
+const navbar = document.querySelector('#navbar');
 const contentContainer = document.querySelector("#contentContainer")
 const sidebar = document.querySelector('#sidebar');
 const sidebarShortcuts = document.querySelector('#sidebarShortcuts');
 const sidebarLists = document.querySelector('#sidebarLists');
 
-//FORM
-const formButtonClicked = () => {
-    addButton.addEventListener('click', function() {
-        formContainer.style.visibility = "visible";
-        form.style.opacity = "1";
-        form.style.transform = "scale(1)";
-    })
-}
-
-const formAddButtonClicked = () => {
-    formAddButton.addEventListener('click', function() {
-        if (inputTaskName.value) {
-            let dueDate;
-            let list;
-            inputDueDate.forEach((e) =>{
-                if (e.className.includes('selected')) {
-                    if (e.id == 'inputToday') {
-                        dueDate = startOfToday();
-                    } else if (e.id == 'inputTomorrow') {
-                        dueDate = startOfTomorrow();
-                    }
-                }         
-            })
-            if (dateSelection.innerText != 'Pick Date') {
-                dueDate = stringToDate(dateSelection.innerText);
-            }
-
-            const listSelectionName = document.querySelector('#listSelectionName');
-            if (listSelectionName.innerText!= 'Add to list') {
-                list = listSelectionName.innerText;
-            }
-
-            createTask(inputTaskName.value, inputTaskDescription.value, dueDate, list);
-            formCancel();
-            updateCounter();
+//Form click listener 
+const formContainerClick = () => {
+    formContainer.addEventListener('click', (e)=>{
+        if (e.target.id == 'taskFormAddButton') {
+            formAddButtonClicked();
+        } else if (e.target.className == 'inputDueDate') {
+            formDueDateClick(e);
         }
     })
 }
 
-const formDueDateClick = () => {
-    inputDueDate.forEach(dueDate =>{
-        dueDate.addEventListener('click', ()=> {
-            inputDueDate.forEach(element => {
-                element.classList.remove('selected');
-            })
-            inputCalendarContainer.classList.remove('selected');
-            inputCalendarOptions.classList.remove('selected');
-            dateSelection.innerText = 'Pick Date';
-            dueDate.classList.toggle('selected');
+
+//FORM
+const formAddButtonClicked = () => {
+    if (inputTaskName.value) {
+        let dueDate;
+        let list;
+        inputDueDate.forEach((e) =>{
+            if (e.className.includes('selected')) {
+                if (e.id == 'inputToday') {
+                    dueDate = startOfToday();
+                } else if (e.id == 'inputTomorrow') {
+                    dueDate = startOfTomorrow();
+                }
+            }         
         })
+        if (dateSelection.innerText != 'Pick Date') {
+            dueDate = stringToDate(dateSelection.innerText);
+        }
+
+        const listSelectionName = document.querySelector('#listSelectionName');
+        if (listSelectionName.innerText!= 'Add to list') {
+            list = listSelectionName.innerText;
+        }
+
+        createTask(inputTaskName.value, inputTaskDescription.value, dueDate, list);
+        formCancel();
+        updateCounter();
+    }
+}
+
+const formDueDateClick = (e) => {
+    inputDueDate.forEach(element => {
+        element.classList.remove('selected');
     })
+    inputCalendarContainer.classList.remove('selected');
+    inputCalendarOptions.classList.remove('selected');
+    dateSelection.innerText = 'Pick Date';
+    e.target.classList.toggle('selected');
 }
 
 const formCalendarClick = () => {
@@ -161,7 +158,7 @@ const formSearchInput = () => {
 
 const createListClick = () => {
     const createListButton = document.querySelector('#createListButton');
-    createListButton.addEventListener('click', (e)=>{
+    createListButton.addEventListener('click', ()=>{
         const listSelectionName = document.querySelector('#listSelectionName');
         const inputListTextArea = document.querySelector('#inputListTextArea');
         const inputListContainer = document.querySelector('#inputListContainer')
@@ -209,17 +206,31 @@ const formCancel = () => {
     }
 }
 
+//Navbar click listener
+const navbarClick = () => {
+    navbar.addEventListener('click', (e)=>{
+        if (e.target.id == 'pageTitle') {
+            navLogo();
+        } else if (e.target.id = 'addButton') {
+            formButtonClicked();
+        }
+    })
+}
+
 //Navbar
 const navLogo = () => {
-    const pageTitle = document.querySelector('#pageTitle');
     const sidebarHome = document.querySelector('#sidebarHome')
-    pageTitle.addEventListener('click', ()=> {
-        shortcutToggle(sidebarHome)
-        clearContent();
-        setTimeout(() => {
-            createTasksContainer('home');
-        }, 350);
-    })
+    shortcutToggle(sidebarHome)
+    clearContent();
+    setTimeout(() => {
+        createTasksContainer('home');
+    }, 350);
+}
+
+const formButtonClicked = () => {
+    formContainer.style.visibility = "visible";
+    form.style.opacity = "1";
+    form.style.transform = "scale(1)";
 }
 
 
@@ -234,7 +245,7 @@ const sideBarClick = () => {
     })
 }
 
-
+//Sidebar
 const sidebarTabClick = (e) => {
     if (!e.target.className.includes('sidebarTab') && e.target.id != 'sidebarHome' || e.target.className.includes('viewing')) {
         return
@@ -382,15 +393,13 @@ const deleteClick = (e) => {
 }
 
 const runEventHandlers = () => {
-    formButtonClicked()
-    formAddButtonClicked();
-    formDueDateClick();
+    formContainerClick();
     formCalendarClick();
     formListClick();
     formSearchInput();
     createListClick();
     formCancelClick();
-    navLogo();
+    navbarClick();
     sideBarClick();
     contentContainerClick();
 }
