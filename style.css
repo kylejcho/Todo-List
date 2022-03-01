@@ -372,7 +372,10 @@ nav {
     height: auto;
     width: 25%;
     position: relative;
+    margin: 48px auto;
+    /*
     margin: 48px auto auto auto;
+    */
     transition: all 0.3s cubic-bezier(0.5, 0, 0.5, 1);
     animation: bottomTopBounce 0.5s cubic-bezier(0, 0.5, 0.5, 1);
 }
@@ -554,18 +557,30 @@ nav {
 /* TASK VIEW */
 
 .taskViewContainer {
+    position: absolute;
+    top: 140px;
+    right: 0;
     height: 400px;
     width: 400px;
     border-radius: 10px;
-    box-shadow: -2px 2px 6px 0px rgba(0,0,0,0.15);
-    margin: 50px 0 auto 50px;
     opacity: 0;
-    padding: 30px 20px;
-    transition: all 0.25s cubic-bezier(0,.5,.5,1);
+    box-shadow: -2px 2px 6px 0px rgba(0,0,0,0.15);
+    /*
+    margin: 50px 0 auto 50px;
+    
     position: sticky;
     top: 90px;
+    */
+    padding: 30px 20px 0 20px;
+    transition: all 0.25s cubic-bezier(0,.5,.5,1);
 }
 
+@keyframes slideOutTaskView {
+    100% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+}
 
 .taskViewCheckContainer.completed {
     filter: var(--secondary-svg-color);
