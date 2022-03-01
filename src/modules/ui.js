@@ -1,6 +1,6 @@
 import { addTask, slideInTaskView } from "./animations";
 import { allTasks, allLists, exampleTasks} from "./create-task";
-import runEventHandlers from "./event-handlers";
+import { runEventHandlers } from "./event-handlers";
 import { isToday, isTomorrow, isThisWeek, startOfToday } from "date-fns";
 import { formatDate, getDayOfMonth, isMorning, isAfternoon, within7Days, getMonth, getYear} from "./dates";
 import makeCalendar from "./calendar"

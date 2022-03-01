@@ -11,7 +11,9 @@ const inputTaskDescription = document.querySelector('#inputTaskDescription');
 const inputDueDate = document.querySelectorAll('.inputDueDate');
 const inputCalendarContainer = document.querySelector('#inputCalendarContainer');
 const inputCalendarOptions = document.querySelector('#inputCalendarOptions');
-const dateSelection = document.querySelector('#dateSelection')
+const listSelectionName = document.querySelector('#listSelectionName')
+const calendarMonth = document.querySelector('#calendarMonth');
+const dateSelection = document.querySelector('#dateSelection');
 const formContainer = document.querySelector("#taskFormContainer");
 const form = document.querySelector("#taskForm");
 const navbar = document.querySelector('#navbar');
@@ -20,13 +22,59 @@ const sidebar = document.querySelector('#sidebar');
 const sidebarShortcuts = document.querySelector('#sidebarShortcuts');
 const sidebarLists = document.querySelector('#sidebarLists');
 
-//Form click listener 
+//CLICK EVENT LISTENERS
+const navbarClick = () => {
+    navbar.addEventListener('click', (e)=>{
+        if (e.target.id == 'pageTitle') {
+            navLogo();
+        } else if (e.target.id == 'addButton') {
+            formButtonClicked();
+        }
+    })
+}
+
+const sideBarClick = () => {
+    sidebar.addEventListener('click', (e)=>{
+        if (e.target.className.includes('sidebarArrow')) {
+            sidebarArrowClick(e);
+        } else {
+            sidebarTabClick(e);
+        }
+    })
+}
+
+const contentContainerClick = () => {
+    contentContainer.addEventListener('click', (e)=>{
+        if (e.target.className == "taskContainer" || e.target.className == "taskContainer completed") {
+            taskSelection(e.target);
+        } else if (e.target == document.querySelector('#contentContainer')) {
+            removeTaskView();
+        } else if (e.target.parentNode.className.includes('checkContainer') || e.target.parentNode.className.includes("taskViewCheckContainer")) {
+            checkClick(e);
+        } else if (e.target.parentNode.className == 'deleteContainer' || e.target.parentNode.className == 'deleteContainer completed') {
+            deleteClick(e);
+        }
+    })
+}
+
 const formContainerClick = () => {
     formContainer.addEventListener('click', (e)=>{
         if (e.target.id == 'taskFormAddButton') {
             formAddButtonClicked();
         } else if (e.target.className == 'inputDueDate') {
             formDueDateClick(e);
+        } else if (e.target.id == 'inputCalendar') {
+            formCalendarButtonClick();
+        } else if (e.target.className == 'calendarDay') {
+            calendarDayClick(e);
+        } else if (e.target.id == 'inputList') {
+            formListClick();
+        } else if (e.target.className == 'inputListItem') {
+            formListOptionsClick(e);
+        } else if (e.target.id == 'createListButton') {
+            createListClick();
+        } else if (e.target.id == 'taskFormContainer') {
+            formCancel();
         }
     })
 }
@@ -49,12 +97,9 @@ const formAddButtonClicked = () => {
         if (dateSelection.innerText != 'Pick Date') {
             dueDate = stringToDate(dateSelection.innerText);
         }
-
-        const listSelectionName = document.querySelector('#listSelectionName');
-        if (listSelectionName.innerText!= 'Add to list') {
+        if (document.querySelector('#listSelectionName').innerText != 'Add to list') {
             list = listSelectionName.innerText;
         }
-
         createTask(inputTaskName.value, inputTaskDescription.value, dueDate, list);
         formCancel();
         updateCounter();
@@ -71,69 +116,44 @@ const formDueDateClick = (e) => {
     e.target.classList.toggle('selected');
 }
 
-const formCalendarClick = () => {
-    const calendar = document.querySelector('#calendar');
-    const calendarMonth = document.querySelector('#calendarMonth')
-    const inputDueDate = document.querySelectorAll('.inputDueDate')
-    calendar.addEventListener('click', (e)=> {
-        if (e.target.className == 'calendarDay') {
-            const monthString = calendarMonth.innerText;
-            const month = monthString.substring(0, monthString.length - 4);
-            dateSelection.innerText = month + ' ' + e.target.innerText;
-            inputDueDate.forEach(date => {
-                date.classList.remove('selected');
-            })
-        } else {
-            return
-        }
-    })
-
-    inputCalendarContainer.addEventListener('click', ()=> {
-        if (!inputCalendarContainer.className.includes('selected')) {
-            inputCalendarContainer.classList.toggle('selected');
-        } else if (inputCalendarContainer.className.includes('selected') && dateSelection.innerText == 'Pick Date') {
-            inputCalendarContainer.classList.remove('selected');
-        }
-        inputCalendarOptions.classList.toggle('selected');
-    })
+const formCalendarButtonClick = () => {
+    if (!inputCalendarContainer.className.includes('selected')) {
+        inputCalendarContainer.classList.toggle('selected');
+    } else if (inputCalendarContainer.className.includes('selected') && dateSelection.innerText == 'Pick Date') {
+        inputCalendarContainer.classList.remove('selected');
+    }
+    inputCalendarOptions.classList.toggle('selected');
 }   
 
+const calendarDayClick = (e) => {
+    const monthString = calendarMonth.innerText;
+    const month = monthString.substring(0, monthString.length - 4);
+    dateSelection.innerText = month + ' ' + e.target.innerText;
+    inputDueDate.forEach(date => {
+        date.classList.remove('selected');
+    })
+    inputCalendarOptions.classList.remove('selected')
+}
+
 const formListClick = () => {
-    const inputList = document.querySelector('#inputList')
+    inputListContainer.classList.toggle('selected');
+}
+
+const formListOptionsClick = (e) => {
     const inputListItems = document.querySelectorAll('.inputListItem');
-    const listSelectionName = document.querySelector('#listSelectionName')
-
-
-    const inputListOptions = document.querySelector('#inputListOptions');
-    inputListOptions.addEventListener('click', (e)=> {
-        if (e.target.classList == 'inputListItem') {
-            inputListItems.forEach(element =>{
-                element.classList.remove('selected');
-            })
-            e.target.classList.toggle('selected');
-            listSelectionName.innerText = e.target.innerText;
-            inputListContainer.classList.toggle('selected');
-        }
+    inputListItems.forEach(element =>{
+        element.classList.remove('selected');
     })
-
-    
-
-    inputList.addEventListener('click', ()=> {
-        inputListContainer.classList.toggle('selected');
-    })
+    e.target.classList.toggle('selected');
+    listSelectionName.innerText = e.target.innerText;
+    inputListContainer.classList.toggle('selected');
 }
 
 const formSearchInput = () => {
     const searchInput = document.querySelector('#inputListTextArea');
-    const inputListItems = document.querySelectorAll('.inputListItem');
-
     searchInput.addEventListener('input', e => {
         const value = e.target.value.toLowerCase();
-        console.log(e.target)
-
         const inputItems = e.target.parentNode.childNodes;
-        console.log(inputItems)
-
         inputItems.forEach(item=> {
             if (item.className == 'inputListItem' || item.className == 'inputListItem hidden') {
                 const valueMatch = item.innerText.toLowerCase().includes(value);
@@ -141,7 +161,6 @@ const formSearchInput = () => {
             }
         })
 
-        
         const searchCheck = allLists.some(list => {
             return list.toLowerCase().includes(searchInput.value)
         })
@@ -157,23 +176,11 @@ const formSearchInput = () => {
 }
 
 const createListClick = () => {
-    const createListButton = document.querySelector('#createListButton');
-    createListButton.addEventListener('click', ()=>{
-        const listSelectionName = document.querySelector('#listSelectionName');
-        const inputListTextArea = document.querySelector('#inputListTextArea');
-        const inputListContainer = document.querySelector('#inputListContainer')
-        listSelectionName.innerText = inputListTextArea.value;
-        inputListContainer.classList.remove('selected')
-    })
-}
-
-
-const formCancelClick = () => {
-    formContainer.addEventListener('click', (e)=>{
-        if (e.target.id == 'taskFormContainer') {
-            formCancel();
-        }
-    })
+    const listSelectionName = document.querySelector('#listSelectionName');
+    const inputListTextArea = document.querySelector('#inputListTextArea');
+    const inputListContainer = document.querySelector('#inputListContainer')
+    listSelectionName.innerText = inputListTextArea.value;
+    inputListContainer.classList.remove('selected')
 }
 
 const formCancel = () => {
@@ -206,25 +213,13 @@ const formCancel = () => {
     }
 }
 
-//Navbar click listener
-const navbarClick = () => {
-    navbar.addEventListener('click', (e)=>{
-        if (e.target.id == 'pageTitle') {
-            navLogo();
-        } else if (e.target.id = 'addButton') {
-            formButtonClicked();
-        }
-    })
-}
 
 //Navbar
 const navLogo = () => {
     const sidebarHome = document.querySelector('#sidebarHome')
     shortcutToggle(sidebarHome)
     clearContent();
-    setTimeout(() => {
-        createTasksContainer('home');
-    }, 350);
+    setTimeout(() => createTasksContainer('home'), 350);
 }
 
 const formButtonClicked = () => {
@@ -233,17 +228,6 @@ const formButtonClicked = () => {
     form.style.transform = "scale(1)";
 }
 
-
-//Sidebar Click Listener 
-const sideBarClick = () => {
-    sidebar.addEventListener('click', (e)=>{
-        if (e.target.className.includes('sidebarArrow')) {
-            sidebarArrowClick(e);
-        } else {
-            sidebarTabClick(e);
-        }
-    })
-}
 
 //Sidebar
 const sidebarTabClick = (e) => {
@@ -284,7 +268,6 @@ const shortcutToggle = (target) => {
     target.children[0].classList.toggle('viewing');
 }
 
-
 const sidebarArrowClick = (e) => {
     const arrow = e.target
     if (arrow.className.includes('close')) {
@@ -301,24 +284,7 @@ const sidebarArrowClick = (e) => {
 }
 
 
-
-//Content-Container Click Listener
-const contentContainerClick = () => {
-    contentContainer.addEventListener('click', (e)=>{
-        if (e.target.className == "taskContainer" || e.target.className == "taskContainer completed") {
-            taskSelection(e.target);
-        } else if (e.target == document.querySelector('#contentContainer')) {
-            removeTaskView();
-        } else if (e.target.parentNode.className.includes('checkContainer') || e.target.parentNode.className.includes("taskViewCheckContainer")) {
-            checkClick(e);
-        } else if (e.target.parentNode.className == 'deleteContainer' || e.target.parentNode.className == 'deleteContainer completed') {
-            deleteClick(e);
-        }
-    })
-}
-
 //Tasks
-
 const taskSelection = (taskContainer) => {
     const selectedTask = allTasks.find((task)=> {
         if (task.key == taskContainer.id) {
@@ -392,16 +358,10 @@ const deleteClick = (e) => {
     }
 }
 
-const runEventHandlers = () => {
+export const runEventHandlers = () => {
     formContainerClick();
-    formCalendarClick();
-    formListClick();
     formSearchInput();
-    createListClick();
-    formCancelClick();
     navbarClick();
     sideBarClick();
     contentContainerClick();
 }
-
-export default runEventHandlers;
