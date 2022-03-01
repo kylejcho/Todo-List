@@ -1,23 +1,18 @@
 import Task from "./task";
 import {createTaskContainer, createSidebarList, createInputListItem, createTaskView} from "./ui";
-import { removeTaskView } from "./animations";
 import { startOfToday,startOfTomorrow } from "date-fns";
 import { nextWeek } from "./dates"
-
 
 export let allTasks = [];
 export let allLists = [];
 
-const createTask = (task, description, dueDate, list, status) => {
+export const createTask = (task, description, dueDate, list, status) => {
     let key = generateTaskKey();
     let newTask = new Task(task, description, dueDate, list, status, key);
     allTasks.push(newTask);
     
-    
-
     if (!allLists.includes(list) && list != undefined) {
         allLists.push(list);
-        console.log(allLists);
         createSidebarList(list);
         createInputListItem(list);
     } 
@@ -30,7 +25,6 @@ const createTask = (task, description, dueDate, list, status) => {
     }
 
     createTaskContainer(task, description, dueDate, list, status, key);
-
     console.log(allTasks);
 }
 
@@ -43,9 +37,8 @@ const generateTaskKey = () => {
             }
         }
     }
-    return key
+    return key;
 }
-
 
 export const exampleTasks = () => {
     createTask("Dinner at Olive Garden", "Pick up sister on the way", startOfToday());
@@ -63,7 +56,3 @@ export const exampleTasks = () => {
     createTask("PSYC100 module assignment", "Chapters 1 - 3", nextWeek(startOfToday()), 'School');
     createTask("Bird watching", "Bring sliced breed", nextWeek(startOfToday()), 'Personal');
 }
-
-
-export default createTask;
-

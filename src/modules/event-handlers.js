@@ -1,4 +1,4 @@
-import createTask from "./create-task";
+import { createTask } from "./create-task";
 import { createTaskView, createTasksContainer, clearContent, updateCounter, updateCreateListButton} from "./ui";
 import { allTasks, allLists } from "./create-task";
 import checkTaskAnimation from "./animations";
@@ -293,13 +293,8 @@ const taskSelection = (taskContainer) => {
     })
     const taskView = document.querySelector('.taskViewContainer')
     if (taskView) {
-        if (taskView.id == "s" + selectedTask.key) {
-            removeTaskView();
-            return;
-        } else {
-            taskView.style.opacity = '0';
-            setTimeout(()=> {taskView.remove()},200)  
-        }
+        taskView.style.opacity = '0';
+        setTimeout(()=> {taskView.remove()},200)  
     } else {
         document.querySelector('.tasksContainer').style.transform = "translateX(-30%)";
     }

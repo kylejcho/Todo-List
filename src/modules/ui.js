@@ -236,7 +236,6 @@ export const createTaskView = (task, taskContainer) => {
     taskContainers.forEach((tasks)=> {
         tasks.classList.remove('viewing')
     })
-
     taskContainer.classList.toggle('viewing');
 
     const taskViewContainer = document.createElement('div');
@@ -307,9 +306,6 @@ export const createTaskView = (task, taskContainer) => {
         taskViewList.append(taskViewListP);
         taskViewListContainer.append(taskViewList);
     }
-
-    
-
 
     const tasksContainer = document.querySelector('.tasksContainer');
     tasksContainer.style.transition = "all 0.25s cubic-bezier(0.5, 0, 0.5, 1)";
