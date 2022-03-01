@@ -825,9 +825,14 @@ nav {
 }
 
 #inputCalendar ion-icon {
+    pointer-events: none;
     color: #171c24;
     font-size: 1.25rem;
     margin-right: 5px;
+}
+
+#dateSelection {
+    pointer-events: none;
 }
 
 #inputCalendarOptions {
@@ -996,7 +1001,12 @@ nav {
 }
 
 #inputList .dot {
+    pointer-events: none;
     margin: 0 5px 0 0 ;
+}
+
+#listSelectionName {
+    pointer-events: none;
 }
 
 #inputList:hover {
@@ -1021,6 +1031,7 @@ nav {
 }
 
 #createListButton {
+    cursor: pointer;
     padding-left: 10px;
 }
 
