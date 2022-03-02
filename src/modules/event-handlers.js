@@ -1,4 +1,4 @@
-import { createTask } from "./create-task";
+import { createTask, updateLocalData } from "./create-task";
 import { createTaskView, createTasksContainer, clearContent, updateCounter, updateCreateListButton} from "./ui";
 import { allTasks, allLists } from "./create-task";
 import checkTaskAnimation from "./animations";
@@ -349,7 +349,9 @@ const deleteClick = (e) => {
                 allTasks.splice(allTasks.indexOf(task), 1)
             }
         })
+        updateLocalData(allTasks);
         updateCounter();
+        console.log(allTasks)
     }
 }
 

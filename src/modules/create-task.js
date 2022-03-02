@@ -3,35 +3,42 @@ import {createTaskContainer, createSidebarList, createInputListItem, createTaskV
 import { startOfToday,startOfTomorrow, parseJSON} from "date-fns";
 import { nextWeek } from "./dates"
 
-export const loadLocalData = () => {
-    allTasks.forEach(task=>{
-        createTask(task.name, task.description, task.dueDate, task.list, task.status)
-    })
-}
+export let allTasks = [];
+export let allLists = [];
+
 
 export const getLocalData = () => {
     if (localStorage.getItem('allTasks') == null) {
         localStorage.setItem('allTasks', '[]');
     }
-    return JSON.parse(localStorage.getItem('allTasks'));
+    allTasks = JSON.parse(localStorage.getItem('allTasks'));
+    allTasks.forEach(task=>{
+        task.dueDate = parseJSON(task.dueDate)
+    })
+    loadLocalData();
 }
 
-export const storeLocalData = (task) => {
-    let oldData = JSON.parse(localStorage.getItem('allTasks'));
-    oldData.push(task)
-    localStorage.setItem('allTasks', JSON.stringify(oldData))
+export const loadLocalData = () => {
+    console.log(allTasks)
+    if (allTasks.length > 0) {
+        allTasks.forEach(task=>{
+            createTaskContainer(task.name, task.description, parseJSON(task.dueDate), task.list, task.status, task.key);
+        })
+    }
 }
 
-export let allTasks = getLocalData();
-export let allLists = [];
+export const updateLocalData = (data) => {
+    localStorage.setItem('allTasks', JSON.stringify(data))
+}
+
 
 
 
 export const createTask = (task, description, dueDate, list, status) => {
     let key = generateTaskKey();
-    let newTask = new Task(task, description, parseJSON(dueDate), list, status, key);
+    let newTask = new Task(task, description, dueDate, list, status, key);
     allTasks.push(newTask);
-    storeLocalData(newTask);
+    updateLocalData(allTasks)
     
     if (!allLists.includes(list) && list != undefined) {
         allLists.push(list);

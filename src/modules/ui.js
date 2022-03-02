@@ -1,5 +1,5 @@
 import { addTask, slideInTaskView } from "./animations";
-import { allTasks, allLists/*, exampleTasks*/,loadLocalData} from "./create-task";
+import { allTasks, allLists/*, exampleTasks*/,getLocalData, loadLocalData} from "./create-task";
 import { runEventHandlers } from "./event-handlers";
 import { isToday, isTomorrow, isThisWeek, startOfToday } from "date-fns";
 import { formatDate, getDayOfMonth, isMorning, isAfternoon, within7Days, getMonth, getYear} from "./dates";
@@ -11,7 +11,7 @@ export const initialPageLoad = () => {
     createCalendarIcon(); 
     createCalendarMonth(getMonth());
     makeCalendar();
-    loadLocalData();
+    getLocalData();
     //exampleTasks();
     updateCounter();
     runEventHandlers();
