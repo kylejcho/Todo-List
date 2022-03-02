@@ -43,56 +43,31 @@ export const deleteTask = (taskContainer) => {
 
 }
 
-export const slideInTaskView = (tasksContainer, taskViewContainer) => {
+export const slideInTaskView = (taskViewContainer) => {
     setTimeout(()=> {
-        tasksContainer.style.transition = "none";
-        tasksContainer.style.margin = "48px 0 auto 30%";
-        tasksContainer.style.transform = "translateX(0)";
-
-        const contentContainer = document.querySelector('#contentContainer');
-        contentContainer.append(taskViewContainer);
-        taskViewContainer.style.transform = "translateX(15vw)";
+        document.querySelector('#contentContainer').append(taskViewContainer);
         setTimeout(()=> {
             taskViewContainer.style.opacity = "1";
-            taskViewContainer.style.transform = "translateX(0)";
-        },10)
-    },250)
+            taskViewContainer.style.transform = "translateX(-20vw)";
+        },100)
+    },100)
 }
 
 export const removeTaskView = () => {
     const taskContainers = document.querySelectorAll('.taskContainer');
+    const taskViewContainer = document.querySelector('.taskViewContainer'); 
+    const tasksContainer = document.querySelector('.tasksContainer');
+    
     taskContainers.forEach((tasks)=> {
         tasks.classList.remove('viewing')
     })
 
-    const taskViewContainer = document.querySelector('.taskViewContainer'); 
-    const tasksContainer = document.querySelector('.tasksContainer');
-
-
-    if(taskViewContainer) {
-        taskViewContainer.style.transition = "none"
-        const positionA = taskViewContainer.getBoundingClientRect();
-        taskViewContainer.style.position = "absolute";
-        const positionB = taskViewContainer.getBoundingClientRect();
-        const deltaX = positionA.left - positionB.left;
-
-        taskViewContainer.style.transform = "translateX("+ deltaX +"px)"
-        tasksContainer.style.transition = "none";
-        tasksContainer.style.margin = "48px auto auto auto";
-        tasksContainer.style.transform = "translateX(-30%)";
-        setTimeout(()=> {
-            taskViewContainer.style.transition = "all 0.4s cubic-bezier(.5, 0, 0, 1)";
-            taskViewContainer.style.transform = "translateX(calc("+deltaX +"px + 15vw))";
-            taskViewContainer.style.opacity = '0';
-            tasksContainer.style.transition = "all 0.3s cubic-bezier(0.5, 0, 0.5, 1)";
-            tasksContainer.style.transform = "translateX(0)"; 
-        },10)
-        setTimeout(()=> {taskViewContainer.remove()},300)  
+    if (taskViewContainer) {
+        tasksContainer.style.transform = "translateX(0)"; 
+        taskViewContainer.style.animation = 'slideOutTaskView 0.4s cubic-bezier(.5, 0, 0, 1) forwards';
+        setTimeout(()=> taskViewContainer.remove(), 400);
     }
- 
 }
-
-
 
 const checkTaskAnimation = (e,a) => {
     let checkedTask
@@ -107,13 +82,11 @@ const checkTaskAnimation = (e,a) => {
         taskName = a.nextElementSibling;
         checkContainer = a;
     }
-
     
     const deleteContainer = taskName.nextElementSibling;
     const taskViewContainer = document.querySelector('.taskViewContainer');
     const taskViewCheckContainer = document.querySelector('.taskViewCheckContainer');
     const taskViewName = document.querySelector('.taskViewName');
-
     const taskContainer = taskName.parentNode;
     const subGroup = taskContainer.parentNode;
     const subGroupHeight = subGroup.children.length * 60

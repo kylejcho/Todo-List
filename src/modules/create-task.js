@@ -1,15 +1,37 @@
 import Task from "./task";
 import {createTaskContainer, createSidebarList, createInputListItem, createTaskView} from "./ui";
-import { startOfToday,startOfTomorrow } from "date-fns";
+import { startOfToday,startOfTomorrow, parseJSON} from "date-fns";
 import { nextWeek } from "./dates"
 
-export let allTasks = [];
+export const loadLocalData = () => {
+    allTasks.forEach(task=>{
+        createTask(task.name, task.description, task.dueDate, task.list, task.status)
+    })
+}
+
+export const getLocalData = () => {
+    if (localStorage.getItem('allTasks') == null) {
+        localStorage.setItem('allTasks', '[]');
+    }
+    return JSON.parse(localStorage.getItem('allTasks'));
+}
+
+export const storeLocalData = (task) => {
+    let oldData = JSON.parse(localStorage.getItem('allTasks'));
+    oldData.push(task)
+    localStorage.setItem('allTasks', JSON.stringify(oldData))
+}
+
+export let allTasks = getLocalData();
 export let allLists = [];
+
+
 
 export const createTask = (task, description, dueDate, list, status) => {
     let key = generateTaskKey();
-    let newTask = new Task(task, description, dueDate, list, status, key);
+    let newTask = new Task(task, description, parseJSON(dueDate), list, status, key);
     allTasks.push(newTask);
+    storeLocalData(newTask);
     
     if (!allLists.includes(list) && list != undefined) {
         allLists.push(list);
@@ -40,6 +62,11 @@ const generateTaskKey = () => {
     return key;
 }
 
+
+
+
+
+/*
 export const exampleTasks = () => {
     createTask("Dinner at Olive Garden", "Pick up sister on the way", startOfToday());
     createTask("PHYS231 homework assignment", "Chapter 14, questions 1-13", startOfToday(),'School');
@@ -56,3 +83,4 @@ export const exampleTasks = () => {
     createTask("PSYC100 module assignment", "Chapters 1 - 3", nextWeek(startOfToday()), 'School');
     createTask("Bird watching", "Bring sliced breed", nextWeek(startOfToday()), 'Personal');
 }
+*/

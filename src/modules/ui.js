@@ -1,5 +1,5 @@
 import { addTask, slideInTaskView } from "./animations";
-import { allTasks, allLists, exampleTasks} from "./create-task";
+import { allTasks, allLists/*, exampleTasks*/,loadLocalData} from "./create-task";
 import { runEventHandlers } from "./event-handlers";
 import { isToday, isTomorrow, isThisWeek, startOfToday } from "date-fns";
 import { formatDate, getDayOfMonth, isMorning, isAfternoon, within7Days, getMonth, getYear} from "./dates";
@@ -11,7 +11,8 @@ export const initialPageLoad = () => {
     createCalendarIcon(); 
     createCalendarMonth(getMonth());
     makeCalendar();
-    exampleTasks();
+    loadLocalData();
+    //exampleTasks();
     updateCounter();
     runEventHandlers();
 }
@@ -317,7 +318,7 @@ export const createTaskView = (task, taskContainer) => {
         checkContainer.classList.toggle('completed');
     }                 
 
-    slideInTaskView(tasksContainer, taskViewContainer);
+    slideInTaskView(taskViewContainer);
 }
 
 export const updateCounter = () => {
