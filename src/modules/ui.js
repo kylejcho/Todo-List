@@ -357,18 +357,23 @@ export const createSidebarList = (list) => {
 
     sidebarListContainer.append(dot)
     sidebarListContainer.append(listName);
+    setListsCloseHeight();
+}
 
+const setListsCloseHeight = () => {
+    const sidebarListsClose = document.querySelector('#sidebarListsClose');
+    const sidebarLists = document.querySelector('#sidebarLists');
+    const sidebarListsHeight = sidebarLists.offsetHeight;
+    sidebarListsClose.style.height = `${sidebarListsHeight}px`;
 }
 
 export const createInputListItem = (item) => {
     const inputListOptions = document.querySelector('#inputListOptions')
-    
             const inputListItem = document.createElement('p');
             inputListItem.className = 'inputListItem';
             inputListItem.innerText = item; 
             inputListItem.id = item + 'List';  
             inputListOptions.append(inputListItem);
-
 }
 
 export const updateCreateListButton = (listName) => {
