@@ -364,8 +364,8 @@ export const createSidebarList = (list) => {
 
 export const createInputListItem = (item) => {
     const inputListOptions = document.querySelector('#inputListOptions')
-    allLists.forEach(list => {
-        if (item == list) {
+    allTasks.forEach(task => {
+        if (item == task.list) {
             const inputListItem = document.createElement('p');
             inputListItem.className = 'inputListItem';
             inputListItem.innerText = item; 

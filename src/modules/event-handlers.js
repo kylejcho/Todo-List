@@ -338,6 +338,7 @@ const checkClick = (e) => {
         })
         checkTaskAnimation('', taskContainer.children[0]);
     } 
+    updateLocalData(allTasks);
 }
 
 const deleteClick = (e) => {
