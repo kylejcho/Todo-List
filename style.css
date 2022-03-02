@@ -219,8 +219,9 @@ nav {
 
 #sidebar {
     position: absolute;
-    width: 12%;
-    min-width: 210px;
+
+    font-size: clamp(14px, 2vw, 16px);
+
     height: max-content;
     min-height: calc(100% - 120px);
     padding: 40px 15px 25px 25px;
@@ -278,7 +279,7 @@ nav {
     padding: 8px 0 8px 0;
     transform: translateX(-1px);
     border-radius: 5px;
-    transition: all ease-in-out 0.2s;
+  
 }
 
 .sidebarTab::after {
@@ -311,6 +312,7 @@ nav {
 
 .sidebarTab p {
     pointer-events: none;
+    margin-right: 40px;
 }
 
 .sidebarTab.viewing p{
@@ -347,7 +349,7 @@ nav {
 .sidebarCount {
     position: fixed;
     font-weight: 400;
-    font-size: 0.8rem;
+    font-size: clamp(10px, 1vw, 13px);
     right: 10px;
 }
 
@@ -358,7 +360,6 @@ nav {
 .sidebarTitle {
     display: flex;
     align-items: center;
-    font-size: 1rem;
     font-weight: 700;
     margin-top: 20px;
     color: var(--primary-text-color);
