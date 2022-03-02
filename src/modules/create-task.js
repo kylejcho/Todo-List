@@ -27,7 +27,8 @@ export const loadLocalData = () => {
     } else {
         exampleTasks()
     }
-    LoadLists();
+    loadLists();
+    console.log(allLists)
 }
 
 export const updateLocalData = (data) => {
@@ -35,15 +36,12 @@ export const updateLocalData = (data) => {
 }
 
 
-
-
 export const createTask = (task, description, dueDate, list, status) => {
     let key = generateTaskKey();
     let newTask = new Task(task, description, dueDate, list, status, key);
     allTasks.push(newTask);
-    updateLocalData(allTasks)
-    
-    checkListExists(list)
+    updateLocalData(allTasks);
+    checkListExists(list);
 
     const tasksContainer = document.querySelector('.tasksContainer')
     if (list != undefined && tasksContainer.id.includes('ListContainer') && tasksContainer.id != list + 'ListContainer') {
@@ -69,7 +67,7 @@ const generateTaskKey = () => {
 }
 
 
-const LoadLists = () => {
+const loadLists = () => {
     allTasks.forEach(task => {
         if (!allLists.includes(task.list) && task.list != undefined) {
             allLists.push(task.list)
@@ -77,6 +75,7 @@ const LoadLists = () => {
             createInputListItem(task.list);
         }
     })
+    console.log('loadLists()')
 }
 
 const checkListExists = (item) => {

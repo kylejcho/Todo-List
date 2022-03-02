@@ -138,8 +138,6 @@ export const createTasksContainer = (type, list) => {
     setTimeout(() => {  
         tasksContainer.style.pointerEvents = "unset";
     }, 500);
-
-    console.log(allTasks)
 }
 
 const createSubGroups = (group, tasksContainer, title) => {
@@ -364,15 +362,13 @@ export const createSidebarList = (list) => {
 
 export const createInputListItem = (item) => {
     const inputListOptions = document.querySelector('#inputListOptions')
-    allTasks.forEach(task => {
-        if (item == task.list) {
+    
             const inputListItem = document.createElement('p');
             inputListItem.className = 'inputListItem';
             inputListItem.innerText = item; 
             inputListItem.id = item + 'List';  
             inputListOptions.append(inputListItem);
-        }
-    })
+
 }
 
 export const updateCreateListButton = (listName) => {

@@ -24,7 +24,6 @@ const makeCalendar = () => {
     const daysInMonth = getDaysMonth();
     const daysRemaining = daysInMonth - today + 1;
 
-    console.log(daysRemaining)
     let day = 1;
     for (let i = 0; i < today - 1; i++) {
         const calendarDay = document.createElement('div');
