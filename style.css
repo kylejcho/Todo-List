@@ -222,11 +222,11 @@ nav {
     width: 12%;
     min-width: 210px;
     height: max-content;
-    min-height: calc(100% - 115px);
+    min-height: calc(100% - 120px);
     padding: 40px 15px 25px 25px;
     color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 #sidebar ion-icon {
