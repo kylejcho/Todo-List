@@ -435,7 +435,7 @@ nav {
     cursor: pointer;
     display: grid;
     height: 57px;
-    width: 20vw;
+    width: max(90%, 250px);
     grid-template: 30px 30px/25px auto 25px;
     border-radius: 5px;
     padding-left: 12px;
@@ -510,7 +510,7 @@ nav {
     height: 14px;
     white-space: nowrap;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: clamp(14px, 1.2vw, 17px);
     color: var(--primary-text-color);
     background-image: linear-gradient(to bottom,
         #00000000 50%,
@@ -528,9 +528,12 @@ nav {
 }
 
 .deleteContainer {
+    position: absolute;
     opacity: 0;
     display: flex;
     align-items: center;
+    right: 5px;
+    top: 4px;
     filter: var(--secondary-svg-color);
     transition: opacity ease-in-out 0.2s;
 }
@@ -545,7 +548,7 @@ nav {
     width: auto;
     height: 30px;
     font-weight: 400;
-    font-size: 0.9rem;
+    font-size: clamp(12px, 1.1vw, 16px);
     color: var(--secondary-text-color);
     white-space: nowrap;
     overflow-X: hidden;
