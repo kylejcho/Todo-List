@@ -91,7 +91,7 @@ nav {
     align-items: center;
     height: 50px;
     background-color: var(--secondary-bg-color);
-    padding: 0 36px;
+    padding: 0 31px;
 }
 
 #pageTitle {
@@ -223,8 +223,8 @@ nav {
     font-size: clamp(14px, 2vw, 16px);
 
     height: max-content;
-    min-height: calc(100% - 120px);
-    padding: 40px 15px 25px 25px;
+    min-height: calc(100% - 95px);
+    padding: 40px 10px 0 20px;
     color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
     overflow: hidden;
@@ -312,7 +312,7 @@ nav {
 
 .sidebarTab p {
     pointer-events: none;
-    margin-right: 40px;
+    margin-right: max(3.5vw, 40px);
 }
 
 .sidebarTab.viewing p{
