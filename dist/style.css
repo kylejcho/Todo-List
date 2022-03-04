@@ -620,7 +620,6 @@ nav {
     background-size: 0 100%;
     background-repeat: no-repeat;
     white-space: nowrap;
-   
     transition: background-size 0.4s ease, color 0.4s ease, background-color 0.4s ease-in-out;
 }
 

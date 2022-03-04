@@ -50,13 +50,22 @@ export const deleteTask = (taskContainer) => {
 export const slideInTaskView = (taskViewContainer) => {
     setTimeout(()=> {
         document.querySelector('#contentContainer').append(taskViewContainer);
-        
         if (isOverflowing(taskViewContainer.children[0])) {
-            const name = document.querySelector(".taskViewName");
-            let computedFontSize = window.getComputedStyle(name).fontSize;
-            let fontSize = parseInt(computedFontSize.substring(0, computedFontSize.length - 2));
-            name.style.fontSize = `${fontSize - 6}px`;
+            document.body.style.overflow = 'hidden'
+            setTimeout(()=> {
+                const name = document.querySelector(".taskViewName");
+                while (isOverflowing(taskViewContainer.children[0])) {
+                    const computedFontSize = window.getComputedStyle(name).fontSize;
+                    const fontSize = parseInt(computedFontSize.substring(0, computedFontSize.length - 2));
+                    
+                    name.style.fontSize = `${fontSize - 1}px`;
+                }
+                name.style.overflow = 'hidden'
+                document.body.style.overflow = 'auto'
+            },100)  
         }
+        
+        
         setTimeout(()=> {
             taskViewContainer.style.opacity = "1";
             if (window.innerWidth < 1500 && window.innerWidth > 1300) {
