@@ -1168,6 +1168,7 @@ nav {
     width: auto;
     height: 0;
     background-color: var(--secondary-bg-color);
+    overflow: hidden;
 }
 
 
