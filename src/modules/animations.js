@@ -60,7 +60,6 @@ export const slideInTaskView = (taskViewContainer) => {
                     
                     name.style.fontSize = `${fontSize - 1}px`;
                 }
-                name.style.overflow = 'hidden'
                 document.body.style.overflow = 'auto'
             },100)  
         }

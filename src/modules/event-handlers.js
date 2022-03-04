@@ -356,10 +356,30 @@ const deleteClick = (e) => {
     }
 }
 
+
+//Window Resizing Listeners 
+
+const windowResize = () => {
+    window.addEventListener('resize', ()=> {
+        const taskViewContainer = document.querySelector('.taskViewContainer')
+        if (window.innerWidth < 1500 && window.innerWidth > 1300) {
+            taskViewContainer.style.transform = "translateX(-15vw)";
+        } else if (window.innerWidth < 1300) {
+            taskViewContainer.style.transition= "all 0.25s cubic-bezier(0,.3,.5,1)";
+            taskViewContainer.style.transform = "translateX(-10vw)";
+        } else {
+            taskViewContainer.style.transform = "translateX(-20vw)";
+        }
+    }) 
+}
+
+
+
 export const runEventHandlers = () => {
     formContainerClick();
     formSearchInput();
     navbarClick();
     sideBarClick();
     contentContainerClick();
+    windowResize();
 }
