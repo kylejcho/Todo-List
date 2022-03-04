@@ -219,8 +219,7 @@ nav {
 
 #sidebar {
     position: absolute;
-
-    font-size: clamp(14px, 2vw, 16px);
+    font-size: clamp(14px, 1.3vw, 16px);
 
     height: max-content;
     min-height: calc(100% - 95px);
@@ -559,7 +558,7 @@ nav {
     top: 140px;
     right: 0;
     height: max(20vw,300px);
-    width: max(18vw,300px);
+    width: clamp(300px, 22vw, 370px);
     font-size: clamp(14px, 1.1vw, 16px);
     border-radius: 10px;
     opacity: 0;
@@ -589,6 +588,7 @@ nav {
 }
 
 .taskViewNameContainer {
+    line-height: 30px;
     display: flex;
     align-items: center;
     background-size: 0% 100%;
@@ -607,7 +607,7 @@ nav {
     align-items: center;
     font-size: clamp(22px, 1.5vw, 28px);
     font-weight: 700;
-    width: 100%;
+    width: max-content;
     height: 20px;
     margin: 12px 25px 12px 10px;
     border-radius: 5px;
@@ -619,6 +619,7 @@ nav {
     );
     background-size: 0 100%;
     background-repeat: no-repeat;
+    white-space: nowrap;
     transition: background-size 0.4s ease, color 0.4s ease, background-color 0.4s ease-in-out;
 }
 
