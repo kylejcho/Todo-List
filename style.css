@@ -219,7 +219,7 @@ nav {
 
 #sidebar {
     position: absolute;
-    font-size: clamp(13px, 1.3vw, 16px);
+    font-size: clamp(13px, 1.2vw, 16px);
 
     height: max-content;
     min-height: calc(100% - 95px);
