@@ -1,3 +1,5 @@
+import { isOverflowing } from "./ui";
+
 export const addTask = (taskContainer, shadow) => {
     setTimeout(()=> {
         if (shadow == 'no shadow') {
@@ -43,14 +45,24 @@ export const deleteTask = (taskContainer) => {
 
 }
 
+
+
 export const slideInTaskView = (taskViewContainer) => {
     setTimeout(()=> {
         document.querySelector('#contentContainer').append(taskViewContainer);
+        
+        if (isOverflowing(taskViewContainer.children[0])) {
+            const name = document.querySelector(".taskViewName");
+            let computedFontSize = window.getComputedStyle(name).fontSize;
+            let fontSize = parseInt(computedFontSize.substring(0, computedFontSize.length - 2));
+            name.style.fontSize = `${fontSize - 6}px`;
+        }
         setTimeout(()=> {
             taskViewContainer.style.opacity = "1";
-            if (screen.width < 1500 && screen.width > 1300) {
+            if (window.innerWidth < 1500 && window.innerWidth > 1300) {
                 taskViewContainer.style.transform = "translateX(-15vw)";
-            } else if (screen.width < 1300) {
+            } else if (window.innerWidth < 1300) {
+                taskViewContainer.style.transition= "all 0.25s cubic-bezier(0,.3,.5,1)";
                 taskViewContainer.style.transform = "translateX(-10vw)";
             } else {
                 taskViewContainer.style.transform = "translateX(-20vw)";

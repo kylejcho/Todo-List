@@ -315,8 +315,14 @@ export const createTaskView = (task, taskContainer) => {
         taskViewName.classList.toggle('completed');
         checkContainer.classList.toggle('completed');
     }                 
-
     slideInTaskView(taskViewContainer);
+    
+}
+
+
+export const isOverflowing = (e) => {
+    console.log(e.scrollWidth > e.clientWidth)
+    return e.scrollWidth > e.clientWidth;
 }
 
 export const updateCounter = () => {
