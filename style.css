@@ -710,12 +710,12 @@ nav {
     opacity: 0;
     background-color: white;
     min-width: 450px;
-    width: 30vw;
-    height: 25vh;
+    width: max-content;
+    height: max-content;
     transform: scale(0);
     border-radius: 10px;
     box-shadow: 0 5px 40px rgba(0, 0, 0, 0.3);
-    padding: 15px;
+    padding: 15px 15px 25px 15px;
     transition: all ease 0.2s;
 
 }
