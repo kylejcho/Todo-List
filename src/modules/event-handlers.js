@@ -296,7 +296,7 @@ const taskSelection = (taskContainer) => {
         taskView.style.opacity = '0';
         setTimeout(()=> {taskView.remove()},200)  
     } else {
-        document.querySelector('.tasksContainer').style.transform = "translateX(-30%)";
+        document.querySelector('.tasksContainer').style.transform = "translateX(-35%)";
     }
     createTaskView(selectedTask, taskContainer);  
 }

@@ -48,7 +48,13 @@ export const slideInTaskView = (taskViewContainer) => {
         document.querySelector('#contentContainer').append(taskViewContainer);
         setTimeout(()=> {
             taskViewContainer.style.opacity = "1";
-            taskViewContainer.style.transform = "translateX(-20vw)";
+            if (screen.width < 1500 && screen.width > 1300) {
+                taskViewContainer.style.transform = "translateX(-15vw)";
+            } else if (screen.width < 1300) {
+                taskViewContainer.style.transform = "translateX(-10vw)";
+            } else {
+                taskViewContainer.style.transform = "translateX(-20vw)";
+            }
         },100)
     },100)
 }
