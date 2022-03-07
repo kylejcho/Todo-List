@@ -344,6 +344,7 @@ const checkClick = (e) => {
 const deleteClick = (e) => {
     if (e.target.parentNode.className == 'deleteContainer' || e.target.parentNode.className == 'deleteContainer completed') {
         const taskContainer = e.target.parentNode.parentNode;
+        const subGroup = taskContainer.parentNode;
         deleteTask(taskContainer);
         allTasks.forEach(task=> {
             if (taskContainer.id == task.key) {
@@ -352,20 +353,25 @@ const deleteClick = (e) => {
         })
         updateLocalData(allTasks);
         updateCounter();
-        emptySubGroup(taskContainer.parentNode)
+        setTimeout(() => {
+            emptySubGroup(subGroup)
+        }, 200);
+        
         console.log(allTasks)
     }
 }
 
-const emptySubGroup = (subGroup) => {
-    console.log(subGroup.children.length)
-    if (subGroup.children.length == 2) {
+export const emptySubGroup = (subGroup) => {
+    if (subGroup.children.length == 1) {
         if (subGroup.id == 'overdue') {
             removeSubGroup(subGroup)
         } else {
-            
+            subGroup.classList.toggle('empty')
         }
         
+    } else {
+        console.log('shdfjkhsdf')
+        subGroup.classList.remove('empty')
     }
 }
 

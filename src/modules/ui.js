@@ -1,6 +1,6 @@
 import { addTask, slideInTaskView } from "./animations";
 import { allTasks, allLists/*, exampleTasks*/,getLocalData, loadLocalData} from "./create-task";
-import { runEventHandlers } from "./event-handlers";
+import { emptySubGroup, runEventHandlers } from "./event-handlers";
 import { isToday, isTomorrow, isThisWeek, startOfToday, isAfter, endOfDay, isSameDay } from "date-fns";
 import { formatDate, getDayOfMonth, isMorning, isAfternoon, within7Days, getMonth, getYear, isOverDue} from "./dates";
 import makeCalendar from "./calendar"
@@ -12,8 +12,8 @@ export const initialPageLoad = () => {
     createCalendarMonth(getMonth());
     makeCalendar();
     getLocalData();
-    //exampleTasks();
     updateCounter();
+    
     runEventHandlers();
 }
 
@@ -134,6 +134,12 @@ export const createTasksContainer = (type, list) => {
     contentContainer.append(tasksContainer);
     
     tasksContainer.style.pointerEvents = "none";
+    setTimeout(() => {
+        const subGroups = document.querySelectorAll('.subGroup')
+        subGroups.forEach(subGroup => {
+            emptySubGroup(subGroup)
+        })
+    }, 10);
     setTimeout(() => {  
         tasksContainer.style.pointerEvents = "unset";
     }, 500);
@@ -234,6 +240,7 @@ export const createTaskContainer = (task, description, dueDate, list, status, ke
     subGroup.style.height = `${subGroupHeight}px`
     
     addTask(taskContainer, shadow);
+    emptySubGroup(subGroup);
 }
 
 export const createTaskView = (task, taskContainer) => {
