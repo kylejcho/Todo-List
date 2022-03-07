@@ -1,7 +1,7 @@
 import { addTask, slideInTaskView } from "./animations";
 import { allTasks, allLists/*, exampleTasks*/,getLocalData, loadLocalData} from "./create-task";
 import { runEventHandlers } from "./event-handlers";
-import { isToday, isTomorrow, isThisWeek, startOfToday } from "date-fns";
+import { isToday, isTomorrow, isThisWeek, startOfToday, isAfter, endOfDay } from "date-fns";
 import { formatDate, getDayOfMonth, isMorning, isAfternoon, within7Days, getMonth, getYear} from "./dates";
 import makeCalendar from "./calendar"
 
@@ -124,10 +124,13 @@ export const createTasksContainer = (type, list) => {
         allTasks.forEach((task)=> {
             if (task.list == type) {
                 setTimeout(() => {
+                    if (isAfter(endOfDay(new Date), task.dueDate)) {
+                        console.log(task.name);
+
+                    } 
                     createTaskContainer(task.name, task.description, task.dueDate, task.list, task.status, task.key, 'no shadow');
                 }, 10);
             }
-            
         })
     }
 
@@ -323,6 +326,16 @@ export const createTaskView = (task, taskContainer) => {
 export const isOverflowing = (e) => {
     console.log(e.scrollWidth > e.clientWidth)
     return e.scrollWidth > e.clientWidth;
+}
+
+export const decreaseFontSize = () => {
+    const taskViewContainer = document.querySelector('.taskViewContainer')
+    const name = document.querySelector(".taskViewName");
+    while (taskViewContainer && isOverflowing(taskViewContainer.children[0])) {
+        const computedFontSize = window.getComputedStyle(name).fontSize;
+        const fontSize = parseInt(computedFontSize.substring(0, computedFontSize.length - 2));
+        name.style.fontSize = `${fontSize - 1}px`;
+    }
 }
 
 export const updateCounter = () => {

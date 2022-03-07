@@ -1,5 +1,5 @@
 import { createTask, updateLocalData } from "./create-task";
-import { createTaskView, createTasksContainer, clearContent, updateCounter, updateCreateListButton} from "./ui";
+import { createTaskView, createTasksContainer, clearContent, updateCounter, updateCreateListButton, decreaseFontSize} from "./ui";
 import { allTasks, allLists } from "./create-task";
 import checkTaskAnimation from "./animations";
 import { deleteTask, removeTaskView } from "./animations";
@@ -361,15 +361,7 @@ const deleteClick = (e) => {
 
 const windowResize = () => {
     window.addEventListener('resize', ()=> {
-        const taskViewContainer = document.querySelector('.taskViewContainer')
-        if (window.innerWidth < 1500 && window.innerWidth > 1300) {
-            taskViewContainer.style.transform = "translateX(-15vw)";
-        } else if (window.innerWidth < 1300) {
-            taskViewContainer.style.transition= "all 0.25s cubic-bezier(0,.3,.5,1)";
-            taskViewContainer.style.transform = "translateX(-10vw)";
-        } else {
-            taskViewContainer.style.transform = "translateX(-20vw)";
-        }
+        decreaseFontSize();
     }) 
 }
 

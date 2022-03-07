@@ -1,4 +1,4 @@
-import { isOverflowing } from "./ui";
+import { decreaseFontSize, isOverflowing } from "./ui";
 
 export const addTask = (taskContainer, shadow) => {
     setTimeout(()=> {
@@ -53,13 +53,7 @@ export const slideInTaskView = (taskViewContainer) => {
         if (isOverflowing(taskViewContainer.children[0])) {
             document.body.style.overflow = 'hidden'
             setTimeout(()=> {
-                const name = document.querySelector(".taskViewName");
-                while (isOverflowing(taskViewContainer.children[0])) {
-                    const computedFontSize = window.getComputedStyle(name).fontSize;
-                    const fontSize = parseInt(computedFontSize.substring(0, computedFontSize.length - 2));
-                    
-                    name.style.fontSize = `${fontSize - 1}px`;
-                }
+                decreaseFontSize();
                 document.body.style.overflow = 'auto'
             },100)  
         }
@@ -69,10 +63,16 @@ export const slideInTaskView = (taskViewContainer) => {
             taskViewContainer.style.opacity = "1";
             if (window.innerWidth < 1500 && window.innerWidth > 1300) {
                 taskViewContainer.style.transform = "translateX(-15vw)";
-            } else if (window.innerWidth < 1300) {
-                taskViewContainer.style.transition= "all 0.25s cubic-bezier(0,.3,.5,1)";
+            } else if (window.innerWidth < 1300 && window.innerWidth > 1150 ) {
+                //taskViewContainer.style.transition= "all 0.25s cubic-bezier(0,.3,.5,1)";
+                taskViewContainer.style.transform = "translateX(-12vw)";
+            } else if (window.innerWidth < 1150 && window.innerWidth > 1050 ) {
+                //taskViewContainer.style.transition= "all 0.25s cubic-bezier(0,.3,.5,1)";
                 taskViewContainer.style.transform = "translateX(-10vw)";
-            } else {
+            } else if (window.innerWidth < 1050 ) {
+                //taskViewContainer.style.transition= "all 0.25s cubic-bezier(0,.3,.5,1)";
+                taskViewContainer.style.transform = "translateX(-8vw)";
+            }else {
                 taskViewContainer.style.transform = "translateX(-20vw)";
             }
         },100)
