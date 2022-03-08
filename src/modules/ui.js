@@ -2,7 +2,7 @@ import { addTask, slideInTaskView } from "./animations";
 import { allTasks, allLists/*, exampleTasks*/,getLocalData, loadLocalData} from "./create-task";
 import { runEventHandlers } from "./event-handlers";
 import { isToday, isTomorrow, isThisWeek, startOfToday, isAfter, endOfDay, isSameDay } from "date-fns";
-import { formatDate, getDayOfMonth, isMorning, isAfternoon, within7Days, getMonth, getYear} from "./dates";
+import { formatDate, getDayOfMonth, isMorning, isAfternoon, within7Days, getMonth, getYear, isOverDue} from "./dates";
 import makeCalendar from "./calendar"
 
 export const initialPageLoad = () => {
@@ -113,15 +113,8 @@ export const createTasksContainer = (type, list) => {
         createSubGroups("upcoming", tasksContainer, 'title');
         allTasks.forEach((task)=> {
             setTimeout(() => {
-                if (isAfter(endOfDay(new Date()), task.dueDate) && !isSameDay(new Date(), task.dueDate)) {
-                    console.log(`Overdue: ${task.name}`);
-                    if (!document.querySelector('#overdue')) {
-                        createSubGroups('overdue', tasksContainer, 'title');
-                    } 
-                    document.querySelector('#overdue').append()
-                } 
+                isOverDue(task.dueDate)
                 createTaskContainer(task.name, task.description, task.dueDate, task.list, task.status, task.key, 'no shadow');
-                
             }, 10);
         })
     } else {

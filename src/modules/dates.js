@@ -1,4 +1,5 @@
-import {format, startOfDay, addDays, isAfter, isBefore, isToday, getHours, isWithinInterval} from 'date-fns';
+import {format, startOfDay, addDays, isAfter, isBefore, isToday, getHours, isWithinInterval, endOfDay, isSameDay} from 'date-fns';
+import { createSubGroups } from './ui';
 
 const getDate = () => {
     return today();
@@ -44,8 +45,14 @@ export const isAfternoon = () => {
     }
 }
 
-export const isOverDue = () => {
-    
+export const isOverDue = (dueDate) => {
+    if (isAfter(endOfDay(new Date()), dueDate) && !isSameDay(new Date(), dueDate)) {
+        if (!document.querySelector('#overdue')) {
+            const tasksContainer = document.querySelector('.tasksContainer');
+            createSubGroups('overdue', tasksContainer, 'title');
+        } 
+        document.querySelector('#overdue').append()
+    } 
 }
 
 export default getDate;
