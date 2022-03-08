@@ -56,7 +56,6 @@ const createCalendarIcon = () => {
     todayIconNumber.innerHTML = getDayOfMonth(startOfToday());
 }
 
-
 //ALL TASKS CONTENT
 export const createTasksContainer = (type, list) => {
     const tasksContainer = document.createElement('div');
@@ -164,6 +163,7 @@ export const createSubGroups = (group, tasksContainer, title) => {
     
     if (group == 'overdue') {
         tasksContainer.insertBefore(subGroup, tasksContainer.children[1])
+        subGroup.children[0].classList.toggle('overdue')
     } else {
         tasksContainer.append(subGroup);
     }
