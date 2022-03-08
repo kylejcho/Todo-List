@@ -1,7 +1,7 @@
 import { addTask, slideInTaskView } from "./animations";
 import { allTasks, allLists/*, exampleTasks*/,getLocalData, loadLocalData} from "./create-task";
 import { runEventHandlers } from "./event-handlers";
-import { isToday, isTomorrow, isThisWeek, startOfToday, isAfter, endOfDay } from "date-fns";
+import { isToday, isTomorrow, isThisWeek, startOfToday, isAfter, endOfDay, isSameDay } from "date-fns";
 import { formatDate, getDayOfMonth, isMorning, isAfternoon, within7Days, getMonth, getYear} from "./dates";
 import makeCalendar from "./calendar"
 
@@ -113,7 +113,15 @@ export const createTasksContainer = (type, list) => {
         createSubGroups("upcoming", tasksContainer, 'title');
         allTasks.forEach((task)=> {
             setTimeout(() => {
+                if (isAfter(endOfDay(new Date()), task.dueDate) && !isSameDay(new Date(), task.dueDate)) {
+                    console.log(`Overdue: ${task.name}`);
+                    if (!document.querySelector('#overdue')) {
+                        createSubGroups('overdue', tasksContainer, 'title');
+                    } 
+                    document.querySelector('#overdue').append()
+                } 
                 createTaskContainer(task.name, task.description, task.dueDate, task.list, task.status, task.key, 'no shadow');
+                
             }, 10);
         })
     } else {
@@ -124,10 +132,6 @@ export const createTasksContainer = (type, list) => {
         allTasks.forEach((task)=> {
             if (task.list == type) {
                 setTimeout(() => {
-                    if (isAfter(endOfDay(new Date), task.dueDate)) {
-                        console.log(task.name);
-
-                    } 
                     createTaskContainer(task.name, task.description, task.dueDate, task.list, task.status, task.key, 'no shadow');
                 }, 10);
             }
@@ -143,7 +147,7 @@ export const createTasksContainer = (type, list) => {
     }, 500);
 }
 
-const createSubGroups = (group, tasksContainer, title) => {
+export const createSubGroups = (group, tasksContainer, title) => {
     const capitalize = (str) => {
         return str[0].toUpperCase() + str.slice(1)
     }
@@ -164,8 +168,12 @@ const createSubGroups = (group, tasksContainer, title) => {
         subGroupTitle.style.height = "0";
         subGroupTitle.style.margin = "0";
     }
-
-    tasksContainer.append(subGroup);
+    
+    if (group == 'overdue') {
+        tasksContainer.insertBefore(subGroup, tasksContainer.children[1])
+    } else {
+        tasksContainer.append(subGroup);
+    }
 }   
 
 
@@ -204,6 +212,8 @@ export const createTaskContainer = (task, description, dueDate, list, status, ke
             return
         } 
         subGroup = document.querySelector('#tomorrow');
+    } else if (isAfter(endOfDay(new Date()), dueDate) && !isSameDay(new Date(), dueDate)) {
+        subGroup = document.querySelector('#overdue');
     } else {
         subGroup = document.querySelector('#upcoming');
     }

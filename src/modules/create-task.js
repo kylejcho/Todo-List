@@ -1,6 +1,6 @@
 import Task from "./task";
-import {createTaskContainer, createSidebarList, createInputListItem, createTaskView} from "./ui";
-import { startOfToday,startOfTomorrow, parseJSON} from "date-fns";
+import {createTaskContainer, createSidebarList, createInputListItem, createTaskView, createSubGroups} from "./ui";
+import { startOfToday, isSameDay, endOfDay, isAfter,startOfTomorrow, parseJSON} from "date-fns";
 import { nextWeek } from "./dates"
 
 export let allTasks = [];
@@ -21,8 +21,15 @@ export const getLocalData = () => {
 export const loadLocalData = () => {
     console.log(allTasks)
     if (allTasks.length > 0) {
-        allTasks.forEach(task=>{
-            createTaskContainer(task.name, task.description, parseJSON(task.dueDate), task.list, task.status, task.key);
+        allTasks.forEach(task=>{if (isAfter(endOfDay(new Date()), task.dueDate) && !isSameDay(new Date(), task.dueDate)) {
+            console.log(`${task.name}`);
+            if (!document.querySelector('#overdue')) {
+                const tasksContainer = document.querySelector('.tasksContainer')
+                createSubGroups('overdue', tasksContainer, 'title');
+            } 
+            document.querySelector('#overdue').append()
+        } 
+        createTaskContainer(task.name, task.description, parseJSON(task.dueDate), task.list, task.status, task.key);
         })
     } else {
         exampleTasks()
