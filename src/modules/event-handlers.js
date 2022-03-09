@@ -230,6 +230,11 @@ const formCancel = () => {
     if (!createListButton.className.includes('hidden')) {
         createListButton.classList.add('hidden')
     }
+
+    resetCalendar();
+    setSelectedDate(new Date());
+    createCalendarMonth(format(new Date(), 'LLL'))
+    makeCalendar();
 }
 
 
@@ -387,9 +392,7 @@ export const emptySubGroup = (subGroup) => {
         } else {
             subGroup.classList.toggle('empty')
         }
-        
     } else {
-        console.log('shdfjkhsdf')
         subGroup.classList.remove('empty')
     }
 }

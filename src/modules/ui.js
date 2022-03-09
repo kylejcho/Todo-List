@@ -334,7 +334,6 @@ export const createTaskView = (task, taskContainer) => {
 
 
 export const isOverflowing = (e) => {
-    console.log(e.scrollWidth > e.clientWidth)
     return e.scrollWidth > e.clientWidth;
 }
 

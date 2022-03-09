@@ -76,7 +76,6 @@ const loadLists = () => {
             createInputListItem(task.list);
         }
     })
-    console.log('loadLists()')
 }
 
 const checkListExists = (item) => {

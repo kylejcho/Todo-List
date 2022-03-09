@@ -52,6 +52,7 @@ export const resetCalendar = () => {
 }   
 
 export const stringToDate = (string) => {
+    console.log('string = '+ string)
     const words = string.split(' ')
     let monthStr = words[0];
     let day = words[1];
@@ -70,9 +71,12 @@ export const stringToDate = (string) => {
         case 'Apr':
             month = 'April';
             break;
+        case 'May':
+            month = 'May';
+            break;
         case 'Jun':
-                month = 'June';
-                break;
+            month = 'June';
+            break;
         case 'Jul':
             month = 'July';
             break;
@@ -85,11 +89,14 @@ export const stringToDate = (string) => {
         case 'Oct':
             month = 'October';
             break;
+        case 'Nov':
+            month = 'November';
+            break;
         case 'Dec':
             month = 'December';
     }
 
     const year = format(new Date, 'yyyy')
-
+    console.log(new Date(`${month} ${day}, ${year}`))
     return new Date(`${month} ${day}, ${year}`);
 }
