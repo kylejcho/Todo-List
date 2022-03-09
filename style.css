@@ -1238,6 +1238,7 @@ nav {
 
 #loadingScreenLogoContainer svg {
     width: 4rem;
+    height: 4rem;
 }
 
 #loadingScreen p {
