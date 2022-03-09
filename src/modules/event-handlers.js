@@ -3,8 +3,8 @@ import { createTaskView, createTasksContainer, clearContent, updateCounter, upda
 import { allTasks, allLists } from "./create-task";
 import checkTaskAnimation, { removeSubGroup } from "./animations";
 import { deleteTask, removeTaskView } from "./animations";
-import { addMonths, startOfMonth, startOfToday,startOfTomorrow, subMonths } from "date-fns";
-import { clearCalendar, resetCalendar, stringToDate } from "./calendar";
+import { addMonths, format, getMonth, isBefore, isSameMonth, startOfMonth, startOfToday,startOfTomorrow, subMonths } from "date-fns";
+import { makeCalendar, resetCalendar, selectedDate, setSelectedDate, stringToDate } from "./calendar";
 
 const inputTaskName = document.querySelector('#inputTaskName');
 const inputTaskDescription = document.querySelector('#inputTaskDescription');
@@ -73,7 +73,7 @@ const formContainerClick = () => {
             formListOptionsClick(e);
         } else if (e.target.id == 'createListButton') {
             createListClick();
-        } else if (e.target.id == 'forwardMonthIcon') {
+        } else if (e.target.id == 'forwardMonthIcon' || e.target.id == 'backMonthIcon') {
             calendarArrowClick(e);
         } else if (e.target.id == 'taskFormContainer') {
             formCancel();
@@ -127,12 +127,21 @@ const formCalendarButtonClick = () => {
     inputCalendarOptions.classList.toggle('selected');
 }   
 
-const  calendarArrowClick = (e) => {
-    console.log(e.target)
+const calendarArrowClick = (e) => {
     if (e.target.id == 'forwardMonthIcon') {
         resetCalendar();
-        //createCalendarMonth(startOfMonth(addMonths(new Date, 1)))
+        setSelectedDate(addMonths(selectedDate, 1));
+        createCalendarMonth(format(selectedDate, 'LLL'))
+    } else { 
+        if (isBefore(subMonths(selectedDate, 1), new Date()) && !isSameMonth(subMonths(selectedDate, 1), new Date())) {
+            return
+        } else {
+            resetCalendar();
+            setSelectedDate(subMonths(selectedDate, 1));
+            createCalendarMonth(format(selectedDate, 'LLL'))
+        }
     }
+    makeCalendar()
 }
 
 const calendarDayClick = (e) => {

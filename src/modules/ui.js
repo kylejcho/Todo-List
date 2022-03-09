@@ -3,7 +3,7 @@ import { allTasks, allLists/*, exampleTasks*/,getLocalData, loadLocalData} from 
 import { emptySubGroup, runEventHandlers } from "./event-handlers";
 import { isToday, isTomorrow, isThisWeek, startOfToday, isAfter, endOfDay, isSameDay } from "date-fns";
 import { formatDate, getDayOfMonth, isMorning, isAfternoon, within7Days, getMonth, getYear, isOverDue} from "./dates";
-import makeCalendar from "./calendar"
+import { makeCalendar } from "./calendar"
 
 export const initialPageLoad = () => {
     loadingScreen();
