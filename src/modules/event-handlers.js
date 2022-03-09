@@ -25,10 +25,13 @@ const sidebarLists = document.querySelector('#sidebarLists');
 //CLICK EVENT LISTENERS
 const navbarClick = () => {
     navbar.addEventListener('click', (e)=>{
+        console.log(e.target)
         if (e.target.id == 'pageTitle') {
             navLogo();
         } else if (e.target.id == 'addButton') {
             formButtonClicked();
+        } else if (e.target.className == 'searchResultItem') {
+            navSearchResultClick(e);
         }
     })
 }
@@ -248,15 +251,71 @@ const navLogo = () => {
 
 const NavSearchInput = () => {
     const navSearchBar = document.querySelector('#searchBar');
+    const searchResultsContainer = document.querySelector('#searchResultsContainer');
+    const searchResultName = document.querySelectorAll('.searchResultName');
     navSearchBar.addEventListener('input', e => {
         const value = e.target.value.toLowerCase();
+        console.log(value)
+        searchResultName.forEach(name => {
+                const valueMatch = name.innerText.toLowerCase().includes(value);
+                name.parentNode.classList.toggle('hidden', !valueMatch);    
 
-        allTasks.forEach(item=> {
-            if (item.className == 'inputListItem' || item.className == 'inputListItem hidden') {
-                const valueMatch = item.innerText.toLowerCase().includes(value);
-                item.classList.toggle('hidden', !valueMatch);    
-            }
+                if (name.innerText.toLowerCase().includes(value)) {
+                    searchResultsContainer.classList.remove('hidden')
+                } 
+                if (value.length == 0) {
+                    searchResultsContainer.classList.add('hidden')
+                }
         })
+    })
+    
+}
+
+const navSearchResultClick = (e) => {
+    const sidebarHome = document.querySelector('#sidebarHome')
+    let taskContainer;
+
+
+    if (document.querySelector('.tasksContainer').id != 'homeContainer') {
+        shortcutToggle(sidebarHome)
+        clearContent();
+        setTimeout(() => createTasksContainer('home'), 350);
+        setTimeout(() => {
+            const taskContainers = document.querySelectorAll('.taskContainer');
+            taskContainers.forEach(task => {
+                if (task.id.toString() == e.target.id.slice(6)) {
+                    taskContainer = task;
+                    console.log(taskContainer);
+                }
+            })
+            taskSelection(taskContainer)
+        }, 900);
+
+    } else {
+            const taskContainers = document.querySelectorAll('.taskContainer');
+            taskContainers.forEach(task => {
+                if (task.id.toString() == e.target.id.slice(6)) {
+                    taskContainer = task;
+                    console.log(taskContainer);
+                }
+            })
+            taskSelection(taskContainer)
+    }
+}
+
+const navSearchCancel = () => {
+    document.addEventListener('click', (e)=> {
+        const searchResultName = document.querySelectorAll('.searchResultName');
+        const searchBar = document.querySelector('#searchBar')
+
+        if (e.target.id != 'searchBar') {
+            searchBar.value = '';
+            searchResultName.forEach(name => {
+                if (!name.parentNode.className.includes('hidden')) {
+                    name.parentNode.classList.add('hidden')
+                }
+            })
+        }
     })
 }
 
@@ -426,6 +485,7 @@ export const runEventHandlers = () => {
     formSearchInput();
     navbarClick();
     NavSearchInput();
+    navSearchCancel();
     sideBarClick();
     contentContainerClick();
     windowResize();
