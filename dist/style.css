@@ -131,21 +131,30 @@ nav {
     padding-left: 10px;
     border-radius: 5px;
     margin-right: 10px;
-    transition: all ease-in-out 0.2s;
+    transition: all ease-in-out 0.15s;
 }
+
+#searchContainer.selected {
+    background-color: var(--secondary-bg-color);
+    box-shadow: 0px 1px 8px 0px rgba(0,0,0,0.13);
+}
+
+#searchContainer.selected ion-icon{
+    color: var(--primary-blue);
+}
+
+
+#searchContainer.selected #searchBar{
+    background-color: var(--secondary-bg-color);
+}
+
 
 #searchItemsContainer {
     display: flex;
     align-items: center;
 }
 
-#searchContainer:hover {
-    background-color: var(--tertiary-bg-color);
-}
 
-#searchContainer:hover *{
-    color: var(--primary-text-color);
-}
 
 #searchIcon {
     font-size: 1.5rem;
@@ -161,6 +170,11 @@ nav {
     margin-right:10px;
     outline-width: 0;
     background-color: var(--tertiary-bg-color);
+    transition: all ease-in-out 0.15s;
+}
+
+#searchBar::placeholder {
+    color: var(--tertiary-text-color);
 }
 
 #searchResultsContainer {
@@ -196,7 +210,7 @@ nav {
 }
 
 .searchResultItem:hover {
-    background-color: #edeff5;
+    background-color: #eff2fa;
 }
 
 .searchResultItem:hover .searchResultArrow  {

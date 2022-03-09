@@ -25,7 +25,6 @@ const sidebarLists = document.querySelector('#sidebarLists');
 //CLICK EVENT LISTENERS
 const navbarClick = () => {
     navbar.addEventListener('click', (e)=>{
-        console.log(e.target)
         if (e.target.id == 'pageTitle') {
             navLogo();
         } else if (e.target.id == 'addButton') {
@@ -251,6 +250,7 @@ const navLogo = () => {
 
 const NavSearchInput = () => {
     const navSearchBar = document.querySelector('#searchBar');
+    const navSearchContainer = document.querySelector('#searchContainer')
     const searchResultsContainer = document.querySelector('#searchResultsContainer');
     const searchResultName = document.querySelectorAll('.searchResultName');
     navSearchBar.addEventListener('input', e => {
@@ -268,7 +268,10 @@ const NavSearchInput = () => {
                 }
         })
     })
-    
+    navSearchBar.addEventListener('click', ()=>{
+        navSearchContainer.classList.add('selected')
+        navSearchBar.classList.add('selected')
+    })
 }
 
 const navSearchResultClick = (e) => {
@@ -276,27 +279,28 @@ const navSearchResultClick = (e) => {
     let taskContainer;
 
 
-    if (document.querySelector('.tasksContainer').id != 'homeContainer') {
+    if (document.querySelector('.tasksContainer').id != 'homeContainer' && document.querySelector('.tasksContainer').id != 'allTasksContainer') {
         shortcutToggle(sidebarHome)
         clearContent();
-        setTimeout(() => createTasksContainer('home'), 350);
+        setTimeout(() => {
+            createTasksContainer('allTasks');
+            const tasksContainer = document.querySelector('.tasksContainer');
+            tasksContainer.style.animation = 'bottomTopBounce 0.15s cubic-bezier(0,.86,1,1)'
+        }, 300);
         setTimeout(() => {
             const taskContainers = document.querySelectorAll('.taskContainer');
             taskContainers.forEach(task => {
                 if (task.id.toString() == e.target.id.slice(6)) {
                     taskContainer = task;
-                    console.log(taskContainer);
                 }
             })
             taskSelection(taskContainer)
-        }, 900);
-
+        },500);
     } else {
             const taskContainers = document.querySelectorAll('.taskContainer');
             taskContainers.forEach(task => {
                 if (task.id.toString() == e.target.id.slice(6)) {
                     taskContainer = task;
-                    console.log(taskContainer);
                 }
             })
             taskSelection(taskContainer)
@@ -315,6 +319,10 @@ const navSearchCancel = () => {
                     name.parentNode.classList.add('hidden')
                 }
             })
+        const navSearchBar = document.querySelector('#searchBar');
+        const navSearchContainer = document.querySelector('#searchContainer')
+        navSearchContainer.classList.remove('selected')
+        navSearchBar.classList.remove('selected')
         }
     })
 }
