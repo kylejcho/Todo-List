@@ -409,6 +409,25 @@ nav {
     transition: all 0.2s ease-in-out;
 }
 
+.subGroup.empty {
+    height: 60px;
+}
+
+.subGroup.empty .subGroupTitle::after {
+    font-weight: 500;
+    content: '-No tasks-';
+    width: max-content;
+    position: absolute;
+    left: 15px;
+    transform: translate(15px, 35px);
+    animation: emptySubGroupFadeIn 0.1s ease-in-out;
+}
+
+@keyframes emptySubGroupFadeIn {
+    0% { opacity: 0 }
+    100% { opacity: 1 } 
+}
+
 
 .subGroupTitle {
     display: flex;
