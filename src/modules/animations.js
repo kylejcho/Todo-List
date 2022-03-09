@@ -45,6 +45,11 @@ export const deleteTask = (taskContainer) => {
 
 }
 
+export const removeSubGroup = (subGroup) => {
+    subGroup.style.opacity = '0';
+    subGroup.style.marginTop = '0'
+    subGroup.style.height = '0';
+}
 
 
 export const slideInTaskView = (taskViewContainer) => {
@@ -125,7 +130,6 @@ const checkTaskAnimation = (e,a) => {
     }
     
     subGroup.appendChild(taskContainer)
-
     setTimeout(() => {
         const taskToggle = (type, state) => {
             if (type == 'task') {
@@ -162,7 +166,7 @@ const checkTaskAnimation = (e,a) => {
         }
     }, 10);
     
-
+    
     taskContainer.style.transition = 'all 0.4s ease-in-out';
     if (!checkedTask.className.includes('completed')) {
         setTimeout(()=> {

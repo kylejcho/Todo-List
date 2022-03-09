@@ -1,7 +1,7 @@
 import { createTask, updateLocalData } from "./create-task";
 import { createTaskView, createTasksContainer, clearContent, updateCounter, updateCreateListButton, decreaseFontSize} from "./ui";
 import { allTasks, allLists } from "./create-task";
-import checkTaskAnimation from "./animations";
+import checkTaskAnimation, { removeSubGroup } from "./animations";
 import { deleteTask, removeTaskView } from "./animations";
 import { startOfToday,startOfTomorrow } from "date-fns";
 import { stringToDate } from "./calendar";
@@ -352,10 +352,22 @@ const deleteClick = (e) => {
         })
         updateLocalData(allTasks);
         updateCounter();
+        emptySubGroup(taskContainer.parentNode)
         console.log(allTasks)
     }
 }
 
+const emptySubGroup = (subGroup) => {
+    console.log(subGroup.children.length)
+    if (subGroup.children.length == 2) {
+        if (subGroup.id == 'overdue') {
+            removeSubGroup(subGroup)
+        } else {
+            
+        }
+        
+    }
+}
 
 //Window Resizing Listeners 
 
