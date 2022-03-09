@@ -1,5 +1,5 @@
 import Task from "./task";
-import {createTaskContainer, createSidebarList, createInputListItem, createTaskView, createSubGroups} from "./ui";
+import {createTaskContainer, createSidebarList, createInputListItem, createSearchResultItem} from "./ui";
 import { startOfToday, isSameDay, endOfDay, isAfter,startOfTomorrow, parseJSON} from "date-fns";
 import { isOverDue, nextWeek } from "./dates"
 
@@ -23,6 +23,7 @@ export const loadLocalData = () => {
     if (allTasks.length > 0) {
         allTasks.forEach(task=>{
         isOverDue(task.dueDate)
+        createSearchResultItem(task.name, task.description, task.key)
         createTaskContainer(task.name, task.description, parseJSON(task.dueDate), task.list, task.status, task.key);
         })
     } else {
@@ -53,6 +54,7 @@ export const createTask = (task, description, dueDate, list, status) => {
 
     createTaskContainer(task, description, dueDate, list, status, key);
     console.log(allTasks);
+    createSearchResultItem(task, description, key)
 }
 
 const generateTaskKey = () => {

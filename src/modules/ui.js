@@ -397,11 +397,42 @@ const setListsCloseHeight = () => {
 
 export const createInputListItem = (item) => {
     const inputListOptions = document.querySelector('#inputListOptions')
-            const inputListItem = document.createElement('p');
-            inputListItem.className = 'inputListItem';
-            inputListItem.innerText = item; 
-            inputListItem.id = item + 'List';  
-            inputListOptions.append(inputListItem);
+    const inputListItem = document.createElement('p');
+    inputListItem.className = 'inputListItem';
+    inputListItem.innerText = item; 
+    inputListItem.id = item + 'List';  
+    inputListOptions.append(inputListItem);
+}
+
+export const createSearchResultItem = (item, description, key) => {
+    const searchResultsContainer = document.querySelector('#searchResultsContainer');
+    const searchResultCircle = document.createElement('div');
+    const searchResultItem = document.createElement('div');
+    const searchResultName = document.createElement('p');
+    const searchResultDescription = document.createElement('p');
+    const searchResultArrow = document.createElement('div');
+
+    searchResultCircle.className = 'searchResultCircle';
+    searchResultCircle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>';
+
+    searchResultItem.className = 'searchResultItem';
+    searchResultItem.id = 'search' + key;  
+
+    searchResultName.className = 'searchResultName';
+    searchResultName.innerText = item; 
+
+    searchResultDescription.className = 'searchResultDescription';
+    searchResultDescription.innerText = description; 
+
+    searchResultArrow.className = 'searchResultArrow';
+    searchResultArrow.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><title>ionicons-v5-a</title><polyline points="262.62 336 342 256 262.62 176" style="fill:none;stroke:#3880ff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="330.97" y1="256" x2="170" y2="256" style="fill:none;stroke:#3880ff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M256,448c106,0,192-86,192-192S362,64,256,64,64,150,64,256,150,448,256,448Z" style="fill:none;stroke:#3880ff;stroke-miterlimit:10;stroke-width:32px"/></svg>'
+
+    searchResultItem.append(searchResultCircle);
+    searchResultItem.append(searchResultName);
+    searchResultItem.append(searchResultDescription);
+    searchResultItem.append(searchResultArrow);
+    
+    searchResultsContainer.append(searchResultItem);
 }
 
 export const updateCreateListButton = (listName) => {

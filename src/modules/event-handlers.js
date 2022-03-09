@@ -246,6 +246,20 @@ const navLogo = () => {
     setTimeout(() => createTasksContainer('home'), 350);
 }
 
+const NavSearchInput = () => {
+    const navSearchBar = document.querySelector('#searchBar');
+    navSearchBar.addEventListener('input', e => {
+        const value = e.target.value.toLowerCase();
+
+        allTasks.forEach(item=> {
+            if (item.className == 'inputListItem' || item.className == 'inputListItem hidden') {
+                const valueMatch = item.innerText.toLowerCase().includes(value);
+                item.classList.toggle('hidden', !valueMatch);    
+            }
+        })
+    })
+}
+
 const formButtonClicked = () => {
     formContainer.style.visibility = "visible";
     form.style.opacity = "1";
@@ -411,6 +425,7 @@ export const runEventHandlers = () => {
     formContainerClick();
     formSearchInput();
     navbarClick();
+    NavSearchInput();
     sideBarClick();
     contentContainerClick();
     windowResize();
