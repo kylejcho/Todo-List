@@ -295,7 +295,7 @@ const navSearchResultClick = (e) => {
                 }
             })
             taskSelection(taskContainer)
-            setTimeout(() => taskContainer.scrollIntoView({ behavior: 'smooth'}), 200);
+            setTimeout(() => taskContainer.scrollIntoView({ behavior: 'smooth', block: "center"}), 200);
         },500);
     } else {
             const taskContainers = document.querySelectorAll('.taskContainer');
@@ -305,7 +305,7 @@ const navSearchResultClick = (e) => {
                 }
             })
             taskSelection(taskContainer)
-            setTimeout(() => taskContainer.scrollIntoView({ behavior: 'smooth'}), 200);
+            setTimeout(() => taskContainer.scrollIntoView({ behavior: 'smooth', block: "center"}), 200);
     }
 }
 
