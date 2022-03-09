@@ -420,8 +420,7 @@ nav {
     position: absolute;
     left: 15px;
     transform: translate(15px, 35px);
-    transition: opacity 0.2s ease-in-out;
-    animation: emptySubGroupFadeIn 0.2s ease-in-out;
+    animation: emptySubGroupFadeIn 0.1s ease-in-out;
 }
 
 @keyframes emptySubGroupFadeIn {

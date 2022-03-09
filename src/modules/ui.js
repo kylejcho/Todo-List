@@ -10,7 +10,7 @@ export const initialPageLoad = () => {
     createTasksContainer('home');
     createCalendarIcon(); 
     createCalendarMonth(getMonth());
-    makeCalendar();
+    makeCalendar(new Date());
     getLocalData();
     updateCounter();
     

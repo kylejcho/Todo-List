@@ -1,10 +1,10 @@
 import { createTask, updateLocalData } from "./create-task";
-import { createTaskView, createTasksContainer, clearContent, updateCounter, updateCreateListButton, decreaseFontSize} from "./ui";
+import { createTaskView, createTasksContainer, clearContent, updateCounter, updateCreateListButton, decreaseFontSize, createCalendarMonth} from "./ui";
 import { allTasks, allLists } from "./create-task";
 import checkTaskAnimation, { removeSubGroup } from "./animations";
 import { deleteTask, removeTaskView } from "./animations";
-import { startOfToday,startOfTomorrow } from "date-fns";
-import { stringToDate } from "./calendar";
+import { addMonths, startOfMonth, startOfToday,startOfTomorrow, subMonths } from "date-fns";
+import { clearCalendar, resetCalendar, stringToDate } from "./calendar";
 
 const inputTaskName = document.querySelector('#inputTaskName');
 const inputTaskDescription = document.querySelector('#inputTaskDescription');
@@ -73,6 +73,8 @@ const formContainerClick = () => {
             formListOptionsClick(e);
         } else if (e.target.id == 'createListButton') {
             createListClick();
+        } else if (e.target.id == 'forwardMonthIcon') {
+            calendarArrowClick(e);
         } else if (e.target.id == 'taskFormContainer') {
             formCancel();
         }
@@ -124,6 +126,14 @@ const formCalendarButtonClick = () => {
     }
     inputCalendarOptions.classList.toggle('selected');
 }   
+
+const  calendarArrowClick = (e) => {
+    console.log(e.target)
+    if (e.target.id == 'forwardMonthIcon') {
+        resetCalendar();
+        //createCalendarMonth(startOfMonth(addMonths(new Date, 1)))
+    }
+}
 
 const calendarDayClick = (e) => {
     const monthString = calendarMonth.innerText;

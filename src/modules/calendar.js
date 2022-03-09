@@ -2,8 +2,8 @@ import { getDaysInMonth, getDay , startOfMonth, format} from "date-fns";
 
 const calendar = document.querySelector('#calendar');
 
-export const getDaysMonth = () => {
-    return getDaysInMonth(new Date());
+export const getDaysMonth = (date) => {
+    return getDaysInMonth(date);
 }
 
 export const getDayOfWeek = () => {
@@ -11,7 +11,7 @@ export const getDayOfWeek = () => {
 }
 
 
-const makeCalendar = () => {
+const makeCalendar = (date) => {
     const startDay = getDayOfWeek();
 
     for (let i = 0; i < startDay; i++) {
@@ -20,8 +20,8 @@ const makeCalendar = () => {
         calendar.append(calendarBlank);
     }
 
-    const today = parseInt(format(new Date(), 'd')) 
-    const daysInMonth = getDaysMonth();
+    const today = parseInt(format(date, 'd')) 
+    const daysInMonth = getDaysMonth(date);
     const daysRemaining = daysInMonth - today + 1;
 
     let day = 1;
@@ -41,6 +41,16 @@ const makeCalendar = () => {
     }
 }
 
+
+export const resetCalendar = () => {
+    const calendar = document.querySelector('#calendar');
+    const inputCalendarOptions = document.querySelector('#inputCalendarOptions')
+    calendar.remove();
+
+    const newCalendar = document.createElement('div')
+    newCalendar.id = 'calender';
+    inputCalendarOptions.append(newCalendar);
+}
 
 export const stringToDate = (string) => {
     const words = string.split(' ')
