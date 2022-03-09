@@ -1237,12 +1237,11 @@ nav {
 }
 
 #loadingScreenLogoContainer svg {
-    font-size: 4rem;
     width: 4rem;
-    font-weight: 600;
-    --ionicon-stroke-width: 50px;
 }
+
 #loadingScreen p {
+    font-family: 'Helvetica';
     font-size: 4rem;
     font-weight: 700;
     color: black;
