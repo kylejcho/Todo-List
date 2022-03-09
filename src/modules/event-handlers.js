@@ -295,6 +295,7 @@ const navSearchResultClick = (e) => {
                 }
             })
             taskSelection(taskContainer)
+            setTimeout(() => taskContainer.scrollIntoView({ behavior: 'smooth'}), 200);
         },500);
     } else {
             const taskContainers = document.querySelectorAll('.taskContainer');
@@ -304,6 +305,7 @@ const navSearchResultClick = (e) => {
                 }
             })
             taskSelection(taskContainer)
+            setTimeout(() => taskContainer.scrollIntoView({ behavior: 'smooth'}), 200);
     }
 }
 

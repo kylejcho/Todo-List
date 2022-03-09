@@ -96,15 +96,15 @@ export const exampleTasks = () => {
     createTask("Dinner at Olive Garden", "Pick up sister on the way", startOfToday());
     createTask("PHYS231 homework assignment", "Chapter 14, questions 1-13", startOfToday(),'School');
     createTask("Exercise", "Workout out for 45 minutes", startOfToday(),);
-    //createTask("Coffee with friend", "Starbucks", startOfToday());
+    createTask("Coffee with friend", "Starbucks", startOfToday());
     createTask("Baking class", "Bring homemade pie", startOfToday(),'School');
 
     createTask("Read Animal Farm", "Read two chapter", startOfTomorrow(),'Reading');
     createTask("Learn sign language", "Practice english alphabet", startOfTomorrow(), 'Personal');
 
-    //createTask("BIO231 homework assignment", "Chapter 12, questions 1-8", nextWeek(startOfToday()), 'School');
-    //createTask("Exercise", "Workout out for 45 minutes", nextWeek(startOfToday()));
+    createTask("BIO231 homework assignment", "Chapter 12, questions 1-8", nextWeek(startOfToday()), 'School');
+    createTask("Exercise", "Workout out for 45 minutes", nextWeek(startOfToday()));
     createTask("Coffee with friend", "Starbucks", nextWeek(startOfToday()));
-    //createTask("PSYC100 module assignment", "Chapters 1 - 3", nextWeek(startOfToday()), 'School');
+    createTask("PSYC100 module assignment", "Chapters 1 - 3", nextWeek(startOfToday()), 'School');
     createTask("Bird watching", "Bring sliced breed", nextWeek(startOfToday()), 'Personal');
 }
