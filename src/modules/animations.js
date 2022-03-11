@@ -69,15 +69,12 @@ export const slideInTaskView = (taskViewContainer) => {
             if (window.innerWidth < 1500 && window.innerWidth > 1300) {
                 taskViewContainer.style.transform = "translateX(-15vw)";
             } else if (window.innerWidth < 1300 && window.innerWidth > 1150 ) {
-                //taskViewContainer.style.transition= "all 0.25s cubic-bezier(0,.3,.5,1)";
                 taskViewContainer.style.transform = "translateX(-12vw)";
             } else if (window.innerWidth < 1150 && window.innerWidth > 1050 ) {
-                //taskViewContainer.style.transition= "all 0.25s cubic-bezier(0,.3,.5,1)";
                 taskViewContainer.style.transform = "translateX(-10vw)";
             } else if (window.innerWidth < 1050 ) {
-                //taskViewContainer.style.transition= "all 0.25s cubic-bezier(0,.3,.5,1)";
                 taskViewContainer.style.transform = "translateX(-8vw)";
-            }else {
+            } else {
                 taskViewContainer.style.transform = "translateX(-20vw)";
             }
         },100)

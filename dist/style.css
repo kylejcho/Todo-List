@@ -82,6 +82,10 @@ body {
     line-height: 1.6;
 }
 
+body.stop-transitions * {
+    transition: none !important;
+  }
+
 svg path {
     pointer-events: none;
 }
@@ -669,7 +673,7 @@ nav {
     top: 140px;
     right: 0;
     height: max(20vw,300px);
-    width: clamp(300px, 22vw, 370px);
+    width: clamp(250px, 22vw, 370px);
     font-size: clamp(14px, 1.1vw, 16px);
     border-radius: 10px;
     opacity: 0;

@@ -1,11 +1,10 @@
 import Task from "./task";
 import {createTaskContainer, createSidebarList, createInputListItem, createSearchResultItem} from "./ui";
-import { startOfToday, isSameDay, endOfDay, isAfter,startOfTomorrow, parseJSON} from "date-fns";
+import { startOfToday, startOfTomorrow, parseJSON} from "date-fns";
 import { isOverDue, nextWeek } from "./dates"
 
 export let allTasks = [];
 export let allLists = [];
-
 
 export const getLocalData = () => {
     if (localStorage.getItem('allTasks') == null) {

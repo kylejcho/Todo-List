@@ -252,10 +252,9 @@ const NavSearchInput = () => {
     const navSearchBar = document.querySelector('#searchBar');
     const navSearchContainer = document.querySelector('#searchContainer')
     const searchResultsContainer = document.querySelector('#searchResultsContainer');
-    const searchResultName = document.querySelectorAll('.searchResultName');
     navSearchBar.addEventListener('input', e => {
+        const searchResultName = document.querySelectorAll('.searchResultName');
         const value = e.target.value.toLowerCase();
-        console.log(value)
         searchResultName.forEach(name => {
                 const valueMatch = name.innerText.toLowerCase().includes(value);
                 name.parentNode.classList.toggle('hidden', !valueMatch);    
@@ -277,7 +276,6 @@ const NavSearchInput = () => {
 const navSearchResultClick = (e) => {
     const sidebarHome = document.querySelector('#sidebarHome')
     let taskContainer;
-
 
     if (document.querySelector('.tasksContainer').id != 'homeContainer' && document.querySelector('.tasksContainer').id != 'allTasksContainer') {
         shortcutToggle(sidebarHome)
@@ -481,11 +479,23 @@ export const emptySubGroup = (subGroup) => {
 }
 
 //Window Resizing Listeners 
-
 const windowResize = () => {
     window.addEventListener('resize', ()=> {
         decreaseFontSize();
     }) 
+    let timer = 0;
+    window.addEventListener('resize', () => {
+        if (timer) {
+            clearTimeout(timer);
+            timer = null;
+        } else {
+            document.body.classList.add('stop-transitions');
+        }
+        timer = setTimeout(() => {
+            document.body.classList.remove('stop-transitions');
+            timer = null;
+        }, 100);
+    });
 }
 
 
