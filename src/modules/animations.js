@@ -1,14 +1,5 @@
 import { decreaseFontSize, isOverflowing } from "./ui";
 
-export const addTask = (taskContainer) => {
-    setTimeout(()=> {
-        taskContainer.style.opacity = "1";
-    },10) 
-    setTimeout(() => {
-            taskContainer.style.transition = 'all ease-in-out 0.2s'
-    }, 300);
-}
-
 export const deleteTask = (taskContainer) => {
     taskContainer.parentNode.childNodes.forEach((task)=>{
         task.style.pointerEvents = 'none';

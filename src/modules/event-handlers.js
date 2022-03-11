@@ -459,14 +459,14 @@ const deleteClick = (e) => {
         updateLocalData(allTasks);
         updateCounter();
         setTimeout(() => {
-            emptySubGroup(subGroup)
+            checkEmptySubGroup(subGroup)
         }, 200);
         
         console.log(allTasks)
     }
 }
 
-export const emptySubGroup = (subGroup) => {
+export const checkEmptySubGroup = (subGroup) => {
     if (subGroup.children.length == 1) {
         if (subGroup.id == 'overdue') {
             removeSubGroup(subGroup)

@@ -1,6 +1,6 @@
-import { addTask, slideInTaskView } from "./animations";
-import { allTasks, allLists/*, exampleTasks*/,getLocalData, loadLocalData} from "./create-task";
-import { emptySubGroup, runEventHandlers } from "./event-handlers";
+import { slideInTaskView } from "./animations";
+import { allTasks, getLocalData} from "./create-task";
+import { checkEmptySubGroup, runEventHandlers } from "./event-handlers";
 import { isToday, isTomorrow, isThisWeek, startOfToday, isAfter, endOfDay, isSameDay } from "date-fns";
 import { formatDate, getDayOfMonth, isMorning, isAfternoon, within7Days, getMonth, getYear, isOverDue} from "./dates";
 import { makeCalendar } from "./calendar"
@@ -13,41 +13,33 @@ export const initialPageLoad = () => {
     makeCalendar(new Date());
     getLocalData();
     updateCounter();
-    
     runEventHandlers();
 }
 
 const loadingScreen = () => {
     const loadingScreen = document.querySelector("#loadingScreen");
     window.addEventListener('load', () => {
-        const body = document.querySelector('body')
-        body.style.overflowY= "hidden";
-        setTimeout(()=> {
-            loadingScreen.style.opacity = "0";
-        }, 500)
+        document.body.style.overflowY= "hidden";
+        setTimeout(()=> loadingScreen.style.opacity = "0", 400)
         setTimeout(()=> {
             loadingScreen.remove();
-            body.style.overflowY= "visible";
-        }, 1000)
+            document.body.style.overflowY= "visible";
+        }, 900)
     });
 }
 
-
 export const clearContent = () => {
     const tasksContainer = document.querySelector('.tasksContainer');
-    const taskViewContainer = document.querySelector('.taskViewContainer');
-    tasksContainer.style.transition = 'all 0.3s cubic-bezier(0.5, 0, 0.5, 1)';
     tasksContainer.style.opacity = 0;
+    
+    const taskViewContainer = document.querySelector('.taskViewContainer');
     if (taskViewContainer) {
         taskViewContainer.style.opacity = 0;
     }
+    
     setTimeout(() => {
-        if (tasksContainer) {
-            tasksContainer.remove();
-        }
-        if (taskViewContainer) {
-            taskViewContainer.remove();
-        }
+        tasksContainer.remove();
+        taskViewContainer.remove();
     }, 300);
 }
 
@@ -71,40 +63,28 @@ export const createTasksContainer = (type, list) => {
     tasksContainer.append(tasksContainerTitle);
 
     if (type == 'today') {
-        tasksContainerTitle.innerText = "Today";
+        tasksContainerTitle.innerText = "Today's Tasks";
         createSubGroups('today', tasksContainer);
         allTasks.forEach((task)=> {
             if (isToday(task.dueDate)) {
-                setTimeout(() => createTaskContainer(task.name,task.description,task.dueDate,task.status,task.key), 10);
+                setTimeout(() => createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key), 10);
             }
         })
     } else if (type == 'week') {
         tasksContainerTitle.innerText = "Next 7 Days";
-        createSubGroups("today", tasksContainer, 'title');
-        createSubGroups("tomorrow", tasksContainer, 'title');
-        createSubGroups("upcoming", tasksContainer, 'title');
+        createAllSubGroups(tasksContainer)
         allTasks.forEach((task)=> {
             if (within7Days(task.dueDate)) {
-                setTimeout(() => {
-                    createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key);
-                }, 10);
+                setTimeout(() => createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key), 10);
             }
         })
     } else if (type == 'home' || type == 'allTasks') {
         if (type == 'home') {
-            if (isMorning()) {
-                tasksContainerTitle.innerText = "Good Morning, User";
-            } else if (isAfternoon()) {
-                tasksContainerTitle.innerText = "Good Afternoon, User";
-            } else {
-                tasksContainerTitle.innerText = "Good Evening, User";
-            }
+            createHomeGreeting(tasksContainerTitle)
         } else {
             tasksContainerTitle.innerText = "All Tasks";
         }
-        createSubGroups("today", tasksContainer, 'title');
-        createSubGroups("tomorrow", tasksContainer, 'title');
-        createSubGroups("upcoming", tasksContainer, 'title');
+        createAllSubGroups(tasksContainer)
         allTasks.forEach((task)=> {
             setTimeout(() => {
                 isOverDue(task.dueDate)
@@ -113,51 +93,34 @@ export const createTasksContainer = (type, list) => {
         })
     } else {
         tasksContainerTitle.innerText = type;
-        createSubGroups("today", tasksContainer, 'title');
-        createSubGroups("tomorrow", tasksContainer, 'title');
-        createSubGroups("upcoming", tasksContainer, 'title');
+        createAllSubGroups(tasksContainer)
         allTasks.forEach((task)=> {
             if (task.list == type) {
-                setTimeout(() => {
-                    createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key);
-                }, 10);
+                setTimeout(() => createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key), 10);
             }
         })
     }
 
     const contentContainer = document.querySelector('#contentContainer');
     contentContainer.append(tasksContainer);
-    
     tasksContainer.style.pointerEvents = "none";
     setTimeout(() => {
         const subGroups = document.querySelectorAll('.subGroup')
-        subGroups.forEach(subGroup => {
-            emptySubGroup(subGroup)
-        })
+        subGroups.forEach(subGroup => checkEmptySubGroup(subGroup))
     }, 10);
-    setTimeout(() => {  
-        tasksContainer.style.pointerEvents = "unset";
-    }, 500);
+    setTimeout(() => tasksContainer.style.pointerEvents = "unset", 500);
 }
 
-export const createSubGroups = (group, tasksContainer, title) => {
+export const createSubGroups = (group, tasksContainer) => {
     const subGroup = document.createElement('div');
     subGroup.className = "subGroup";
     subGroup.id = group;
 
     const subGroupTitle = document.createElement('p');
     subGroupTitle.className = "subGroupTitle";
-    subGroupTitle.innerText = group[0].toUpperCase() + group.slice(1)
+    subGroupTitle.innerText = group[0].toUpperCase() + group.slice(1);
+    subGroup.append(subGroupTitle);
 
-    if (title) {
-        subGroup.append(subGroupTitle);
-    } else {
-        subGroup.append(subGroupTitle);
-        subGroupTitle.style.opacity = "0";
-        subGroupTitle.style.height = "0";
-        subGroupTitle.style.margin = "0";
-    }
-    
     if (group == 'overdue') {
         tasksContainer.insertBefore(subGroup, tasksContainer.children[1])
         subGroup.children[0].classList.toggle('overdue')
@@ -166,6 +129,21 @@ export const createSubGroups = (group, tasksContainer, title) => {
     }
 }   
 
+const createAllSubGroups = (tasksContainer) => {
+    createSubGroups("today", tasksContainer);
+    createSubGroups("tomorrow", tasksContainer);
+    createSubGroups("upcoming", tasksContainer);
+}
+
+const createHomeGreeting = (tasksContainerTitle) => {
+    if (isMorning()) {
+        tasksContainerTitle.innerText = "Good Morning, User";
+    } else if (isAfternoon()) {
+        tasksContainerTitle.innerText = "Good Afternoon, User";
+    } else {
+        tasksContainerTitle.innerText = "Good Evening, User";
+    }
+}
 
 export const createTaskContainer = (task, description, dueDate, status, key) => {
     const taskContainer = document.createElement('div');
@@ -227,8 +205,8 @@ export const createTaskContainer = (task, description, dueDate, status, key) => 
     let subGroupHeight = subGroup.children.length * 60; 
     subGroup.style.height = `${subGroupHeight}px`;
 
-    addTask(taskContainer);
-    emptySubGroup(subGroup);
+    setTimeout(()=> taskContainer.style.opacity = "1", 10) 
+    checkEmptySubGroup(subGroup);
 }
 
 export const createTaskView = (task, taskContainer) => {
