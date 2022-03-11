@@ -23,7 +23,7 @@ export const loadLocalData = () => {
         allTasks.forEach(task=>{
         isOverDue(task.dueDate)
         createSearchResultItem(task.name, task.description, task.key)
-        createTaskContainer(task.name, task.description, parseJSON(task.dueDate), task.list, task.status, task.key);
+        createTaskContainer(task.name, task.description, parseJSON(task.dueDate), task.status, task.key);
         })
     } else {
         exampleTasks()
@@ -51,7 +51,7 @@ export const createTask = (task, description, dueDate, list, status) => {
         return
     }
 
-    createTaskContainer(task, description, dueDate, list, status, key);
+    createTaskContainer(task, description, dueDate, status, key);
     console.log(allTasks);
     createSearchResultItem(task, description, key)
 }
@@ -86,10 +86,6 @@ const checkListExists = (item) => {
         createInputListItem(item);
     }
 }
-
-
-
-
 
 export const exampleTasks = () => {
     createTask("Dinner at Olive Garden", "Pick up sister on the way", startOfToday());

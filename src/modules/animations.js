@@ -1,10 +1,7 @@
 import { decreaseFontSize, isOverflowing } from "./ui";
 
-export const addTask = (taskContainer, shadow) => {
+export const addTask = (taskContainer) => {
     setTimeout(()=> {
-        if (shadow == 'no shadow') {
-            taskContainer.style.transition = 'none';
-        } 
         taskContainer.style.opacity = "1";
     },10) 
     setTimeout(() => {
@@ -62,7 +59,6 @@ export const slideInTaskView = (taskViewContainer) => {
                 document.body.style.overflow = 'auto'
             },100)  
         }
-        
         
         setTimeout(()=> {
             taskViewContainer.style.opacity = "1";

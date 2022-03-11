@@ -56,18 +56,15 @@ const createCalendarIcon = () => {
     todayIconNumber.innerHTML = getDayOfMonth(startOfToday());
 }
 
-//ALL TASKS CONTENT
 export const createTasksContainer = (type, list) => {
     const tasksContainer = document.createElement('div');
-
+    tasksContainer.className = "tasksContainer";
     if (list == 'list') {
         tasksContainer.id = type + "ListContainer";
     } else {
         tasksContainer.id = type + "Container";
     }
-    tasksContainer.className = "tasksContainer";
     
-
     const tasksContainerTitle = document.createElement('div');
     tasksContainerTitle.id = 'titleContainer';
     tasksContainerTitle.className = "tasksTitle";
@@ -78,9 +75,7 @@ export const createTasksContainer = (type, list) => {
         createSubGroups('today', tasksContainer);
         allTasks.forEach((task)=> {
             if (isToday(task.dueDate)) {
-                setTimeout(() => {
-                    createTaskContainer(task.name, task.description, task.dueDate, task.list, task.status, task.key, 'no shadow');
-                }, 10);
+                setTimeout(() => createTaskContainer(task.name,task.description,task.dueDate,task.status,task.key), 10);
             }
         })
     } else if (type == 'week') {
@@ -91,7 +86,7 @@ export const createTasksContainer = (type, list) => {
         allTasks.forEach((task)=> {
             if (within7Days(task.dueDate)) {
                 setTimeout(() => {
-                    createTaskContainer(task.name, task.description, task.dueDate, task.list, task.status, task.key, 'no shadow');
+                    createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key);
                 }, 10);
             }
         })
@@ -113,7 +108,7 @@ export const createTasksContainer = (type, list) => {
         allTasks.forEach((task)=> {
             setTimeout(() => {
                 isOverDue(task.dueDate)
-                createTaskContainer(task.name, task.description, task.dueDate, task.list, task.status, task.key, 'no shadow');
+                createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key);
             }, 10);
         })
     } else {
@@ -124,7 +119,7 @@ export const createTasksContainer = (type, list) => {
         allTasks.forEach((task)=> {
             if (task.list == type) {
                 setTimeout(() => {
-                    createTaskContainer(task.name, task.description, task.dueDate, task.list, task.status, task.key, 'no shadow');
+                    createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key);
                 }, 10);
             }
         })
@@ -146,17 +141,13 @@ export const createTasksContainer = (type, list) => {
 }
 
 export const createSubGroups = (group, tasksContainer, title) => {
-    const capitalize = (str) => {
-        return str[0].toUpperCase() + str.slice(1)
-    }
-
     const subGroup = document.createElement('div');
     subGroup.className = "subGroup";
     subGroup.id = group;
 
     const subGroupTitle = document.createElement('p');
     subGroupTitle.className = "subGroupTitle";
-    subGroupTitle.innerText = capitalize(group);
+    subGroupTitle.innerText = group[0].toUpperCase() + group.slice(1)
 
     if (title) {
         subGroup.append(subGroupTitle);
@@ -176,7 +167,7 @@ export const createSubGroups = (group, tasksContainer, title) => {
 }   
 
 
-export const createTaskContainer = (task, description, dueDate, list, status, key, shadow) => {
+export const createTaskContainer = (task, description, dueDate, status, key) => {
     const taskContainer = document.createElement('div');
     taskContainer.className = 'taskContainer';
     taskContainer.id = key;
@@ -202,15 +193,15 @@ export const createTaskContainer = (task, description, dueDate, list, status, ke
     taskContainer.append(deleteContainer);
     taskContainer.append(descriptionContainer);
     
-    
     let subGroup;
     if (isToday(dueDate)) {
         subGroup = document.querySelector('#today');
     } else if (isTomorrow(dueDate)) {
-        if (document.querySelector('.tasksContainer').id == "todayContainer") {
+        if (document.querySelector('.tasksContainer').id != "todayContainer") {
+            subGroup = document.querySelector('#tomorrow');
+        } else {
             return
-        } 
-        subGroup = document.querySelector('#tomorrow');
+        }
     } else if (isAfter(endOfDay(new Date()), dueDate) && !isSameDay(new Date(), dueDate)) {
         subGroup = document.querySelector('#overdue');
     } else {
@@ -220,26 +211,23 @@ export const createTaskContainer = (task, description, dueDate, list, status, ke
     if (status == 'completed') {
         taskContainer.classList.add('completed');
         taskContainer.children[0].classList.toggle('completed');
-        taskContainer.children[0].innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-e</title><path d="M256,48C141.31,48,48,141.31,48,256s93.31,208,208,208,208-93.31,208-208S370.69,48,256,48ZM364.25,186.29l-134.4,160a16,16,0,0,1-12,5.71h-.27a16,16,0,0,1-11.89-5.3l-57.6-64a16,16,0,1,1,23.78-21.4l45.29,50.32L339.75,165.71a16,16,0,0,1,24.5,20.58Z"/></svg>';
         taskContainer.children[1].classList.toggle('completed');
         taskContainer.children[2].classList.toggle('completed');
+        taskContainer.children[0].innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><title>ionicons-v5-e</title><path d="M256,48C141.31,48,48,141.31,48,256s93.31,208,208,208,208-93.31,208-208S370.69,48,256,48ZM364.25,186.29l-134.4,160a16,16,0,0,1-12,5.71h-.27a16,16,0,0,1-11.89-5.3l-57.6-64a16,16,0,1,1,23.78-21.4l45.29,50.32L339.75,165.71a16,16,0,0,1,24.5,20.58Z"/></svg>';
         subGroup.appendChild(taskContainer);
     } else {
         subGroup.insertBefore(taskContainer, subGroup.children[1]);
     }
-
 
     let distance = 60;
     for (let i = 2; i < subGroup.children.length; i++) {
         subGroup.children[i].style.transform = `translateY(${distance}px)`;
         distance += 60;
     }    
-
-    
     let subGroupHeight = subGroup.children.length * 60; 
-    subGroup.style.height = `${subGroupHeight}px`
-    
-    addTask(taskContainer, shadow);
+    subGroup.style.height = `${subGroupHeight}px`;
+
+    addTask(taskContainer);
     emptySubGroup(subGroup);
 }
 
@@ -261,7 +249,7 @@ export const createTaskView = (task, taskContainer) => {
     const checkContainer = document.createElement('div');
     checkContainer.className = 'taskViewCheckContainer';
     checkContainer.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>';
-    taskViewNameContainer.append(checkContainer)
+    taskViewNameContainer.append(checkContainer);
 
     const taskViewName = document.createElement('p');
     taskViewName.className = "taskViewName";
@@ -278,12 +266,10 @@ export const createTaskView = (task, taskContainer) => {
     taskViewDescription.innerText = task.description;
     taskViewDescriptionContainer.append(taskViewDescription)
 
-
     const taskViewDueDateContainer = document.createElement('div');
     taskViewDueDateContainer.className = "taskViewDueDateContainer";
     taskViewDueDateContainer.innerText = "Due:";
     taskViewContainer.append(taskViewDueDateContainer);
-
 
     const taskViewDueDate = document.createElement('div');
     taskViewDueDate.className = "taskViewDueDate";
@@ -297,9 +283,7 @@ export const createTaskView = (task, taskContainer) => {
     } else {
         taskViewDueDate.innerHTML = dueDate;
     }
-    
     taskViewDueDateContainer.append(taskViewDueDate);
-
 
     if (task.list != undefined) {
         const taskViewListContainer = document.createElement('div');
@@ -329,7 +313,6 @@ export const createTaskView = (task, taskContainer) => {
         checkContainer.classList.toggle('completed');
     }                 
     slideInTaskView(taskViewContainer);
-    
 }
 
 
@@ -405,30 +388,28 @@ export const createInputListItem = (item) => {
 }
 
 export const createSearchResultItem = (item, description, key) => {
-    const searchResultsContainer = document.querySelector('#searchResultsContainer');
     const searchResultCircle = document.createElement('div');
-    const searchResultItem = document.createElement('div');
-    const searchResultName = document.createElement('p');
-    const searchResultDescription = document.createElement('p');
-    const searchResultArrow = document.createElement('div');
-
     searchResultCircle.className = 'searchResultCircle';
     searchResultCircle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><title>ionicons-v5-q</title><circle cx="256" cy="256" r="192" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>';
 
+    const searchResultItem = document.createElement('div');
     searchResultItem.className = 'searchResultItem';
     searchResultItem.classList.add('hidden')
     searchResultItem.id = 'search' + key;  
 
+    const searchResultName = document.createElement('p');
     searchResultName.className = 'searchResultName';
     searchResultName.innerText = item; 
 
+    const searchResultDescription = document.createElement('p');
     searchResultDescription.className = 'searchResultDescription';
     if (description) {
         searchResultDescription.innerText = description; 
     } else {
         searchResultDescription.innerText = '-'
     }
-    
+
+    const searchResultArrow = document.createElement('div');
     searchResultArrow.className = 'searchResultArrow';
     searchResultArrow.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><title>ionicons-v5-a</title><polyline points="262.62 336 342 256 262.62 176" style="fill:none;stroke:#3880ff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="330.97" y1="256" x2="170" y2="256" style="fill:none;stroke:#3880ff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M256,448c106,0,192-86,192-192S362,64,256,64,64,150,64,256,150,448,256,448Z" style="fill:none;stroke:#3880ff;stroke-miterlimit:10;stroke-width:32px"/></svg>'
 
@@ -436,17 +417,17 @@ export const createSearchResultItem = (item, description, key) => {
     searchResultItem.append(searchResultName);
     searchResultItem.append(searchResultDescription);
     searchResultItem.append(searchResultArrow);
-    
+
+    const searchResultsContainer = document.querySelector('#searchResultsContainer');
     searchResultsContainer.append(searchResultItem);
 }
 
 export const updateCreateListButton = (listName) => {
-    const listOptions = document.querySelector('#inputListOptions');
     const createListButton = document.querySelector('#createListButton');
-    createListButton.innerText = "create " + '"' + listName + '"';
+    createListButton.innerText = `Create "${listName}"`
 }
 
 export const createCalendarMonth = (month) => {
     const calendarMonth = document.querySelector('#calendarMonth');
-    calendarMonth.innerHTML  = month + ' ' + getYear();
+    calendarMonth.innerText = `${month} ${getYear()}`;
 }
