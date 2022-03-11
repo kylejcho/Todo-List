@@ -38,8 +38,12 @@ export const clearContent = () => {
     }
     
     setTimeout(() => {
-        tasksContainer.remove();
-        taskViewContainer.remove();
+        if (tasksContainer) {
+            tasksContainer.remove();
+        }
+        if (taskViewContainer) {
+            taskViewContainer.remove();
+        }
     }, 300);
 }
 
@@ -67,7 +71,7 @@ export const createTasksContainer = (type, list) => {
         createSubGroups('today', tasksContainer);
         allTasks.forEach((task)=> {
             if (isToday(task.dueDate)) {
-                setTimeout(() => createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key), 10);
+                setTimeout(() => createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key, 'loaded'), 10);
             }
         })
     } else if (type == 'week') {
@@ -75,7 +79,7 @@ export const createTasksContainer = (type, list) => {
         createAllSubGroups(tasksContainer)
         allTasks.forEach((task)=> {
             if (within7Days(task.dueDate)) {
-                setTimeout(() => createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key), 10);
+                setTimeout(() => createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key, 'loaded'), 10);
             }
         })
     } else if (type == 'home' || type == 'allTasks') {
@@ -88,7 +92,7 @@ export const createTasksContainer = (type, list) => {
         allTasks.forEach((task)=> {
             setTimeout(() => {
                 isOverDue(task.dueDate)
-                createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key);
+                createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key, 'loaded');
             }, 10);
         })
     } else {
@@ -96,7 +100,7 @@ export const createTasksContainer = (type, list) => {
         createAllSubGroups(tasksContainer)
         allTasks.forEach((task)=> {
             if (task.list == type) {
-                setTimeout(() => createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key), 10);
+                setTimeout(() => createTaskContainer(task.name, task.description, task.dueDate, task.status, task.key, 'loaded'), 10);
             }
         })
     }
@@ -130,9 +134,9 @@ export const createSubGroups = (group, tasksContainer) => {
 }   
 
 const createAllSubGroups = (tasksContainer) => {
-    createSubGroups("today", tasksContainer);
-    createSubGroups("tomorrow", tasksContainer);
-    createSubGroups("upcoming", tasksContainer);
+    createSubGroups("today", tasksContainer, 'loaded');
+    createSubGroups("tomorrow", tasksContainer, 'loaded');
+    createSubGroups("upcoming", tasksContainer, 'loaded');
 }
 
 const createHomeGreeting = (tasksContainerTitle) => {
@@ -145,10 +149,17 @@ const createHomeGreeting = (tasksContainerTitle) => {
     }
 }
 
-export const createTaskContainer = (task, description, dueDate, status, key) => {
+export const createTaskContainer = (task, description, dueDate, status, key, loaded) => {
     const taskContainer = document.createElement('div');
     taskContainer.className = 'taskContainer';
     taskContainer.id = key;
+
+    if (loaded == 'loaded') {
+        taskContainer.style.transition = 'none';
+        setTimeout(() => {
+            taskContainer.style.transition = 'all ease-in-out 0.2s';
+        }, 100);
+    }
 
     const checkContainer = document.createElement('div');
     checkContainer.className = 'checkContainer';
