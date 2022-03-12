@@ -199,9 +199,9 @@ nav {
 
 #searchResultsContainer::-webkit-scrollbar {
     width: 0.4rem;
-  }
+}
    
-  #searchResultsContainer::-webkit-scrollbar-track {
+#searchResultsContainer::-webkit-scrollbar-track {
     background-color: #f8f8fb;
 }
    
@@ -313,28 +313,27 @@ nav {
 
 #contentContainer::-webkit-scrollbar {
     width: 0.8rem;
-  }
+}
    
 #contentContainer::-webkit-scrollbar-track {
     background-color: #f8f8fb;
 }
    
 #contentContainer::-webkit-scrollbar-thumb {
-    background-color: #d4d4d8;
+    background-color: #f8f8fb;
     border-radius: 50px;
+    animation: fadeInScrollBar 0.3s ease-in-out;
 }
 
 #sidebar {
     position: absolute;
     font-size: clamp(13px, 1.2vw, 16px);
-
-    height: max-content;
-    min-height: calc(100% - 95px);
+    height: calc(100% - 95px);
     padding: 40px 10px 0 20px;
     color: var(--secondary-text-color);
     background-color: var(--secondary-bg-color);
-    overflow: clip;
 }
+
 
 #sidebar ion-icon {
     margin: 0 1rem 0 15px;
@@ -1266,8 +1265,8 @@ nav {
     width: auto;
     background-color: var(--secondary-bg-color);
     transition: all ease-in-out 0.2s;
-    
 }
+
 
 #sidebarLists.close {
     opacity: 0;

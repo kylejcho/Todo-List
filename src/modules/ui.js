@@ -361,10 +361,12 @@ export const createSidebarList = (list) => {
 }
 
 const setListsCloseHeight = () => {
+    /*
     const sidebarListsClose = document.querySelector('#sidebarListsClose');
     const sidebarLists = document.querySelector('#sidebarLists');
     const sidebarListsHeight = sidebarLists.offsetHeight;
     sidebarListsClose.style.height = `${sidebarListsHeight}px`;
+    */
 }
 
 export const createInputListItem = (item) => {

@@ -27,8 +27,7 @@ class Task {
     setList(list) {
         this.list = list;
     }
-
-
+    
 }
 
 
